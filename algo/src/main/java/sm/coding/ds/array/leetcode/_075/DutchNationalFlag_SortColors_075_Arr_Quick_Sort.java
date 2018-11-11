@@ -46,8 +46,8 @@ public class DutchNationalFlag_SortColors_075_Arr_Quick_Sort {
 
 	public static void sortColors(int[] nums) {
 		int lo = 0;
-		int hi = nums.length - 1;
 		int mid = 0;
+		int hi = nums.length - 1;
 		while (mid <= hi) {
 			switch (nums[mid]) {
 				case 0: {
