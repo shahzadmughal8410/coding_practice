@@ -1,7 +1,7 @@
 /**
  * 
  */
-package sm.coding.algo.sorting.icf.string_sort;
+package sm.coding.algo.sorting_searching.icf.string_sort;
 
 /**
  * @author shahzadmughal8410

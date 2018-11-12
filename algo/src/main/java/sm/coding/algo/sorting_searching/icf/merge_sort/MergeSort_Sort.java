@@ -1,7 +1,7 @@
 /**
  * 
  */
-package sm.coding.algo.sorting.icf.merge_sort;
+package sm.coding.algo.sorting_searching.icf.merge_sort;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
