@@ -3,6 +3,9 @@
  */
 package sm.coding.algo.sorting.icf.merge_sort;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 /**
  * @author shahzadmughal8410
  *
@@ -10,51 +13,60 @@ package sm.coding.algo.sorting.icf.merge_sort;
 public class MergeSort_Sort {
 
 	static void mergeSort(int[] arr) {
-		mergeSort(arr, 0, arr.length);
+		mergeSort(arr, 0, arr.length-1);
 	}
 	
 	static void mergeSort(int[] arr, int start, int end) {
-		if(end<start) {
-			return;
+		if(start<end) {
+			int mid = (start+end) / 2;
+			mergeSort(arr, start, mid);
+			mergeSort(arr, mid+1, end);
+			
+			merge(arr, start, mid, end);
 		}
-		
-		int mid = (start+end) / 2;
-		mergeSort(arr, start, mid);
-		mergeSort(arr, mid+1, end);
-		
-		merge(arr, start, mid, end);
 	}
 	
 	static void merge(int[] arr, int start, int mid, int end) {
-		int[] leftArray = new int[mid+1-start];
-		int[] rightArray = new int[end-mid] ;
+		int[] left = new int[mid+1-start];
+		int[] right = new int[end-mid] ;
 		
-		for(int i=0; i<leftArray.length;i++) {
-			leftArray[i] = arr[start+i];
+		for(int i=0; i<left.length;i++) {
+			left[i] = arr[start+i];
 		}
-		for(int i=0; i<rightArray.length;i++) {
-			rightArray[i] = arr[mid+1+i];
+		for(int i=0; i<right.length;i++) {
+			right[i] = arr[mid+1+i];
 		}
 		
-		int leftIdx = 0;
-		int rightIdx = 0;
-		int idx = start;
+		int i = 0;
+		int j = 0;
+		int k = start;
 		
-		while(leftIdx<leftArray.length && rightIdx<rightArray.length) {
-			if(leftArray[leftIdx]<=rightArray[rightIdx]) {
-				arr[idx++] = leftArray[leftIdx++];
+		while(i<left.length && j<right.length) {
+			if(left[i]<=right[j]) {
+				arr[k++] = left[i++];
 			} else {
-				arr[idx++] = rightArray[rightIdx++];
+				arr[k++] = right[j++];
 			}
 		}
 		
-		while(leftIdx<leftArray.length) {
-			arr[idx++] = leftArray[leftIdx++];
+		while(i<left.length) {
+			arr[k++] = left[i++];
 		}
 
-		while(rightIdx<rightArray.length) {
-			arr[idx++] = rightArray[rightIdx++];
+		while(j<right.length) {
+			arr[k++] = right[j++];
 		}		
 	}
 
+	public static void main(String[] args) {
+		int arr[] = new int[] {9,2,8,5,2,4,2,8};
+		System.out.println("Original="+Arrays.stream(arr).boxed().collect(Collectors.toList()));
+		mergeSort(arr);
+		System.out.println("Sorted  ="+Arrays.stream(arr).boxed().collect(Collectors.toList()));
+
+		arr = new int[] {9,2,8,5,2,4,2,8,10};
+		System.out.println("Original="+Arrays.stream(arr).boxed().collect(Collectors.toList()));
+		mergeSort(arr);
+		System.out.println("Sorted  ="+Arrays.stream(arr).boxed().collect(Collectors.toList()));
+	}
 }
