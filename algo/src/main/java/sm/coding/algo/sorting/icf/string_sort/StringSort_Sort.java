@@ -32,14 +32,15 @@ https://www.geeksforgeeks.org/bucket-sort-2/
 	 */
 	
 	static void bucketSort(String input) {
-		char[] range = new char[256];
+		int[] range = new int[256];
 		for(int i =0; i<input.length();i++) {
-			range[input.charAt(i)] = range[input.charAt(i)]++;
+			int index = input.charAt(i);
+			range[index] = range[index]+1;
 		}
 		
 		for(int i =0 ; i<range.length;i++) {
 			for(int j=0;j<range[i];j++) {
-				System.out.print(Character.forDigit(i, Character.MAX_RADIX));
+				System.out.print((char)i);
 			}
 		}
 	}
