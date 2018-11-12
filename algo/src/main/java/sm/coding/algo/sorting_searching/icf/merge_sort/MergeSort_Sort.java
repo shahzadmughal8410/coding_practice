@@ -18,8 +18,8 @@ public class MergeSort_Sort {
 	
 	static void mergeSort(int[] arr, int start, int end) {
 		if(start<end) {
-			int mid = (start+end) / 2;
-			mergeSort(arr, start, mid);
+//			mergeSort(arr, start, mid);
+			int mid = ((end-start) / 2) +start;
 			mergeSort(arr, mid+1, end);
 			
 			merge(arr, start, mid, end);
