@@ -121,11 +121,9 @@ class SolutionDebug{
 		for(int i=1;i<arr.length;i++) { // in kadane i=0 here i=1
 			debugRow(maxSoFar, currentMax, i, " "+(arr[i]-arr[i-1])+" = "+arr[i]+" - "+arr[i-1]);
 			currentMax += arr[i]-arr[i-1];// same as kadane currentMax += arr[i], here += arr[i]-arr[i-1]
-			if(currentMax < 0) {
-				currentMax = 0;
-			}else if (maxSoFar < currentMax) {
-				maxSoFar = currentMax;
-			}
+
+			currentMax = Math.max(0, currentMax);
+			maxSoFar = Math.max(currentMax, maxSoFar);
 		}
 		return maxSoFar;
 	}
