@@ -33,16 +33,17 @@ https://leetcode.com/problems/add-binary/description/
 		}
 		
 		for(int i =nums.length-1; i>=0;i--) {
-			if(nums[i]<9) {
+			if(nums[i]<9) { // this digit is less then 9 then simply add 1 in it and return
 				nums[i] +=1;
 				return nums;
-			}else {
+			}else { // the digit is 9 so make this digit zero
 				nums[i]=0;
 			}
 		}
-		
+		// if we are reahing here, it means all the digits in number weere 9, i.e. 99 or 99999
+		// for this case it will be overflow and we need new array to store number +1 the actual array size
 		int[] result = new int[nums.length+1];
-		result[0]=1;
+		result[0]=1;// mke first digit as 1, rest of them will be zeros i.e. for 99 it will become 100
 		return result;
 	}
 	
