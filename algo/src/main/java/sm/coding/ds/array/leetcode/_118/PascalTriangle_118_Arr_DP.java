@@ -32,6 +32,10 @@ https://www.geeksforgeeks.org/pascal-triangle/
 Similar questions
 https://leetcode.com/problems/pascals-triangle-ii/description/ 
 
+Submission
+https://leetcode.com/submissions/detail/189237696/
+You are here! 
+Your runtime beats 62.44 % of java submissions.
 	 * @param args
 	 */
 	public static List<List<Integer>> pascalTriangle(int rows){

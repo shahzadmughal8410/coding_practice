@@ -24,6 +24,11 @@ https://www.geeksforgeeks.org/add-1-number-represented-array/
 Similar questions
 https://leetcode.com/problems/plus-one-linked-list/description/ 
 https://leetcode.com/problems/add-binary/description/  
+
+Submission
+https://leetcode.com/submissions/detail/189237203/
+You are here! 
+Your runtime beats 100.00 % of java submissions.
 	 * 
 	 * @param args
 	 */
@@ -40,10 +45,10 @@ https://leetcode.com/problems/add-binary/description/
 				nums[i]=0;
 			}
 		}
-		// if we are reahing here, it means all the digits in number weere 9, i.e. 99 or 99999
+		// if we are reaching here, it means all the digits in number were 9, i.e. 99 or 99999
 		// for this case it will be overflow and we need new array to store number +1 the actual array size
 		int[] result = new int[nums.length+1];
-		result[0]=1;// mke first digit as 1, rest of them will be zeros i.e. for 99 it will become 100
+		result[0]=1;// make first digit as 1, rest of them will be zeros i.e. for 99 it will become 100
 		return result;
 	}
 	
