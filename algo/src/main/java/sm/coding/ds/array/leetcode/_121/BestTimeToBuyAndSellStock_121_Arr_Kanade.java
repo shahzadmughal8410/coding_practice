@@ -54,7 +54,7 @@ Your runtime beats 99.91 % of java submissions.
 			// it will give you the difference of first and last number
 			currentMax += arr[i]-arr[i-1];// same as kadane currentMax += arr[i], here += arr[i]-arr[i-1]
 
-			currentMax = Math.max(0, currentMax);
+			currentMax = Math.max(0, currentMax); // if less then zero than set reset to zero
 			maxSoFar = Math.max(currentMax, maxSoFar);
 		}
 		return maxSoFar;
@@ -122,7 +122,7 @@ class SolutionDebug{
 			debugRow(maxSoFar, currentMax, i, " "+(arr[i]-arr[i-1])+" = "+arr[i]+" - "+arr[i-1]);
 			currentMax += arr[i]-arr[i-1];// same as kadane currentMax += arr[i], here += arr[i]-arr[i-1]
 
-			currentMax = Math.max(0, currentMax);
+			currentMax = Math.max(0, currentMax); // if less then zero than set reset to zero
 			maxSoFar = Math.max(currentMax, maxSoFar);
 		}
 		return maxSoFar;
