@@ -57,6 +57,7 @@ Used array instead of hashmap
 		System.out.println("Multiplying -3 with all elements");
 		printList(list);
 
+		System.out.println("Adding 6 in list");
 		list.add(6);
 		printList(list);
 		list.multiplyToAll(-1);
