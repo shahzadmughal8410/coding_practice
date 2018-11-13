@@ -38,20 +38,24 @@ https://leetcode.com/problems/best-time-to-buy-and-sell-stock/discuss/39244/conc
 Similar questions
 https://leetcode.com/problems/maximum-subarray/description/
 
- Submission
- https://leetcode.com/submissions/detail/150677100/
+Submission
+https://leetcode.com/submissions/detail/189264993/
+You are here! 
+Your runtime beats 99.91 % of java submissions.
+
 	 * @param args
 	 */
 	public static int maxProfit(int[] arr) { 
 		int currentMax = 0;
 		int maxSoFar = 0;
 		for(int i=1;i<arr.length;i++) { // in kadane i=0 here i=1
+			// 	its a mathematical property, 
+			// if you do the differences sum for series of numbers i.w. i - (i-1), 
+			// it will give you the difference of first and last number
 			currentMax += arr[i]-arr[i-1];// same as kadane currentMax += arr[i], here += arr[i]-arr[i-1]
-			if(currentMax < 0) {
-				currentMax = 0;
-			}else if (maxSoFar < currentMax) {
-				maxSoFar = currentMax;
-			}
+
+			currentMax = Math.max(0, currentMax);
+			maxSoFar = Math.max(currentMax, maxSoFar);
 		}
 		return maxSoFar;
 	}
@@ -61,11 +65,11 @@ https://leetcode.com/problems/maximum-subarray/description/
 //		int maxProfit = maxProfit(arr);
 		int maxProfit = SolutionDebug.maxProfit(arr);
 		
-		System.out.println("Max sum subarray is "+maxProfit+"="+Arrays.stream(arr).boxed().collect(Collectors.toList()));
+		System.out.println("Max profit is "+maxProfit+"="+Arrays.stream(arr).boxed().collect(Collectors.toList()));
 
 		arr = new int[] {7, 6, 4, 3, 1};
 		maxProfit = maxProfit(arr);		
-		System.out.println("Max sum subarray is "+maxProfit+"="+Arrays.stream(arr).boxed().collect(Collectors.toList()));
+		System.out.println("Max profit is "+maxProfit+"="+Arrays.stream(arr).boxed().collect(Collectors.toList()));
 
 	}
 
