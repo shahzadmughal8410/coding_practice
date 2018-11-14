@@ -32,8 +32,10 @@ isMatch("ab", "?*") → true
 isMatch("aab", "c*a*b") → false
 
 https://leetcode.com/problems/wildcard-matching/description/
-
- 
+Submission
+https://leetcode.com/submissions/detail/189471778/
+You are here! 
+Your runtime beats 60.28 % of java submissions. 
 	 * @param str
 	 * @param pattern
 	 * @return

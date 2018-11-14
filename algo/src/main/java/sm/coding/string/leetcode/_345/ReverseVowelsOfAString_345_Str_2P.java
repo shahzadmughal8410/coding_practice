@@ -27,7 +27,11 @@ The vowels does not include the letter "y".
 
  https://leetcode.com/problems/reverse-vowels-of-a-string/description/
  https://www.geeksforgeeks.org/reverse-vowels-given-string/
- 
+
+ Submission
+https://leetcode.com/submissions/detail/189468756/
+You are here! 
+Your runtime beats 33.72 % of java submissions. 
 	 * @param args
 	 */
 	public static String reverseVowels(String s) {

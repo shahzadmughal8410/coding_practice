@@ -20,7 +20,10 @@ b = "1"
 Return "100".
 
  https://leetcode.com/problems/add-binary/description/
- https://leetcode.com/submissions/detail/152185783/
+Submission
+https://leetcode.com/submissions/detail/152185783/
+You are here! 
+Your runtime beats 58.78 % of java submissions. 
 	 * 
 	 * @param args
 	 */
