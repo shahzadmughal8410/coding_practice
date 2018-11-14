@@ -3,13 +3,15 @@
  */
 package sm.coding.string.icf.arrayencode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author smughal
  *
  */
-public class EncodeDecodeStringArrayToString_Str_Array {
+public class EncodeDecodeStringArrayToString_Str_Array_271 {
 
 	/**
 String Encode/Decode
@@ -26,6 +28,74 @@ Decode -> back to list
 	 * 
 	 * @param args
 	 */
+
+	/**
+	 * 
+ Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.
+
+Machine 1 (sender) has the function:
+
+string encode(vector<string> strs) {
+  // ... your code
+  return encoded_string;
+}
+
+Machine 2 (receiver) has the function:
+
+vector<string> decode(string s) {
+  //... your code
+  return strs;
+}
+
+So Machine 1 does:
+
+string encoded_string = encode(strs);
+
+and Machine 2 does:
+
+vector<string> strs2 = decode(encoded_string);
+
+strs2 in Machine 2 should be the same as strs in Machine 1.
+
+Implement the encode and decode methods.
+
+Note:
+
+    The string may contain any possible characters out of 256 valid ascii characters. Your algorithm should be generalized enough to work on any possible characters.
+    Do not use class member/global/static variables to store states. Your encode and decode algorithms should be stateless.
+    Do not rely on any library method such as eval or serialize methods. You should implement your own encode/decode algorithm.
+
+
+
+Submission
+https://leetcode.com/submissions/detail/189481655/
+You are here!
+Your runtime beats 87.86 % of java submissions.
+	 * @param strs
+	 * @return
+	 */
+    public String encode(List<String> strs) {
+        StringBuilder sb = new StringBuilder();
+        for(String s : strs) {
+            sb.append(s.length()).append('/').append(s);
+        }
+        return sb.toString();
+    }
+
+    // Decodes a single string to a list of strings.
+    public List<String> decode(String s) {
+        List<String> ret = new ArrayList<String>();
+        int i = 0;
+        while(i < s.length()) {
+            int slash = s.indexOf('/', i);
+            int size = Integer.valueOf(s.substring(i, slash));
+            ret.add(s.substring(slash + 1, slash + size + 1));
+            i = slash + size + 1;
+        }
+        return ret;
+    }
+	
+	
 	
 	public static String nullEscape = "@#@$^"; //use any pattern that can not be part of string
 	public static String emptyEscape = "@#@$"; //use any pattern that can not be part of string
@@ -43,7 +113,7 @@ Decode -> back to list
 	 * @param arr
 	 * @return
 	 */
-	public static String encode(String[] arr) {
+	public static String encode_Hard(String[] arr) {
 		
 		if(null==arr) {
 			return null;
@@ -91,7 +161,7 @@ Decode -> back to list
 	 * @param arr
 	 * @return
 	 */
-	public static String[] decode(String encoded) {
+	public static String[] decode_Hard(String encoded) {
 		
 		if(null==encoded) {
 			return null;
@@ -189,9 +259,9 @@ Decode -> back to list
 	public static void test_basic() {
 		String[] arr = new String[] {"hello" , "world", "!"};
 		System.out.println("original="+Arrays.asList(arr));
-		String encoded = encode(arr);
+		String encoded = encode_Hard(arr);
 		
-		String[] result = decode(encoded);
+		String[] result = decode_Hard(encoded);
 		System.out.println("decoded ="+Arrays.asList(result));
 		System.out.println("encoded="+encoded);
 		
@@ -205,9 +275,9 @@ Decode -> back to list
 	public static void test_basic_word_length_2_digit() {
 		String[] arr = new String[] {"hello" , "world", "!", "internationalization", "one" ,"two", "three", "4", "5", "6", "7", "8", "9", "10"};
 		System.out.println("original="+Arrays.asList(arr));
-		String encoded = encode(arr);
+		String encoded = encode_Hard(arr);
 		
-		String[] result = decode(encoded);
+		String[] result = decode_Hard(encoded);
 		System.out.println("decoded ="+Arrays.asList(result));
 		System.out.println("encoded="+encoded);
 		
@@ -219,9 +289,9 @@ Decode -> back to list
 	}
 
 	public static void test_null() {
-		String encoded = encode(null);
+		String encoded = encode_Hard(null);
 		
-		String[] result = decode(null);
+		String[] result = decode_Hard(null);
 		System.out.println("encoded="+encoded);
 		System.out.println("decoded ="+result);
 		
@@ -234,9 +304,9 @@ Decode -> back to list
 
 	public static void test_empty() {
 		String[] arr = new String[] {};
-		String encoded = encode(arr);
+		String encoded = encode_Hard(arr);
 		
-		String[] result = decode("");
+		String[] result = decode_Hard("");
 		System.out.println("encoded="+encoded);
 		System.out.println("decoded ="+Arrays.asList(result));
 
@@ -250,9 +320,9 @@ Decode -> back to list
 	public static void test_null_scape() {
 		String[] arr = new String[] {"one",null,"two"};
 		System.out.println("original="+Arrays.asList(arr));
-		String encoded = encode(arr);
+		String encoded = encode_Hard(arr);
 		
-		String[] result = decode(encoded);
+		String[] result = decode_Hard(encoded);
 		System.out.println("decoded ="+Arrays.asList(result));
 		System.out.println("encoded="+encoded);
 	
@@ -266,9 +336,9 @@ Decode -> back to list
 	public static void test_empty_scape() {
 		String[] arr = new String[] {"empty one","","empty two"};
 		System.out.println("original="+Arrays.asList(arr));
-		String encoded = encode(arr);
+		String encoded = encode_Hard(arr);
 		
-		String[] result = decode(encoded);
+		String[] result = decode_Hard(encoded);
 		System.out.println("decoded ="+Arrays.asList(result));
 		System.out.println("encoded="+encoded);
 
@@ -282,9 +352,9 @@ Decode -> back to list
 	public static void test_space_string() {
 		String[] arr = new String[] {"space one","   ","space two"};
 		System.out.println("original="+Arrays.asList(arr));
-		String encoded = encode(arr);
+		String encoded = encode_Hard(arr);
 		
-		String[] result = decode(encoded);
+		String[] result = decode_Hard(encoded);
 		System.out.println("decoded ="+Arrays.asList(result));
 		System.out.println("encoded="+encoded);
 
@@ -298,9 +368,9 @@ Decode -> back to list
 	public static void test_empty_null_start() {
 		String[] arr = new String[] {"",null,"data"};
 		System.out.println("original="+Arrays.asList(arr));
-		String encoded = encode(arr);
+		String encoded = encode_Hard(arr);
 		
-		String[] result = decode(encoded);
+		String[] result = decode_Hard(encoded);
 		System.out.println("decoded ="+Arrays.asList(result));
 		System.out.println("encoded="+encoded);
 
@@ -314,9 +384,9 @@ Decode -> back to list
 	public static void test_empty_null_end() {
 		String[] arr = new String[] {"data","",null};
 		System.out.println("original="+Arrays.asList(arr));
-		String encoded = encode(arr);
+		String encoded = encode_Hard(arr);
 		
-		String[] result = decode(encoded);
+		String[] result = decode_Hard(encoded);
 		System.out.println("decoded ="+Arrays.asList(result));
 		System.out.println("encoded="+encoded);
 
@@ -330,9 +400,9 @@ Decode -> back to list
 	public static void test_null_empty_start() {
 		String[] arr = new String[] {null,"","data"};
 		System.out.println("original="+Arrays.asList(arr));
-		String encoded = encode(arr);
+		String encoded = encode_Hard(arr);
 		
-		String[] result = decode(encoded);
+		String[] result = decode_Hard(encoded);
 		System.out.println("decoded ="+Arrays.asList(result));
 		System.out.println("encoded="+encoded);
 
@@ -346,9 +416,9 @@ Decode -> back to list
 	public static void test_null_empty_end() {
 		String[] arr = new String[] {"data",null,""};
 		System.out.println("original="+Arrays.asList(arr));
-		String encoded = encode(arr);
+		String encoded = encode_Hard(arr);
 		
-		String[] result = decode(encoded);
+		String[] result = decode_Hard(encoded);
 		System.out.println("decoded ="+Arrays.asList(result));
 		System.out.println("encoded="+encoded);
 
@@ -362,9 +432,9 @@ Decode -> back to list
 	public static void test_null_empty_middle() {
 		String[] arr = new String[] {"data",null,"more data","","even more data"};
 		System.out.println("original="+Arrays.asList(arr));
-		String encoded = encode(arr);
+		String encoded = encode_Hard(arr);
 		
-		String[] result = decode(encoded);
+		String[] result = decode_Hard(encoded);
 		System.out.println("decoded ="+Arrays.asList(result));
 		System.out.println("encoded="+encoded);
 
@@ -377,7 +447,7 @@ Decode -> back to list
 
 	public static void test_invalid_decode_1() {
 		String encoded = "not an encoded string";
-		String[] result = decode(encoded);
+		String[] result = decode_Hard(encoded);
 		System.out.println("decoded ="+result);
 		System.out.println("encoded="+encoded);
 
@@ -391,7 +461,7 @@ Decode -> back to list
 	public static void test_invalid_decode_2() {
 		String encoded = "pipe sign | not an encoded string";
 		try {
-			String[] result = decode(encoded);
+			String[] result = decode_Hard(encoded);
 			System.err.println("test_invalid_decode_2 FAILED");
 		}catch(Exception e){
 			System.out.println("test_invalid_decode_2 PASSED");
@@ -400,7 +470,7 @@ Decode -> back to list
 
 	public static void test_invalid_decode_3() {
 		String encoded = "hyphen sign - not an encoded string";
-		String[] result = decode(encoded);
+		String[] result = decode_Hard(encoded);
 		System.out.println("decoded ="+result);
 		System.out.println("encoded="+encoded);
 
@@ -413,7 +483,7 @@ Decode -> back to list
 
 	public static void test_invalid_decode_4() {
 		String encoded = "comma , not an encoded string";
-		String[] result = decode(encoded);
+		String[] result = decode_Hard(encoded);
 		System.out.println("decoded ="+result);
 		System.out.println("encoded="+encoded);
 

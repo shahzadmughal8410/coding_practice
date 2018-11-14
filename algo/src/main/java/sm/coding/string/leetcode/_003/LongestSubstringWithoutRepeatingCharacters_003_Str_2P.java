@@ -27,10 +27,14 @@ Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer 
 https://leetcode.com/problems/longest-substring-without-repeating-characters/solution/
 https://www.geeksforgeeks.org/length-of-the-longest-substring-without-repeating-characters/
 
+Submission
+https://leetcode.com/submissions/detail/189478610/
+You are here! 
+Your runtime beats 61.84 % of java submissions.
 	 * 
 	 * @param args
 	 */
-	public static int findLengthLongestSubstringNoRepeatingCharacters(String s) {
+	public static int lengthOfLongestSubstring(String s) {
 		if(null==s || s.length()==0) {
 			return 0;
 		}

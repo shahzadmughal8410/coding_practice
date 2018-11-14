@@ -34,10 +34,13 @@ https://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromi
 https://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromic-substring-part-3-2/
 https://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromic-substring-part-4/
 
- 
+Submission
+https://leetcode.com/submissions/detail/189473063/
+You are here! 
+Your runtime beats 86.18 % of java submissions. 
 	 * @param args
 	 */
-	public static int countPalindromes(String s) {
+	public static int countSubstrings(String s) {
 		if(null==s || s.length()==0) {
 			return 0;
 		}
@@ -63,7 +66,7 @@ https://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromi
 	
 	public static void main(String[] args) {
 		String s = "aaa";
-		System.out.printf("Palindromes in [%s] are [%d]", s, countPalindromes(s));
+		System.out.printf("Palindromes in [%s] are [%d]", s, countSubstrings(s));
 		
 
 	}

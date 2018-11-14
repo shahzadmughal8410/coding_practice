@@ -14,7 +14,8 @@ import java.util.List;
 public class PalindromePairs_336_Str_Trie {
 
 	/**
-Given a list of unique words, find all pairs of distinct indices (i, j) in the given list, so that the concatenation of the two words, i.e. words[i] + words[j] is a palindrome.
+Given a list of unique words, find all pairs of distinct indices (i, j) in the given list, 
+so that the concatenation of the two words, i.e. words[i] + words[j] is a palindrome.
 Example 1:
 Given words = ["bat", "tab", "cat"]
 Return [[0, 1], [1, 0]]
@@ -64,7 +65,11 @@ First reverse:  sll (s1 reverse) - if rest of the original is palindrome then it
 
 Second reverse: s   (s2 reverse)
 				lls (s1 original) - not palindrome as its not matching from start        
- 
+
+Submission
+https://leetcode.com/submissions/detail/189477915/
+You are here! 
+Your runtime beats 100.00 % of java submissions. 
 	 * @param args
 	 */
 	public static List<List<Integer>> palindromePairs(String[] words){
@@ -80,9 +85,6 @@ Second reverse: s   (s2 reverse)
 	}
 	
 	public static void add(String word, int index, TrieNode root) {
-		if(null==word || word.length()==0 || null==root) {
-			return;
-		}
 		TrieNode current = root;
 		// create trie in word's reverse order
 		for(int i =word.length()-1; i>=0;i--) {
@@ -113,11 +115,11 @@ Second reverse: s   (s2 reverse)
 			}
 			int childIndex = word.charAt(i) - 'a';
 			TrieNode child = current.childs[childIndex];
+			// if child is not null means word characters are matching so far
+			current = child;
 			if(null==child) {
 				return;
 			}
-			// if chils is not null means word characters are matching so far
-			current = child;
 		}
 		//when word is exhausted and trie is remaining i.e. trie height>word.length
 		for(int i:current.list) {
@@ -137,6 +139,9 @@ Second reverse: s   (s2 reverse)
 		return true;
 	}
 	
+	
+	
+	
 
 	public static void main(String[] args) {
 		String[] words = new String[] {"abcd", "dcba", "lls", "s", "sssll", "hhxx", "hh", "nnn", "n"};
@@ -147,6 +152,11 @@ Second reverse: s   (s2 reverse)
 		
 		List<List<Integer>> result = palindromePairs(words);
 		System.out.println("result="+result);
+		
+		words = new String[] {"a", "" };
+		result = palindromePairs(words);
+		System.out.println("result="+result);
+
 	}
 
 }
