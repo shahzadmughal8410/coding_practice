@@ -1,7 +1,7 @@
 /**
  * 
  */
-package sm.coding.string.icf.arrayencode;
+package sm.coding.string.leetcode._271;
 
 import java.util.ArrayList;
 import java.util.Arrays;

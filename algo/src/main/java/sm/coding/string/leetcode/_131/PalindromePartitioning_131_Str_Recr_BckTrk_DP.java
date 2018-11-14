@@ -29,20 +29,25 @@ public class PalindromePartitioning_131_Str_Recr_BckTrk_DP {
 	 * 
 	https://leetcode.com/problems/palindrome-partitioning/description/
 	https://www.geeksforgeeks.org/given-a-string-print-all-possible-palindromic-partition/ 
+
+Submission
+https://leetcode.com/submissions/detail/189484295/
+You are here! 
+Your runtime beats 9.54 % of java submissions.	
 	 * @author smughal
 	 *
 	 */
-	public static List<String> pd(String input) {
-		List<String> result = new ArrayList<>();
+	public static List<List<String>> partition(String input) {
+		List<List<String>> result = new ArrayList<>();
 		pdHelper(input, new ArrayList<>(), result);
 		return result;
 	}
 
 	
-	public static void pdHelper(String input, List<String> choosen, List<String> result) {
+	public static void pdHelper(String input, List<String> choosen, List<List<String>> result) {
 		if(input.length()==0) {
 			System.out.println(choosen);
-			result.add(choosen.toString());
+			result.add(new ArrayList<>(choosen));
 		}
 		for(int i = 1; i<=input.length(); i++) {
 			String ch = input.substring(0, i);
@@ -77,11 +82,22 @@ public class PalindromePartitioning_131_Str_Recr_BckTrk_DP {
 			}
 		}
 	}
-	
-	public static boolean isPalindrome(String s) {
-		StringBuilder sb = new StringBuilder(s);
-		return s.equals(sb.reverse().toString());
+
+	private static boolean isPalindrome(String s) {
+		int i=0;
+		int j= s.length()-1;
+		while (i < j) {
+			if (s.charAt(i++) != s.charAt(j--)) {
+				return false;
+			}
+	    }
+	    return true;
 	}
+	
+//	public static boolean isPalindrome(String s) {
+//		StringBuilder sb = new StringBuilder(s);
+//		return s.equals(sb.reverse().toString());
+//	}
 	
 	public static void main(String[] args) {
 		List<String> result;
