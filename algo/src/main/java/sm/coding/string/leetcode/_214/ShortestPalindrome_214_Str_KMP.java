@@ -29,7 +29,11 @@ https://leetcode.com/problems/shortest-palindrome/description/
 https://www.geeksforgeeks.org/minimum-number-appends-needed-make-string-palindrome/
 https://www.geeksforgeeks.org/dynamic-programming-set-28-minimum-insertions-to-form-a-palindrome/ 
 https://leetcode.com/problems/implement-strstr/description/ 
- 
+
+Submission
+https://leetcode.com/submissions/detail/189490785/
+You are here! 
+Your runtime beats 78.01 % of java submissions.
 	 * @param args
 	 */
 	public static String shortestPalindrome(String input) {

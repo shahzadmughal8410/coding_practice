@@ -25,10 +25,14 @@ https://leetcode.com/problems/integer-to-english-words/discuss/70625/My-clean-Ja
 https://www.geeksforgeeks.org/program-to-convert-a-given-number-to-words-set-2/ 
 https://www.geeksforgeeks.org/convert-number-to-words/ 
 
+Submission
+https://leetcode.com/submissions/detail/189490059/
+You are here! 
+Your runtime beats 43.73 % of java submissions.
 	 * @param args
 	 */
 	public static String numToEnglish(int num) {
-		String[] thoussands = {"", "Thousand", "Million", "Billion"};
+		String[] thousands = {"", "Thousand", "Million", "Billion"};
 		if(num==0) {
 			return "Zero";
 		}
@@ -38,12 +42,12 @@ https://www.geeksforgeeks.org/convert-number-to-words/
 		
 		while(num>0) {
 			if(num%1000 != 0) {
-				word = helper(num%1000) + thoussands[i] + " " +word;
+				word = helper(num%1000) + thousands[i] + " " +word;
 			}
 			num/=1000;
 			++i;
 		}
-		return word;
+		return word.trim();
 	}
 	
 	public static String helper(int num) {
@@ -57,7 +61,7 @@ https://www.geeksforgeeks.org/convert-number-to-words/
 		}else if(num<100) {
 			return tens[num/10] + " " + helper(num%10);
 		}else {
-			return lessThan20[num/100] + " " + helper(num%100);
+			return lessThan20[num/100] + " Hundred " + helper(num%100);
 		}
 	}
 	
@@ -66,32 +70,32 @@ https://www.geeksforgeeks.org/convert-number-to-words/
 		int num = 1001234;
 //		String english = numToEnglish(num);
 		String english = SolutionDebug.numToEnglish(num);
-		System.out.printf("%d in english is, %s %n", num, english);
+		System.out.printf("%d in english is, [%s] %n", num, english);
 
 		num = 0;
 		english = numToEnglish(num);
 //		english = SolutionDebug.numToEnglish(num);
-		System.out.printf("%d in english is, %s %n", num, english);
+		System.out.printf("%d in english is, [%s] %n", num, english);
 
 		num = 9876;
 		english = numToEnglish(num);
 //		english = SolutionDebug.numToEnglish(num);
-		System.out.printf("%d in english is, %s %n", num, english);
+		System.out.printf("%d in english is, [%s] %n", num, english);
 
 		num = 98765;
 		english = numToEnglish(num);
 //		english = SolutionDebug.numToEnglish(num);
-		System.out.printf("%d in english is, %s %n", num, english);
+		System.out.printf("%d in english is, [%s] %n", num, english);
 
 		num = 6473829;
 		english = numToEnglish(num);
 //		english = SolutionDebug.numToEnglish(num);
-		System.out.printf("%d in english is, %s %n", num, english);
+		System.out.printf("%d in english is, [%s] %n", num, english);
 
 		num = 1234567897;
 //		english = numToEnglish(num);
 		english = SolutionDebug.numToEnglish(num);
-		System.out.printf("%d in english is, %s %n", num, english);
+		System.out.printf("%d in english is, [%s] %n", num, english);
 
 	}
 

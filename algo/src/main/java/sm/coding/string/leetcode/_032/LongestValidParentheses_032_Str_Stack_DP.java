@@ -20,7 +20,10 @@ https://leetcode.com/problems/longest-valid-parentheses/solution/
 http://n00tc0d3r.blogspot.in/2013/04/longest-valid-parentheses.html 
 https://www.geeksforgeeks.org/length-of-the-longest-valid-substring/ 
 
- 
+Submission
+https://leetcode.com/submissions/detail/189486220/
+You are here! 
+Your runtime beats 51.98 % of java submissions. 
 	 * @param args
 	 */
 	public static int longestValidParentheses(String s) {
