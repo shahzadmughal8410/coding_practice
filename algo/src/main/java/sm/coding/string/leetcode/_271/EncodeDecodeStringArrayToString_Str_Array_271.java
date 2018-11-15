@@ -5,6 +5,7 @@ package sm.coding.string.leetcode._271;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ input:
 [“hello” , “world”, "!", ""] 
 
 input:
-[“1hello” , “world”, “!”, ’””, “hi” , “”] 
+[“1hello” , “world”, “!”, “”] 
 
 
 Encode -> helloworld!””
@@ -74,7 +75,7 @@ Your runtime beats 87.86 % of java submissions.
 	 * @param strs
 	 * @return
 	 */
-    public String encode(List<String> strs) {
+    public static String encode(List<String> strs) {
         StringBuilder sb = new StringBuilder();
         for(String s : strs) {
             sb.append(s.length()).append('/').append(s);
@@ -83,7 +84,7 @@ Your runtime beats 87.86 % of java submissions.
     }
 
     // Decodes a single string to a list of strings.
-    public List<String> decode(String s) {
+    public static List<String> decode(String s) {
         List<String> ret = new ArrayList<String>();
         int i = 0;
         while(i < s.length()) {
@@ -238,22 +239,37 @@ Your runtime beats 87.86 % of java submissions.
 	
 	public static void main(String[] args) {
 		
-		test_basic();
-		test_basic_word_length_2_digit();
-		test_null();
-		test_empty();
-		test_null_scape();
-		test_empty_scape();
-		test_space_string();
-		test_empty_null_start();
-		test_empty_null_end();
-		test_null_empty_start();
-		test_null_empty_end();
-		test_null_empty_middle();
-		test_invalid_decode_1();
-		test_invalid_decode_2();
-		test_invalid_decode_3();
-		test_invalid_decode_4();
+		List<String> list = new ArrayList<>();
+		Collections.addAll(list, "hello" , "world", "!", "");
+		
+		System.out.print("original=");
+		list.forEach(s->System.out.print("\""+s+"\", "));
+		System.out.println();
+		
+		String encoded = encode(list);
+		list = decode(encoded);
+		
+		System.out.println("encoded ="+encoded);
+		System.out.print("decoded =");
+		list.forEach(s->System.out.print("\""+s+"\", "));
+		System.out.println();
+		
+//		test_basic();
+//		test_basic_word_length_2_digit();
+//		test_null();
+//		test_empty();
+//		test_null_scape();
+//		test_empty_scape();
+//		test_space_string();
+//		test_empty_null_start();
+//		test_empty_null_end();
+//		test_null_empty_start();
+//		test_null_empty_end();
+//		test_null_empty_middle();
+//		test_invalid_decode_1();
+//		test_invalid_decode_2();
+//		test_invalid_decode_3();
+//		test_invalid_decode_4();
 	}
 	
 	public static void test_basic() {
