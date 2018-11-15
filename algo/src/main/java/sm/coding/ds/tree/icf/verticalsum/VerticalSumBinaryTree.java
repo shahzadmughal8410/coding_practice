@@ -60,7 +60,7 @@ Submitted
 	
 	public static LinkedListNode verticalSum_LinkedList(TreeNode root) {
 		LinkedListNode llNode = new LinkedListNode();
-		verticalSumHelper_LinkedList(root, 0, llNode);
+		verticalSumHelper_LinkedList(root, llNode);
 		
 		// go to the first node in doubly linked list
 		while(llNode.previous!=null) {
@@ -70,7 +70,7 @@ Submitted
 		return llNode;
 	}
 	
-	public static void verticalSumHelper_LinkedList(TreeNode node, int column, LinkedListNode llNode) {
+	public static void verticalSumHelper_LinkedList(TreeNode node, LinkedListNode llNode) {
 		
 		// pre order
 		// process node
@@ -81,7 +81,7 @@ Submitted
 				llNode.previous = new LinkedListNode();
 				llNode.previous.next = llNode;
 			}
-			verticalSumHelper_LinkedList(node.left, column-1, llNode.previous);
+			verticalSumHelper_LinkedList(node.left, llNode.previous);
 		}
 		
 		if(node.right!=null) {
@@ -89,7 +89,7 @@ Submitted
 				llNode.next = new LinkedListNode();
 				llNode.next.previous = llNode;
 			}
-			verticalSumHelper_LinkedList(node.right, column+1, llNode.next);
+			verticalSumHelper_LinkedList(node.right, llNode.next);
 		}
 		
 	}
