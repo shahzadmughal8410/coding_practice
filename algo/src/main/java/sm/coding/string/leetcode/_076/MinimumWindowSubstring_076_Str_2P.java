@@ -36,9 +36,9 @@ https://www.geeksforgeeks.org/find-the-smallest-window-in-a-string-containing-al
  
 Submission
 MAP
-https://leetcode.com/submissions/detail/169028055/
-You are here!
-Your runtime beats 10.07 % of java submissions.
+https://leetcode.com/submissions/detail/189675854/
+You are here! 
+Your runtime beats 14.70 % of java submissions.
 ARRAY
 https://leetcode.com/submissions/detail/169028155/
 You are here!
@@ -57,8 +57,7 @@ Your runtime beats 76.44 % of java submissions.
 		// initialize the pattern frequency map
 		for(int i=0;i<t.length();i++) {
 			char c = t.charAt(i);
-			pmap.putIfAbsent(c, 0);
-			pmap.put(c, pmap.get(c)+1);
+			pmap.put(c, pmap.getOrDefault(c, 0)+1);
 		}
 
 		Map<Character,Integer> foundMap = new HashMap<>();
@@ -69,8 +68,7 @@ Your runtime beats 76.44 % of java submissions.
 		
 		for (int end = 0; end < s.length(); end++) {
 			if (pmap.containsKey(s.charAt(end))) {
-				foundMap.putIfAbsent(s.charAt(end), 0);
-				foundMap.put(s.charAt(end), foundMap.get(s.charAt(end)) + 1);
+				foundMap.put(s.charAt(end), foundMap.getOrDefault(s.charAt(end), 0) + 1);
 				if (foundMap.get(s.charAt(end)) <= pmap.get(s.charAt(end))) {
 					++count;
 				}
