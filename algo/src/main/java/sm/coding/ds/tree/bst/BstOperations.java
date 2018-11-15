@@ -43,12 +43,13 @@ public class BstOperations {
 	    }else if(key > root.val){
 	        root.right = deleteNode(root.right, key);
 	    }else{
-	        if(root.left == null){
+	    		// current node is the matching node i.e. that needs to be deleted
+	        if(root.left == null){ // only one child
 	            return root.right;
-	        }else if(root.right == null){
+	        }else if(root.right == null){// only one child
 	            return root.left;
 	        }
-	        
+	        // node that is to be deleted has both childs then find the min in right
 	        TreeNode minNode = findMin(root.right);
 	        root.val = minNode.val;
 	        root.right = deleteNode(root.right, root.val);
