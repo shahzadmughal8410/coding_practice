@@ -24,6 +24,11 @@ You may assume that all inputs are consist of lowercase letters a-z.
  https://www.geeksforgeeks.org/trie-delete/
  https://leetcode.com/problems/implement-trie-prefix-tree/solution/
  https://github.com/mission-peace/interview/blob/master/src/com/interview/suffixprefix/Trie.java
+
+Submission
+https://leetcode.com/submissions/detail/190038750/
+You are here! 
+Your runtime beats 34.60 % of java submissions. 
  
 	 * @param args
 	 */
@@ -40,30 +45,30 @@ You may assume that all inputs are consist of lowercase letters a-z.
         // Construct trie
         int i;
         for (i = 0; i < keys.length ; i++)
-            trie.add(keys[i]);
+            trie.insert(keys[i]);
       
         // Search for different keys
-        if(trie.wordExists("the") == true)
+        if(trie.search("the") == true)
             System.out.println("the --- " + output[1]);
         else System.out.println("the --- " + output[0]);
          
-        if(trie.wordExists("these") == true)
+        if(trie.search("these") == true)
             System.out.println("these --- " + output[1]);
         else System.out.println("these --- " + output[0]);
          
-        if(trie.wordExists("their") == true)
+        if(trie.search("their") == true)
             System.out.println("their --- " + output[1]);
         else System.out.println("their --- " + output[0]);
          
-        if(trie.wordExists("thaw") == true)
+        if(trie.search("thaw") == true)
             System.out.println("thaw --- " + output[1]);
         else System.out.println("thaw --- " + output[0]);
 
-        if(trie.prefixExists("an") == true)
+        if(trie.startsWith("an") == true)
             System.out.println("prefix an --- " + output[1]);
         else System.out.println("prefix an --- " + output[0]);
 
-        if(trie.prefixExists("xy") == true)
+        if(trie.startsWith("xy") == true)
             System.out.println("prefix xy --- " + output[1]);
         else System.out.println("prefix xy --- " + output[0]);
 
@@ -78,7 +83,7 @@ class Trie {
 		this.root = new TrieNode();
 	}
 	
-	public void add(String word) {
+	public void insert(String word) {
 		if(null==word || word.length()==0) {
 			return;
 		}
@@ -95,7 +100,7 @@ class Trie {
 		current.isEnd = true;
 	}
 	
-	public boolean wordExists(String word) {
+	public boolean search(String word) {
 		if(null==word || word.length()==0) {
 			return false;
 		}
@@ -110,7 +115,7 @@ class Trie {
 		return current.isEnd;
 	}
 
-	public boolean prefixExists(String prefix) {
+	public boolean startsWith(String prefix) {
 		if(null==prefix || prefix.length()==0) {
 			return false;
 		}
