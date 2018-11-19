@@ -4,6 +4,7 @@
 package sm.coding.string.leetcode._131;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -31,35 +32,41 @@ public class PalindromePartitioning_131_Str_Recr_BckTrk_DP {
 	https://www.geeksforgeeks.org/given-a-string-print-all-possible-palindromic-partition/ 
 
 Submission
-https://leetcode.com/submissions/detail/189484295/
+https://leetcode.com/submissions/detail/190410675/
 You are here! 
-Your runtime beats 9.54 % of java submissions.	
+Your runtime beats 83.25 % of java submissions.
 	 * @author smughal
 	 *
 	 */
 	public static List<List<String>> partition(String input) {
-		List<List<String>> result = new ArrayList<>();
-		pdHelper(input, new ArrayList<>(), result);
+		List<List<String>> result = new LinkedList<>();
+		pdHelper(input, new ArrayList<>(), result, 0);
 		return result;
 	}
 
 	
-	public static void pdHelper(String input, List<String> choosen, List<List<String>> result) {
-		if(input.length()==0) {
-			System.out.println(choosen);
+	public static void pdHelper(String input, List<String> choosen, List<List<String>> result, int index) {
+		if(input.length()==index) {
 			result.add(new ArrayList<>(choosen));
 		}
-		for(int i = 1; i<=input.length(); i++) {
-			String ch = input.substring(0, i);
-			if(isPalindrome(ch)) {
+		for(int i = index; i<input.length(); i++) {
+			if(isPalindrome(input, index, i)) {
+				String ch = input.substring(index, i+1);
 				choosen.add(ch);
-				pdHelper(input.substring(i, input.length()), choosen, result);
+				pdHelper(input, choosen, result, i+1);
 				choosen.remove(choosen.size()-1);
 			}
-		}
-		
+		}		
 	}
 	
+	public static boolean isPalindrome(String s, int start, int end) {
+		while (start <= end) { // works with both (start < end) [here middle character is not compared for odd length which is fine] and (start <= end) 
+			if (s.charAt(start++) != s.charAt(end--)) {
+				return false;
+			}
+	    }
+	    return true;
+	}
 	
 	/**
 	 * Some how not working !!! but logic is correct
@@ -75,7 +82,7 @@ Your runtime beats 9.54 % of java submissions.
 		
 		for(int end = index+1; end<=str.length(); end++) {
 			String sub = str.substring(index,  end);
-			if(isPalindrome(sub)) {
+			if(isPalindrome(str, index, end-1)) {
 				result.add(sub);
 				pd_CW(str, index+1, result);
 				result.remove(result.size()-1);
@@ -83,16 +90,7 @@ Your runtime beats 9.54 % of java submissions.
 		}
 	}
 
-	private static boolean isPalindrome(String s) {
-		int i=0;
-		int j= s.length()-1;
-		while (i < j) {
-			if (s.charAt(i++) != s.charAt(j--)) {
-				return false;
-			}
-	    }
-	    return true;
-	}
+
 	
 //	public static boolean isPalindrome(String s) {
 //		StringBuilder sb = new StringBuilder(s);
@@ -100,7 +98,7 @@ Your runtime beats 9.54 % of java submissions.
 //	}
 	
 	public static void main(String[] args) {
-		List<String> result;
+		List<List<String>> result;
 //		result = pd("apple");
 //		result = DebugSolution.pd("abba");
 //		System.out.println("result="+result);
@@ -109,8 +107,10 @@ Your runtime beats 9.54 % of java submissions.
 //		result = pd("abba");
 //		result = DebugSolution.pd("abba");
 //		result = DebugSolution.pd("aab");
-		result = DebugSolution.pd("abracadabra");
-		System.out.println("result="+result);
+//		result = DebugSolution.pd("abracadabra");
+		result = partition("abracadabra");
+//		result = partition("aba");
+		result.forEach(r->System.out.println(r));
 
 	}
 	
@@ -138,7 +138,7 @@ class DebugSolution {
 		}
 		for(int i = 1; i<=input.length(); i++) {
 			String ch = input.substring(0, i);
-			if(PalindromePartitioning_131_Str_Recr_BckTrk_DP.isPalindrome(ch)) {
+			if(PalindromePartitioning_131_Str_Recr_BckTrk_DP.isPalindrome(input, 0, i-1)) {
 				debug("ch="+ch+" -- Y");
 				choosen.add(ch);
 				String indentActual = indent;
