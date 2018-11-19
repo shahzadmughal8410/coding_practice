@@ -6,6 +6,7 @@ package sm.coding.string.leetcode._131;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * @author shahzadmughal8410
@@ -51,10 +52,10 @@ Your runtime beats 83.25 % of java submissions.
 		}
 		for(int i = index; i<input.length(); i++) {
 			if(isPalindrome(input, index, i)) {
-				String ch = input.substring(index, i+1);
+				String ch = input.substring(index, i+1);// as substring end index is exclusive
 				choosen.add(ch);
-				pdHelper(input, choosen, result, i+1);
-				choosen.remove(choosen.size()-1);
+				pdHelper(input, choosen, result, i+1);// starting with next character for recursive call
+				choosen.remove(choosen.size()-1); //back tracking
 			}
 		}		
 	}
@@ -109,47 +110,102 @@ Your runtime beats 83.25 % of java submissions.
 //		result = DebugSolution.pd("aab");
 //		result = DebugSolution.pd("abracadabra");
 		result = partition("abracadabra");
-//		result = partition("aba");
+		result.forEach(r->System.out.println(r));
+		result = partition("aba");
+		result.forEach(r->System.out.println(r));
+
+		result = SolutionDebug.partition("abab");
 		result.forEach(r->System.out.println(r));
 
 	}
 	
 }
 
-class DebugSolution {
-	static String indent = "";
-	
-	public static void debug(Object msg) {
-		System.out.println("DEBUG "+indent+msg);
+class SolutionDebug {
+
+	static StringBuilder format = new StringBuilder();
+	static String [] columns = new String[] {};
+	public static void tableColumns(String ... cols) {
+		for(int i = 0; i<cols.length;i++) {
+			String c = cols[i];
+			if(c.indexOf(":")!=-1) {
+				String[] arr = c.split(Pattern.quote(":"));
+				format.append("|%-").append(arr[1]).append("s ");
+				cols[i] = arr[0];
+			}else {
+				format.append("|%-").append(c.length()).append("s ");
+			}
+			
+		}
+		format.append("|");
+//		debugRow(cols);
+		columns = cols;
 	}
 	
-	public static List<String> pd(String input) {
-		List<String> result = new ArrayList<>();
-		pdHelper(input, new ArrayList<>(), result);
+	public static void debugRow(Object ... cols) {
+		debug(String.format(format.toString(), cols));
+	}
+
+	public static void debug(Object msg) {
+		System.out.println("DEBUG: "+msg);
+	}
+
+	public static void debugColumns() {
+		debugRow(columns);
+	}
+	
+	public static void reset() {
+		format = new StringBuilder();
+		columns = new String[] {};
+	}
+
+	public static String indent = "|---";
+	public static void debugRecr(Object msg) {
+		System.out.println("DEBUG "+indent+">"+msg);
+	}
+	public static String incrementIndent() {
+		String indentActual = indent;
+		indent = indent+"|---";
+		return indentActual;
+	}
+	public static void setIndent(String newIndent) {
+		indent = newIndent;
+	}
+	
+	public static List<List<String>> partition(String input) {
+		List<List<String>> result = new LinkedList<>();
+		debugRecr("starting from 0 th as index");
+		pdHelper(input, new ArrayList<>(), result, 0);
 		return result;
 	}
 
 	
-	public static void pdHelper(String input, List<String> choosen, List<String> result) {
-		debug("input=["+input+"], choosen="+choosen);
-		if(input.length()==0) {
-			debug(choosen);
-			result.add(choosen.toString());
+	public static void pdHelper(String input, List<String> choosen, List<List<String>> result, int index) {
+		debugRecr("index="+index+", choosen="+choosen+", result="+result);
+		if(input.length()==index) {
+			debugRecr("Found solution choosen="+choosen);
+			result.add(new ArrayList<>(choosen));
 		}
-		for(int i = 1; i<=input.length(); i++) {
-			String ch = input.substring(0, i);
-			if(PalindromePartitioning_131_Str_Recr_BckTrk_DP.isPalindrome(input, 0, i-1)) {
-				debug("ch="+ch+" -- Y");
+		for(int i = index; i<input.length(); i++) {
+			boolean isPalindrome = isPalindrome(input, index, i);
+			String ch = input.substring(index, i+1);
+			debugRecr("index="+index+", i="+i+", ch="+ch+", isPalindrome("+index+","+i+")="+isPalindrome);
+			if(isPalindrome) {
 				choosen.add(ch);
-				String indentActual = indent;
-				indent = indent+"\t";
-				pdHelper(input.substring(i, input.length()), choosen, result);
-				choosen.remove(choosen.size()-1);
-				indent = indentActual;
+				String actual = incrementIndent();
+				pdHelper(input, choosen, result, i+1);
+				setIndent(actual);
+				choosen.remove(choosen.size()-1); //back tracking
 			}
-			debug("ch="+ch+" -- N");
-		}
-		
+		}		
 	}
 	
+	public static boolean isPalindrome(String s, int start, int end) {
+		while (start <= end) { // works with both (start < end) [here middle character is not compared for odd length which is fine] and (start <= end) 
+			if (s.charAt(start++) != s.charAt(end--)) {
+				return false;
+			}
+	    }
+	    return true;
+	}
 }
