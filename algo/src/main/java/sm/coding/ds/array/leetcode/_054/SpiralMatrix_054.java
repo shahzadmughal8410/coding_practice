@@ -3,6 +3,9 @@
  */
 package sm.coding.ds.array.leetcode._054;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author smughal
  *
@@ -24,43 +27,60 @@ You should return [1,2,3,6,9,8,7,4,5].
 
  https://www.geeksforgeeks.org/print-a-given-matrix-in-spiral-form/
  https://www.youtube.com/watch?v=TmweBVEL0I0
+ 
+Submission
+https://leetcode.com/submissions/detail/190660242/
+You are here! 
+Your runtime beats 100.00 % of java submissions.
+
+Count logic
+Submission
+https://leetcode.com/submissions/detail/190660558/
+ 
 	 * @param args
 	 */
-	public static void printSpiral(int[][] matrix) {
+	public static List<Integer> spiralOrder(int[][] matrix) {
+		List<Integer> result = new ArrayList<>();
+		
+		if(null==matrix ||matrix.length==0) {
+			return result;
+		}
+		
 		int rowStart = 0;
 		int colStart = 0;
 		int rowEnd= matrix.length-1;
 		int colEnd = matrix[0].length-1;
 		int i;
 		// count logic also works
-//		int count = 0;
+		int count = 0;
 		
-		while(rowStart<=rowEnd && colStart<=colEnd) {
+		while(rowStart<=rowEnd && colStart<=colEnd) { 
 //		while(count< (matrix.length * matrix[0].length)) {
 			for(i=colStart;i<=colEnd;i++) {
-				System.out.print(matrix[rowStart][i]+" ");
-//				++count;
+				result.add(matrix[rowStart][i]);
+				++count;
 			} rowStart++;
 			
 			for(i=rowStart;i<=rowEnd;i++) {
-				System.out.print(matrix[i][colEnd]+" ");
-//				++count;
+				result.add(matrix[i][colEnd]);
+				++count;
 			} colEnd--;
 			
 			if(rowStart<=rowEnd) {
 				for(i=colEnd;i>=colStart;i--) {
-					System.out.print(matrix[rowEnd][i]+" ");
-//					++count;
+					result.add(matrix[rowEnd][i]);
+					++count;
 				} rowEnd--;
 			}
 			
 			if(colStart<=colEnd) {
 				for(i=rowEnd;i>=rowStart;i--) {
-					System.out.print(matrix[i][colStart]+" ");
-//					++count;
+					result.add(matrix[i][colStart]);
+					++count;
 				}colStart++;
 			} 
 		}
+		return result;
 	}
 	
 	public static void main(String[] args) {
@@ -81,11 +101,15 @@ You should return [1,2,3,6,9,8,7,4,5].
 				{7,  6,  5},
   			};
 
-		printSpiral(matrix1);
-		System.out.println();
-		printSpiral(matrix2);
-		System.out.println();
-		printSpiral(matrix3);
+		List<Integer> result = null; 
+		result = spiralOrder(matrix1);
+		System.out.println(result);
+
+		result = spiralOrder(matrix2);
+		System.out.println(result);
+
+		result = spiralOrder(matrix3);
+		System.out.println(result);
 	}
 
 }
