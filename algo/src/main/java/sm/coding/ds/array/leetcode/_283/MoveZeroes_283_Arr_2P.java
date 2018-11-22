@@ -32,14 +32,14 @@ Your runtime beats 100.00 % of java submissions.
 	 * @param args
 	 */
 	public static void moveZeroes(int[] nums) {
-		int nonZeroIndex = 0;
-		for(int i =0; i<nums.length; i++) {
-			if(nums[i]!=0) {
-				nums[nonZeroIndex] = nums[i];
-				if(nonZeroIndex!=i) {
-					nums[i]=0;
+		int wi = 0;
+		for(int ri =0; ri<nums.length; ri++) {
+			if(nums[ri]!=0) {
+				nums[wi] = nums[ri];
+				if(wi!=ri) {
+					nums[ri]=0;
 				}
-				++nonZeroIndex;
+				++wi;
 			}
 		}
 	}
@@ -47,6 +47,13 @@ Your runtime beats 100.00 % of java submissions.
 	public static void main(String[] args) {
 		int[] nums = new int[] {0, 1, 0, 3, 12,0,0,0,0};
 		String before = "Before="+Arrays.stream(nums).boxed().collect(Collectors.toList());
+		moveZeroes(nums);
+//		SolutionDebug.moveZeroes(nums);
+		System.out.println(before);
+		System.out.println(" After="+Arrays.stream(nums).boxed().collect(Collectors.toList()));
+
+		nums = new int[] {5, 0, 1, 0, 3, 12};
+		before = "Before="+Arrays.stream(nums).boxed().collect(Collectors.toList());
 //		moveZeroes(nums);
 		SolutionDebug.moveZeroes(nums);
 		System.out.println(before);
@@ -95,22 +102,22 @@ class SolutionDebug {
 	}
 	
 	public static void moveZeroes(int[] nums) {
-		int nonZeroIndex = 0;
+		int wi = 0;
 		int writes = 0;
-		tableColumns("nonZeroIndex", "i:3", "nums[i]", "writes", "nums:30");
+		tableColumns("wi", "ri:3", "nums[i]", "writes", "nums:30");
 		debugColumns();
-		for(int i =0; i<nums.length; i++) {
-			debugRow(nonZeroIndex, i, nums[i], writes, Arrays.stream(nums).boxed().collect(Collectors.toList()));
-			if(nums[i]!=0) {
-				nums[nonZeroIndex] = nums[i];
+		for(int ri =0; ri<nums.length; ri++) {
+			debugRow(wi, ri, nums[ri], writes, Arrays.stream(nums).boxed().collect(Collectors.toList()));
+			if(nums[ri]!=0) {
+				nums[wi] = nums[ri];
 				++writes;
-				if(nonZeroIndex!=i) {
-					nums[i]=0;
+				if(wi!=ri) {
+					nums[ri]=0;
 					++writes;
 				}
-				++nonZeroIndex;
+				++wi;
 			}
 		}
-		debug("writes="+writes+", nonZeroIndex="+nonZeroIndex);
+		debug("writes="+writes+", nonZeroIndex="+wi);
 	}
 }
