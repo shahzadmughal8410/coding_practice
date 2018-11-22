@@ -147,11 +147,8 @@ Your runtime beats 76.44 % of java submissions.
 		System.out.println("Minimum window arr="+minimumWindow_Array(s, t));
 
 	}
-	
-	public static void debug(Object msg) {
-		System.out.println("DEBUG: "+msg);
-	}
 
+	
 }
 
 class SolutionDebug{
@@ -236,3 +233,6 @@ class SolutionDebug{
 		return startIndex==-1 ? "": s.substring(startIndex, startIndex+minLength) ;
 	}
 }
+
+
+
