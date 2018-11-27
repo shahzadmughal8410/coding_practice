@@ -25,7 +25,7 @@ Links
 https://leetcode.com/problems/move-zeroes/solution/ 
 https://www.geeksforgeeks.org/move-zeroes-end-array/  
 
-https://leetcode.com/submissions/detail/150825195/ 
+https://leetcode.com/submissions/detail/192059427/
 You are here!
 Your runtime beats 100.00 % of java submissions.
 
