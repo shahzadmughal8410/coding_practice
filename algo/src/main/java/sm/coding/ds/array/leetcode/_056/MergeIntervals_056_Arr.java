@@ -28,13 +28,13 @@ https://leetcode.com/problems/merge-intervals/description/
 https://www.geeksforgeeks.org/merging-intervals/ 
 
 Submission
-https://leetcode.com/submissions/detail/168075012/
-You are here!
-Your runtime beats 16.74 % of java submissions.
+https://leetcode.com/submissions/detail/192515654/
+You are here! 
+Your runtime beats 38.24 % of java submissions.
 	 * @param args
 	 */
 	public static List<Interval> merge(List<Interval> intervals){
-		if(null==intervals || intervals.size()<1) {
+		if(null==intervals || intervals.size()<=1) {
 			return intervals;
 		}
 		List<Interval> result = new LinkedList<>();
