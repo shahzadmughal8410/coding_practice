@@ -94,21 +94,21 @@ Your runtime beats 34.90 % of java submissions.
 
 	/**
 Submission
-https://leetcode.com/submissions/detail/192803642/
+https://leetcode.com/submissions/detail/192805406/
 You are here! 
-Your runtime beats 95.42 % of java submissions.
+Your runtime beats 100.00 % of java submissions.
 	 * @param stairs
 	 * @return
 	 */
 	public static int climbStairs_Dp(int stairs) {
-		if (stairs == 0) { // this is the difference from fib, fib(0)=0, here fib(0)=1
-			return 1;
+		if (stairs<2) { 
+			return stairs;
 		}
 		
 		int[] steps = new int[] {1, 2};		
 		int[] dp = new int[stairs + 1];
 
-		dp[0] = 1; // not the diff in base condition from fibo, i.e. starting from 1,1 instead of 0,1
+		dp[0] = 0; // note the diff in base condition from fibo, i.e. starting from 1,1 instead of 0,1
 		dp[1] = 1;
 
 		for (int s = 2; s < dp.length; s++) {
@@ -121,54 +121,8 @@ Your runtime beats 95.42 % of java submissions.
 		return dp[dp.length-1];
 	}
 
-	/**
-Submission
-https://leetcode.com/submissions/detail/192804059/
-You are here! 
-Your runtime beats 95.42 % of java submissions.
-	 * @param stairs
-	 * @return
-	 */
-	public static int climbStairs_Dp_NoArray_Optimal(int stairs) {
-		if (stairs == 0) {
-			return 1;
-		}
-		
-		int first = 1; // not the diff in base condition from fibo, i.e. starting from 1,1 instead of 0,1
-		int second = 1;
 
-		for (int s = 2; s <=stairs; s++) {
-			int third = first+second;
-			first = second;
-			second = third;
-		}
-		return second;
-	}
 
-	/**
-
-Submission
-https://leetcode.com/submissions/detail/174895461/
-You are here! 
-Your runtime beats 100.00 % of java submissions.
-	 * @param n
-	 * @return
-	 */
-    // Fibonachi solution optamized for climbStaris by increasing n to n+1
-    public int climbStairs_Fibonacchi_Converted_For_Stairs(int n) {
-        n = n+1;
-		if(n<2) {
-			return n;
-		}
-		int first = 0;
-		int second = 1;
-		for(int i =2; i<=n; i++) {
-			int third = first+second;
-			first = second;
-			second = third;
-		}
-		return first+second;
-	}
 
     /**
 Submission
@@ -186,7 +140,7 @@ Your runtime beats 100.00 % of java submissions.
 		}
 		int first = 0;
 		int second = 1;
-		for(int i =2; i<=n; i++) {
+		for(int i =2; i<=n; i++) {// note diff from fibo, it needs to be run <=stairs, not <stairs
 			int third = first+second;
 			first = second;
 			second = third;
