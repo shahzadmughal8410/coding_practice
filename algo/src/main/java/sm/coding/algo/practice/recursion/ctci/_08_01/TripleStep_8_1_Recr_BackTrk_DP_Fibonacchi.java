@@ -57,7 +57,7 @@ stairs.
 			dp[i] = count;
 		}
 		// 5. return
-		return dp[stairs];
+		return dp[dp.length-1];
 	}
 	
 	public static int count_DP_Optamized(int stairs) {
@@ -88,17 +88,17 @@ stairs.
 		stairs = 3;
 		System.out.println(String.format("steps=%s can be covered in %d ways.", stairs, count_Bruteforce(stairs)));
 		System.out.println(String.format("steps=%s can be covered in %d ways.", stairs, count_DP(stairs)));
-		System.out.println(String.format("steps=%s can be covered in %d ways.", stairs, count_DP(stairs)));
+		System.out.println(String.format("steps=%s can be covered in %d ways.", stairs, count_DP_Optamized(stairs)));
 
 		stairs = 4;
 		System.out.println(String.format("steps=%s can be covered in %d ways.", stairs, count_Bruteforce(stairs)));
 		System.out.println(String.format("steps=%s can be covered in %d ways.", stairs, count_DP(stairs)));
-		System.out.println(String.format("steps=%s can be covered in %d ways.", stairs, count_DP(stairs)));
+		System.out.println(String.format("steps=%s can be covered in %d ways.", stairs, count_DP_Optamized(stairs)));
 
 		stairs = 5;
 		System.out.println(String.format("steps=%s can be covered in %d ways.", stairs, count_Bruteforce(stairs)));
 		System.out.println(String.format("steps=%s can be covered in %d ways.", stairs, count_DP(stairs)));
-		System.out.println(String.format("steps=%s can be covered in %d ways.", stairs, count_DP(stairs)));
+		System.out.println(String.format("steps=%s can be covered in %d ways.", stairs, count_DP_Optamized(stairs)));
 }
 
 }
