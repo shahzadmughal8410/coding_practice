@@ -83,12 +83,20 @@ public class Fibonacci_DP {
 		return first+second;
 	}
 	
+    public static int fib_formula(int n) {
+        double sqrt5=Math.sqrt(5);
+        double fibn=Math.pow((1+sqrt5)/2,n)-Math.pow((1-sqrt5)/2,n);
+        return (int)(fibn/sqrt5);
+    }
+	
 	public static void main(String[] args) {
 		
-		System.out.println(6+" Fibonaci number is "+ SolutionDebug.fib_Iterative_DP_Array(6));
+		System.out.println(6+" DP Fibonaci number is "+ SolutionDebug.fib_Iterative_DP_Array(6));
+		System.out.println(6+" FR Fibonaci number is "+ fib_formula(6));
 		
 		for (int i =0; i<20;i++) {
-			System.out.println(i+" Fibonaci number is "+ fib_Iterative_DP(i));
+			System.out.println(i+" DP Fibonaci number is "+ fib_Iterative_DP(i));
+			System.out.println(i+" FR Fibonaci number is "+ fib_formula(i));
 		}
 	}
 }

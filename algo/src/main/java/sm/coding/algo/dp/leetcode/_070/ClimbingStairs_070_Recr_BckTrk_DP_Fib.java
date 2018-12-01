@@ -46,12 +46,12 @@ Time Limit Exceeded, n=44
 	 * @return
 	 */
 	public static int climbStairs_Bruteforce_ReturnType(int stairs) {
-		int[] steps = new int[] {1, 2, 3};
+		int[] steps = new int[] {1, 2};
 		return climbStairsHelper_Bruteforce_ReturnType(stairs, steps);
 	}
 	
 	public static int climbStairsHelper_Bruteforce_ReturnType(int stairs, int[] steps) {
-		if(stairs==0) {
+		if(stairs==0) { // this is the difference from fib, fib(0)=0, here fib(0)=1
 			return 1;
 		}
 		int count = 0;
@@ -73,11 +73,12 @@ Your runtime beats 34.90 % of java submissions.
 	 */
 	public static int climbStairs_Memoiazation(int stairs) {
 		int[] steps = new int[] {1, 2};
-		return climbStairsHelper_Memoiazation(stairs, new int[stairs+1], steps);
+		int dp[] = new int[stairs+1];
+		return climbStairsHelper_Memoiazation(stairs, dp, steps);
 	}
 	
 	public static int climbStairsHelper_Memoiazation(int stairs, int dp[], int[] steps) {
-		if(stairs==0) {
+		if(stairs==0) { // this is the difference from fib, fib(0)=0, here fib(0)=1
 			return 1;
 		}
 		if(dp[stairs]>0) {
@@ -88,55 +89,55 @@ Your runtime beats 34.90 % of java submissions.
 			    dp[stairs] +=climbStairsHelper_Memoiazation(stairs-steps[i], dp, steps);
             }
 		}
-		return dp[stairs];
+		return dp[stairs];// dp[dp.length-1], will not work here, as it returns for each recursion step, so has to be dp[stairs]
 	}
 
 	/**
 Submission
-https://leetcode.com/submissions/detail/174802242/
-You are here!
-Your runtime beats 34.90 % of java submissions.
+https://leetcode.com/submissions/detail/192803642/
+You are here! 
+Your runtime beats 95.42 % of java submissions.
 	 * @param stairs
 	 * @return
 	 */
 	public static int climbStairs_Dp(int stairs) {
-		if (stairs == 1) {
+		if (stairs == 0) { // this is the difference from fib, fib(0)=0, here fib(0)=1
 			return 1;
 		}
 		
 		int[] steps = new int[] {1, 2};		
 		int[] dp = new int[stairs + 1];
 
+		dp[0] = 1; // not the diff in base condition from fibo, i.e. starting from 1,1 instead of 0,1
 		dp[1] = 1;
-		dp[2] = 2;
 
-		for (int s = 3; s < dp.length; s++) {
+		for (int s = 2; s < dp.length; s++) {
 			int count = 0;
 			for(int i=0; i<steps.length; i++) {
 				count += dp[s - steps[i]];
 			}
 			dp[s] = count;
 		}
-		return dp[stairs];
+		return dp[dp.length-1];
 	}
 
 	/**
 Submission
-https://leetcode.com/submissions/detail/174803684/
-You are here!
-Your runtime beats 34.90 % of java submissions.
+https://leetcode.com/submissions/detail/192804059/
+You are here! 
+Your runtime beats 95.42 % of java submissions.
 	 * @param stairs
 	 * @return
 	 */
 	public static int climbStairs_Dp_NoArray_Optimal(int stairs) {
-		if (stairs == 1) {
+		if (stairs == 0) {
 			return 1;
 		}
 		
-		int first = 1;
-		int second = 2;
+		int first = 1; // not the diff in base condition from fibo, i.e. starting from 1,1 instead of 0,1
+		int second = 1;
 
-		for (int s = 3; s <=stairs; s++) {
+		for (int s = 2; s <=stairs; s++) {
 			int third = first+second;
 			first = second;
 			second = third;
