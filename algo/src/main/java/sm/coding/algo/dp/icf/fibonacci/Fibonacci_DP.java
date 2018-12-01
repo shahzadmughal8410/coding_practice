@@ -58,7 +58,7 @@ public class Fibonacci_DP {
 			dp[i] = dp[i-1] + dp[i-2];
 		}		
 		// 5. return
-		return dp[n];
+		return dp[dp.length-1];
 	}
 	
 	/**
@@ -169,7 +169,7 @@ class SolutionDebug {
 		debug(Arrays.stream(dp).boxed().collect(Collectors.toList()));
 		debug(IntStream.range(0, dp.length).boxed().collect(Collectors.toList()));
 		// 5. return
-		return dp[n];
+		return dp[dp.length-1];
 	}
 
 }
