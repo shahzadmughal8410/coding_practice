@@ -126,7 +126,7 @@ Last executed input:
 	 */
     public static int coinChange_BruteForce(int[] coins, int amount) {
     		// base case
-    		if(amount==0) {
+    		if(amount==0) { //when amount is zero, we need minimum of zero coins to make change
     			return 0;
     		}
     		
@@ -201,7 +201,7 @@ Your runtime beats 87.88 % of java submissions.
 		for (int i = 0; i < dp.length ; i++) // Arrays.fill(dp, -1);
 			dp[i] = -1; 
     		// 2. base case
-    		dp[0] = 0;
+    		dp[0] = 0;//when amount is zero, we need minimum of zero coins to make change
     		
     		// 3. loop, for recursive case
     		for(int amt = 1; amt<dp.length; amt++) {
