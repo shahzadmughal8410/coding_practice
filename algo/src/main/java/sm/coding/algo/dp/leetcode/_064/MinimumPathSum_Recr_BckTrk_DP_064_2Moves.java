@@ -38,10 +38,8 @@ Last executed input:
 //    		int[] rows = new int[] {0  1}; this can be used as well for moves
 //    		int[] cols = new int[] {1, 0};
     		minPathSum_Helper(grid, sum, 0, 0, moves, 0, "");
-//    		System.out.println("count="+count);
     		return sum[0];
     }
-//    static int count;
     public static void minPathSum_Helper(int[][] grid, int[] sum, int r, int c, int[][] moves, int sofar, String items) {
 		// mark visited, Not needed as we are moving in forward and back direction, NO backward movement
     	
@@ -49,8 +47,8 @@ Last executed input:
     		sofar+=grid[r][c];
     		items+=grid[r][c]+", " ;
     		
+    		// base case
 		if(r==grid.length-1 && c==grid[0].length-1) {
-//			++count;
     			if(sofar < sum[0]) {
     				sum[0] = sofar;
     				System.out.println(items);
