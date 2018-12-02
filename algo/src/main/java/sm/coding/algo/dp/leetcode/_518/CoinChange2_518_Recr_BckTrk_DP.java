@@ -70,7 +70,7 @@ Your runtime beats 77.33 % of java submissions.
     				}
     			}
     		}
-    		return dp[amount];
+    		return dp[dp.length-1];
     }
     
     
@@ -85,6 +85,9 @@ Your runtime beats 77.33 % of java submissions.
 		amount = 5;
 		
 		totalWays = SolutionDebug.change_DP(amount, coins);
+		System.out.println("Total ways="+totalWays);
+
+		totalWays = change_DP(amount, coins);
 		System.out.println("Total ways="+totalWays);
 
 	}
@@ -150,14 +153,14 @@ class SolutionDebug {
 		tableColumns("coin", "i:3", "amount", "i>=coin:25", "dp[i]:8", "dp[i-coin]:20", "dp[i] + dp[i-coin]", "dp:30");
 		debugColumns();
 		for(int coin: coins) {
-			for(int amt = 1; amt<=amount ; amt++) {
+			for(int amt = 1; amt<dp.length ; amt++) {
 				debugRow(coin, amt, amount, "i>=coin => "+amt+">="+coin+" => "+(amt>=coin), (amt>=coin ? "dp["+amt+"]="+dp[amt] :"-"), (amt>=coin ? "dp["+amt+"-"+coin+"] => dp["+(amt-coin)+"] ="+dp[amt-coin] : "-"), (amt>=coin ? dp[amt] + dp[amt-coin] : "-"), Arrays.stream(dp).boxed().collect(Collectors.toList()));
-				if(amt>=coin) {
+				if(amt-coin>=0) {
 					dp[amt] += dp[amt-coin];
 				}
 			}
 		}
-		debug("dp["+amount+"]="+dp[amount]);
-		return dp[amount];
+		debug("dp["+(dp.length-1)+"]="+dp[dp.length-1]);
+		return dp[dp.length-1];
 }
 }
