@@ -62,11 +62,12 @@ Last executed input:
 		if(word1.equals(word2)) {
 			return 0;
 		}
+		// base case
 		if (m == 0 || n==0){
 			return Math.abs(m-n);
 		}
 		
-		// base case
+		// same characters no edit needed, call again without any increment
 		if(word1.charAt(m-1) == word2.charAt(n-1)) {
 			return minDistanceHelper_BruteForce(word1, word2, m-1, n-1);
 		}
