@@ -105,7 +105,34 @@ Your runtime beats 94.85 % of java submissions.
     		// this is the minimum cost
     		return dp[grid.length-1][grid[0].length-1];
     }
+/**
+ * 
+There is no difference with extra space and in place except the grid is used instead of separate dp array.
 
+Submission
+https://leetcode.com/submissions/detail/192884010/
+You are here! 
+Your runtime beats 38.52 % of java submissions.
+ */
+    public static int minPathSum_DP_Grid_Modified(int[][] grid) {
+		// set values for the first row
+		for(int i = 1; i<grid.length;i++) {
+			grid[i][0] = grid[i][0] + grid[i-1][0]; 
+		}
+		// set values for first column
+		for(int j = 1; j<grid[0].length;j++) {
+			grid[0][j] = grid[0][j] + grid[0][j-1]; 
+		}
+		// set values for the remaining of the grid
+		for(int i =1; i<grid.length;i++) {
+			for(int j =1; j<grid[0].length;j++) {
+				grid[i][j] = Math.min(grid[i-1][j], grid[i][j-1]) + grid[i][j];
+			}
+			
+		}
+		// this is the minimum cost
+		return grid[grid.length-1][grid[0].length-1];
+    }
     
 	/**
 	 * @param args
@@ -123,9 +150,11 @@ Your runtime beats 94.85 % of java submissions.
 //            {4,2,1,4,5}
 					};					
 		int minCost = minPathSum_BruteForce(grid);
-		System.out.println("minCost="+minCost);
+		System.out.println("BF  minCost="+minCost);
 		minCost = SolutionDebug.minPathSum_DP(grid);
-		System.out.println("minCost="+minCost);
+		System.out.println("DP  minCost="+minCost);
+		minCost = minPathSum_DP_Grid_Modified(grid);
+		System.out.println("DPO minCost="+minCost);
 	}
 
 }
