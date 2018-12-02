@@ -11,7 +11,8 @@ public class DeleteOperationForTwoStrings_583_LCS_Recr_BckTrk_DP {
 
 	
 	/**
-Given two words word1 and word2, find the minimum number of steps required to make word1 and word2 the same, where in each step you can delete one character in either string.
+Given two words word1 and word2, find the minimum number of steps required to make word1 and word2 the same, 
+where in each step you can delete one character in either string.
 
 Example 1:
 Input: "sea", "eat"
