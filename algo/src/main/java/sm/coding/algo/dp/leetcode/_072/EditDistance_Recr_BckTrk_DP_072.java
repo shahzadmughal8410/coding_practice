@@ -82,9 +82,9 @@ Last executed input:
 
 	/**
 Submission
-https://leetcode.com/submissions/detail/176464931/
+https://leetcode.com/submissions/detail/192896758/
 You are here! 
-Your runtime beats 92.22 % of java submissions.
+Your runtime beats 75.64 % of java submissions.
 
 	 * @param word1
 	 * @param word2
@@ -127,7 +127,7 @@ Your runtime beats 92.22 % of java submissions.
 				}
 			}
 		}
-		return dp[m][n];
+		return dp[dp.length-1][dp[0].length-1];
 	}
 	
 	public static int min(int a, int b, int c) {
@@ -306,7 +306,7 @@ class SolutionDebug {
 			}
 		}
 		debug("DP table\n"+grid(dp));
-		return dp[m][n];
+		return dp[dp.length-1][dp[0].length-1];
 	}
 	
 	public static int min(int a, int b, int c) {
