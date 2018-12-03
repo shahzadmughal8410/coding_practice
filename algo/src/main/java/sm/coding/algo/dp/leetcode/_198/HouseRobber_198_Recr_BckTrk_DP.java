@@ -102,9 +102,9 @@ Your runtime beats 94.16 % of java submissions.
 		int first = houses[0];
 		int second = Math.max(houses[0], houses[1]);
 		for(int i=2;i<houses.length;i++) {
-			int third_max  = Math.max( houses[i] + first, second);
+			int third  = Math.max( houses[i] + first, second);
 			first = second;
-			second = third_max;
+			second = third;
 		}
 		return second;
 	}
