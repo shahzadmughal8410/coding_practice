@@ -3,7 +3,9 @@
  */
 package sm.coding.algo.dp.icf.knapsack;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -136,20 +138,37 @@ class SolutionDebug {
 	}
 
 	public static String grid(int grid[][]) {
+		return grid(grid, null, null, "*", "@");
+	}
+
+	public static String grid(int grid[][], List rowHeader, List colHeader, String rowHeading, String colHeading) {
 		int padding = 5;
 		StringBuilder output = new StringBuilder("\n");
 		// output index of columns
-		output.append("-  ");
+		output.append("index");
+		output.append( String.format(" | %1$-"+Math.max(padding, rowHeading.length()+colHeading.length())+"s ", "-") );
+		int underline = 0;
 		for(int i =0; i<grid[0].length; i++) {
 			output.append( String.format(" | %1$-"+padding+"s ", i) );
 		}
 		output.append("|\n");
-		IntStream.range(0, output.length()).forEach(i->output.append("-"));
+		underline = output.length();
+		
+		if(null!=colHeader) {
+			output.append("-");
+			output.append( String.format("     | %1$-"+Math.max(padding, rowHeading.length()+colHeading.length())+"s ", rowHeading+colHeading) );
+			for(int i =0; i<grid[0].length; i++) {
+				output.append( String.format(" | %1$-"+padding+"s ", colHeader.get(i)) );
+			}
+		}
+
+		output.append("|\n");
+		IntStream.range(0, underline).forEach(i->output.append("-"));
 		output.append("\n");
 		
 		for(int r=0; r<grid.length; r++) {
 			// output index of rows
-			output.append(r+"->");
+			output.append( r+ String.format("     | %1$-"+Math.max(padding, rowHeading.length()+colHeading.length())+"s ", (rowHeader!=null ? rowHeader.get(r) : "" ) )  );
 			
 			// grid data
 			for(int c=0; c<grid[r].length; c++) {
@@ -160,9 +179,18 @@ class SolutionDebug {
 		return output.toString();
 	}
 	
+	public static List asList(int [] list, int padding, Object value) {
+		List l = new ArrayList<>();
+		for(int i=0; i<padding; i++) {
+			l.add(value);
+		}
+		l.addAll(Arrays.stream(list).boxed().collect(Collectors.toList()));
+		return l;
+	}
+	
 	public static int knapsack_BruteForce(int val[], int wt[], int maxWeight){
 		debugRecr("val="+Arrays.stream(val).boxed().collect(Collectors.toList()));
-		debugRecr(" wt="+Arrays.stream(val).boxed().collect(Collectors.toList()));
+		debugRecr(" wt="+Arrays.stream(wt).boxed().collect(Collectors.toList()));
 		debugRecr("maxWeight="+maxWeight);
 		return knapsack_BruteForce(val, wt, maxWeight, wt.length);
 	}
@@ -220,7 +248,7 @@ class SolutionDebug {
 				}
 			}
 		}
-		debug("DP "+grid(dp));
+		debug("DP "+grid(dp, asList(val, 1, '-'), asList(IntStream.range(1, maxWeight+2).toArray(), 1, '-'), "val", "/mxWt"));
 		debug("maxValue="+dp[val.length][maxWeight]);
 		return dp[val.length][maxWeight];
 	}

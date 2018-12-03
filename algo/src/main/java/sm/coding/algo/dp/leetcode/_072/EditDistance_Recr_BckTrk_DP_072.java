@@ -3,7 +3,12 @@
  */
 package sm.coding.algo.dp.leetcode._072;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author shahzadmughal8410
@@ -219,14 +224,54 @@ class SolutionDebug {
 	}
 
 	public static String grid(int grid[][]) {
+		return grid(grid, null, null, "*", "@");
+	}
+
+	public static String grid(int grid[][], List rowHeader, List colHeader, String rowHeading, String colHeading) {
+		int padding = 5;
 		StringBuilder output = new StringBuilder("\n");
+		// output index of columns
+		output.append("index");
+		output.append( String.format(" | %1$-"+Math.max(padding, rowHeading.length()+colHeading.length())+"s ", "-") );
+		int underline = 0;
+		for(int i =0; i<grid[0].length; i++) {
+			output.append( String.format(" | %1$-"+padding+"s ", i) );
+		}
+		output.append("|\n");
+		underline = output.length();
+		
+		if(null!=colHeader) {
+			output.append("-");
+			output.append( String.format("     | %1$-"+Math.max(padding, rowHeading.length()+colHeading.length())+"s ", rowHeading+colHeading) );
+			for(int i =0; i<grid[0].length; i++) {
+				output.append( String.format(" | %1$-"+padding+"s ", colHeader.get(i)) );
+			}
+		}
+
+		output.append("|\n");
+		IntStream.range(0, underline).forEach(i->output.append("-"));
+		output.append("\n");
+		
 		for(int r=0; r<grid.length; r++) {
+			// output index of rows
+			output.append( r+ String.format("     | %1$-"+Math.max(padding, rowHeading.length()+colHeading.length())+"s ", (rowHeader!=null ? rowHeader.get(r) : "" ) )  );
+			
+			// grid data
 			for(int c=0; c<grid[r].length; c++) {
-				output.append("|"+grid[r][c]);
+				output.append( String.format(" | %1$-"+padding+"s ", grid[r][c]) );
 			}
 			output.append("|\n");
 		}
 		return output.toString();
+	}
+	
+	public static List asList(Object [] list, int padding, Object value) {
+		List l = new ArrayList<>();
+		for(int i=0; i<padding; i++) {
+			l.add(value);
+		}
+		l.addAll(Arrays.asList(list));
+		return l;
 	}
 	
 	public static int minDistance_BruteForce(String s1, String s2) {
@@ -283,12 +328,12 @@ class SolutionDebug {
 		for(int i=1; i<dp.length;i++) {
 			dp[i][0] = i;
 		}
-		debug("DP first column\n"+grid(dp));
+		debug("DP first column\n"+grid(dp, asList(word1.chars().mapToObj(c -> (char)c).toArray(Character[]::new), 1, '-'), asList(word2.chars().mapToObj(c -> (char)c).toArray(Character[]::new), 1, '-'), "w1 ", "/ w2"));
 		// first row
 		for(int j=1; j<dp[0].length;j++) {
 			dp[0][j] = j;
 		}
-		debug("DP first row\n"+grid(dp));
+		debug("DP first row\n"+grid(dp, asList(word1.chars().mapToObj(c -> (char)c).toArray(Character[]::new), 1, '-'), asList(word2.chars().mapToObj(c -> (char)c).toArray(Character[]::new), 1, '-'), "w1 ", "/ w2"));
 		// rest of the table
 		for(int i=1; i<dp.length;i++) {
 			for(int j=1; j<dp[0].length;j++) {
@@ -306,7 +351,7 @@ class SolutionDebug {
 				}
 			}
 		}
-		debug("DP table\n"+grid(dp));
+		debug("DP table\n"+grid(dp, asList(word1.chars().mapToObj(c -> (char)c).toArray(Character[]::new), 1, '-'), asList(word2.chars().mapToObj(c -> (char)c).toArray(Character[]::new), 1, '-'), "w1 ", "/ w2"));
 		return dp[dp.length-1][dp[0].length-1];
 	}
 	
