@@ -59,7 +59,7 @@ LCS for input Sequences “AGGTAB” and “GXTXAYB” is “GTAB” of length 4
 				}
 			}
 		}
-		return dp[m][n];
+		return dp[dp.length-1][dp[0].length-1];
 	}
 	
 	
@@ -71,20 +71,20 @@ LCS for input Sequences “AGGTAB” and “GXTXAYB” is “GTAB” of length 4
 		String word2;
 		int lcs;
 		
-		word1 = "ABCDGH";
-		word2= "AEDFHR";
+		word1 = "AGGTAB";
+		word2 = "GXTXAYB";
 		System.out.println("word1="+word1+", word2="+word2);
 		System.out.println("LCS BF="+lcs_BruteForce(word1, word2));
 		System.out.println("LCS DP="+lcs_DP(word1, word2));
 
-		word1 = "AGGTAB";
-		word2= "GXTXAYB";
+		word1 = "aedfhr";
+		word2 = "abcdgh";
 		System.out.println("word1="+word1+", word2="+word2);
 		System.out.println("LCS BF="+SolutionDebug.lcs_BruteForce(word1, word2));
 		System.out.println("LCS DP="+SolutionDebug.lcs_DP(word1, word2));
 
 		word1 = "sea";
-		word2= "eat";
+		word2 = "eat";
 		System.out.println("word1="+word1+", word2="+word2);
 		System.out.println("LCS BF="+lcs_BruteForce(word1, word2));
 		System.out.println("LCS DP="+lcs_DP(word1, word2));
@@ -207,7 +207,7 @@ class SolutionDebug {
 			}
 		}
 		debug(grid(dp));
-		debug("lcs="+dp[m][n]);
-		return dp[m][n];
+		debug("lcs="+dp[dp.length-1][dp[0].length-1]);
+		return dp[dp.length-1][dp[0].length-1];
 	}
 }
