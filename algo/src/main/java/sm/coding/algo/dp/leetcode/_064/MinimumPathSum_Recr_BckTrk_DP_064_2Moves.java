@@ -3,7 +3,11 @@
  */
 package sm.coding.algo.dp.leetcode._064;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 /**
  * @author shahzadmughal8410
@@ -207,12 +211,27 @@ class SolutionDebug {
 	public static void setIndent(String newIndent) {
 		indent = newIndent;
 	}
-	
+
+
 	public static String grid(int grid[][]) {
+		int padding = 5;
 		StringBuilder output = new StringBuilder("\n");
+		// output index of columns
+		output.append("-  ");
+		for(int i =0; i<grid[0].length; i++) {
+			output.append( String.format(" | %1$-"+padding+"s ", i) );
+		}
+		output.append("|\n");
+		IntStream.range(0, output.length()).forEach(i->output.append("-"));
+		output.append("\n");
+		
 		for(int r=0; r<grid.length; r++) {
+			// output index of rows
+			output.append(r+"->");
+			
+			// grid data
 			for(int c=0; c<grid[r].length; c++) {
-				output.append("|"+grid[r][c]);
+				output.append( String.format(" | %1$-"+padding+"s ", grid[r][c]) );
 			}
 			output.append("|\n");
 		}
@@ -230,18 +249,18 @@ class SolutionDebug {
 		for(int i = 1; i<grid.length;i++) {
 			dp[i][0] = grid[i][0] + dp[i-1][0]; 
 		}
-		debug("DP"+grid(dp));
+		debug("DP First Col"+grid(dp));
 		for(int j = 1; j<grid[0].length;j++) {
 			dp[0][j] = grid[0][j] + dp[0][j-1]; 
 		}
-		debug("DP"+grid(dp));
+		debug("DP First Row"+grid(dp));
 		
 		for(int i =1; i<grid.length;i++) {
 			for(int j =1; j<grid[0].length;j++) {
 				dp[i][j] = Math.min(dp[i-1][j], dp[i][j-1]) + grid[i][j];
 			}
 		}
-		debug("DP"+grid(dp));
+		debug("DP Result"+grid(dp));
 		return dp[grid.length-1][grid[0].length-1];
     }
 }
