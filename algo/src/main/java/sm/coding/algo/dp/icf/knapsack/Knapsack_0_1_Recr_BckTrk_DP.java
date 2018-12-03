@@ -57,7 +57,7 @@ val = [1, 4, 5, 7]
 		int[][] dp = new int[val.length+1][maxWeight+1];
 		
 		for(int i=1; i<dp.length;i++) {
-			for(int j=0; j<dp[0].length;j++) {
+			for(int j=1; j<dp[0].length;j++) {
 				if(wt[i-1]>j) {
 					dp[i][j] = dp[i-1][j];
 				}else {
@@ -240,7 +240,7 @@ class SolutionDebug {
 		int[][] dp = new int[val.length+1][maxWeight+1];
 		
 		for(int i=1; i<dp.length;i++) {
-			for(int j=0; j<dp[0].length;j++) {
+			for(int j=1; j<dp[0].length;j++) {
 				if(wt[i-1]>j) {
 					dp[i][j] = dp[i-1][j];
 				}else {
