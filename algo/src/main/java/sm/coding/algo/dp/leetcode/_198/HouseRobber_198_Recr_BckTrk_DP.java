@@ -86,9 +86,9 @@ Your runtime beats 54.62 % of java submissions.
 	}
 	/**
 submission
-https://leetcode.com/submissions/detail/176866466/
+https://leetcode.com/submissions/detail/193089334/
 You are here! 
-Your runtime beats 54.62 % of java submissions.
+Your runtime beats 94.16 % of java submissions.
 	 * @param houses
 	 * @return
 	 */
@@ -101,13 +101,12 @@ Your runtime beats 54.62 % of java submissions.
 		
 		int first = houses[0];
 		int second = Math.max(houses[0], houses[1]);
-		int third_max = second; // default value for case when houses.length==2
 		for(int i=2;i<houses.length;i++) {
-			third_max  = Math.max( houses[i] + first, second);
+			int third_max  = Math.max( houses[i] + first, second);
 			first = second;
 			second = third_max;
 		}
-		return third_max;
+		return second;
 	}
 	/**
 	 * @param args
