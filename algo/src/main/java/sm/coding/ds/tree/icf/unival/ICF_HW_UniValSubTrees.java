@@ -1,9 +1,10 @@
 /**
  * 
  */
-package sm.coding.ds.tree.bt;
+package sm.coding.ds.tree.icf.unival;
 
 import sm.coding.ds.tree.bst.BstFromSortedArray;
+import sm.coding.ds.tree.bt.TreeNode;
 
 /**
  * 

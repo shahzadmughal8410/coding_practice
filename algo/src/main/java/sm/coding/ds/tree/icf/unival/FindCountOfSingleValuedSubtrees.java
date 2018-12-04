@@ -13,7 +13,8 @@ import sm.coding.ds.tree.bt.TreeNode;
 public class FindCountOfSingleValuedSubtrees {
 
 	/**
-Given a binary tree, write a program to count the number of Single Valued Subtrees. A Single Valued Subtree is one in which all the nodes have same value. Expected time complexity is O(n).
+Given a binary tree, write a program to count the number of Single Valued Subtrees. 
+A Single Valued Subtree is one in which all the nodes have same value. Expected time complexity is O(n).
 
 Example:
 
