@@ -62,22 +62,53 @@ Your runtime beats 100.00 % of java submissions.
     		}
     }
     
-    
+    /**
+Submisison
+https://leetcode.com/submissions/detail/193381445/
+You are here! 
+Your runtime beats 100.00 % of java submissions.
+     * @param root
+     * @return
+     */
     public static TreeNode invertTree_Iterative(TreeNode root) {
         if (root == null) return null;
         Deque<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
+        queue.offer(root);
         while (!queue.isEmpty()) {
             TreeNode current = queue.poll();
             TreeNode temp = current.left;
             current.left = current.right;
             current.right = temp;
-            if (current.left != null) queue.add(current.left);
-            if (current.right != null) queue.add(current.right);
+            if (current.left != null) queue.offer(current.left);
+            if (current.right != null) queue.offer(current.right);
         }
         return root;
     }
-	/**
+
+    /**
+Submisison
+https://leetcode.com/submissions/detail/193381376/
+You are here! 
+Your runtime beats 100.00 % of java submissions.
+     * @param root
+     * @return
+     */
+    public static TreeNode invertTree_Iterative_Stack(TreeNode root) {
+        if (root == null) return null;
+        Deque<TreeNode> stack = new LinkedList<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode current = stack.pop();
+            TreeNode temp = current.left;
+            current.left = current.right;
+            current.right = temp;
+            if (current.left != null) stack.push(current.left);
+            if (current.right != null) stack.push(current.right);
+        }
+        return root;
+    }
+
+    /**
 	 * @param args
 	 */
 	public static void main(String[] args) {
