@@ -39,7 +39,7 @@ public class KthLargestElementBST {
 		return kthLargest[0];
 	}
 	public static void kthLargestInBST(TreeNode n, int k, Count c, int[] kthLargest) {
-		if(null==n || c.val==k) {
+		if(null==n) {
 			return;
 		}
 		kthLargestInBST(n.right, k, c, kthLargest);

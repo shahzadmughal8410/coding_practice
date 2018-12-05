@@ -44,9 +44,9 @@ What if the BST is modified (insert/delete operations) often and you need to fin
 How would you optimize the kthSmallest routine?
 
 Submission
-https://leetcode.com/submissions/detail/185186754/
+https://leetcode.com/submissions/detail/193462284/
 You are here! 
-Your runtime beats 63.17 % of java submissions.
+Your runtime beats 100.00 % of java submissions.
 	 */
     public static int kthSmallest(TreeNode root, int k) {
 		int[] kthSmallest = new int[1];
@@ -54,7 +54,7 @@ Your runtime beats 63.17 % of java submissions.
 		return kthSmallest[0];
 	}
 	public static void kthSmallest_Helper(TreeNode node, int k, Count c, int[] kthSmallest) {
-		if(null==node || c.val==k) {
+		if(null==node) {
 			return;
 		}
 		kthSmallest_Helper(node.left, k, c, kthSmallest);
