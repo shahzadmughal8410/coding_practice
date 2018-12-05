@@ -36,7 +36,7 @@ Your runtime beats 100.00 % of java submissions.
     }
     
     public static TreeNode sortedArrayToBST_Helper(int[] nums, int start, int end) {
-    		if(start>end) {
+    		if(start>end) { // (end<start) can be used as well
     			return null;
     		}
 //        int mid = (start+end) /2;
