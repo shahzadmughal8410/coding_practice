@@ -112,9 +112,14 @@ Following implementation is good if we have Set instead of list for wordDictiona
      * @param endWord
      * @param wordList
      * @return
+
+https://leetcode.com/submissions/detail/193621377/
+You are here! 
+Your runtime beats 62.65 % of java submissions.
      */
-    public static int ladderLength_Set_WordList(String beginWord, String endWord, Set<String> wordList) {
-    		if(!wordList.contains(endWord)) {
+    public static int ladderLength_Set_WordList(String beginWord, String endWord, List<String> list) {             
+    	Set<String> wordList = new HashSet<>(list); 
+    if(!wordList.contains(endWord)) {
     			return 0;
     		}
     		Set<String> visited = new HashSet<>();
@@ -152,9 +157,11 @@ Following implementation is good if we have Set instead of list for wordDictiona
     		for(char ch = 'a'; ch<='z'; ch++) {
     			for(int i=0; i<arr.length; i++) {
     				char tmp = arr[i];
-    				if(arr[i]!=ch) {
+    				// replace each of the characters in word with letters a-z and 
+    				// check if it forms a word that is present in dictionary
+    				if(arr[i]!=ch) { // if characters not match, create a new word by replacing the character with ch'th character
     					arr[i]=ch;
-    					String newWord = new String(arr);
+    					String newWord = new String(arr);// check if new with with 1 different character is in wordList
     					if(!visited.contains(newWord) && wordList.contains(newWord)) {
     						neighbours.add(newWord);
     					}
