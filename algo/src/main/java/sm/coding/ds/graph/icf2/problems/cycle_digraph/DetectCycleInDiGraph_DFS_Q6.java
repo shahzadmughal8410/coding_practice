@@ -51,7 +51,7 @@ https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
 					return true;
 				}
 			}
-			else if(isVisited[c] && isInPath[c]) {
+			else if(isInPath[c]) {
 				return true;
 			}
 		}
