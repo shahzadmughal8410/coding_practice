@@ -1,4 +1,4 @@
-/**
+ /**
  * 
  */
 package sm.coding.ds.llstq.leetcode.stack._227;
@@ -89,6 +89,14 @@ Your runtime beats 83.75 % of java submissions.
 		System.out.println(s+" -> "+result);
 		
 		s = "3+2*2";
+		result = calculate(s);
+		System.out.println(s+" -> "+result);
+		
+		s = "1 0 0 * 1 0 ";
+		result = calculate(s);
+		System.out.println(s+" -> "+result);
+		
+		s = "1 0 0 + 1 0 ";
 		result = calculate(s);
 		System.out.println(s+" -> "+result);
 		
