@@ -181,7 +181,7 @@ Your runtime beats 62.65 % of java submissions.
 		String begin = "hit";
 		String end = "cog";
 		System.out.println("Shortest transformation (List)="+ladderLength(begin, end, words));
-		System.out.println("Shortest transformation (Set) ="+ladderLength_Set_WordList(begin, end, new HashSet<>(words)));
+		System.out.println("Shortest transformation (Set) ="+ladderLength_Set_WordList(begin, end, words));
 	}
 
 }
