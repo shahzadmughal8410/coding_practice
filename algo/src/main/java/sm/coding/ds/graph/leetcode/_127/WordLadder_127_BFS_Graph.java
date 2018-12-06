@@ -52,16 +52,15 @@ Output: 0
 Explanation: The endWord "cog" is not in wordList, therefore no possible transformation.
 
 Submission
-https://leetcode.com/submissions/detail/183109439/
+https://leetcode.com/submissions/detail/193591558/
 You are here! 
-Your runtime beats 5.52 % of java submissions.
+Your runtime beats 11.82 % of java submissions.
 
 	 * @param beginWord
 	 * @param endWord
 	 * @param wordList
 	 * @return
 	 */
-
     public static int ladderLength(String beginWord, String endWord, List<String> wordList) {
  		if(!wordList.contains(endWord)) {
 			return 0;
@@ -72,26 +71,26 @@ Your runtime beats 5.52 % of java submissions.
 		q.offer(beginWord);
 		visited.add(beginWord);
 		
-		int transform = 1;
+		int transform = 0;
 		
 		while(!q.isEmpty()) {    			
 			++transform; // increment for each level
 			// exhaust each level
 			int size = q.size();
 			for(int i=0; i < size; i++) {
-    			String current = q.poll();
-
-    			for(String next:wordList) {
-					if(!visited.contains(next)) {
-						if(isNext(current, next)) {
-    						visited.add(next);
-    						q.offer(next);
-                			if(next.equals(endWord)) {
-                				return transform;
-                			}
-    					}
-    				}
-    			}
+	    			String current = q.poll();
+        			if(current.equals(endWord)) {
+        				return transform;
+        			}
+	
+	    			for(String next:wordList) {
+						if(!visited.contains(next)) {
+							if(isNext(current, next)) {
+	    						visited.add(next);
+	    						q.offer(next);
+	    					}
+	    				}
+	    			}
 			}
 		}
 		return 0;
@@ -125,7 +124,7 @@ Following implementation is good if we have Set instead of list for wordDictiona
     		q.offer(beginWord);
     		visited.add(beginWord);
     		
-    		int transform = 1;
+    		int transform = 0;
     		
     		while(!q.isEmpty()) {    			
     			++transform; // increment for each level
@@ -133,13 +132,14 @@ Following implementation is good if we have Set instead of list for wordDictiona
     			int size = q.size();
     			for(int i=0; i < size; i++) {
         			String current = q.poll();
-
+        			if(current.equals(endWord)) {
+        				return transform;
+        			}
+        			
         			for(String next:getNeighbours_Set_WordList(current, wordList, visited)) {
 					visited.add(next);
 					q.offer(next);
-            			if(next.equals(endWord)) {
-            				return transform;
-            			}
+
         			}
     			}
     		}
