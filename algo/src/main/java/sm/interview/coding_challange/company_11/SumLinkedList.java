@@ -95,15 +95,23 @@ public class SumLinkedList {
 	public static void main(String[] args) {
 		ListNode l1 = new ListNode(9);
 		l1.next = new ListNode(9);
-
 		ListNode l2 = new ListNode(9);
-		
 		LinkedListPrinter.print(l1);
 		LinkedListPrinter.print(l2);
 		
 		ListNode result = sum(l1, l2);
 		LinkedListPrinter.print(result);
 		
+		l1 = new ListNode(2);
+		l1.next = new ListNode(4);
+
+		l2 = new ListNode(3);
+		LinkedListPrinter.print(l1);
+		LinkedListPrinter.print(l2);
+
+		result = sum(l1, l2);
+		LinkedListPrinter.print(result);
+
 		
 	}
 
