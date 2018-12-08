@@ -43,9 +43,9 @@ Your runtime beats 100.00 % of java submissions.
 		while(low < high) {
 			int mid = low + ((high - low) / 2);
 			if(nums[mid] < nums[high]) {
-				high = mid; // minimum is in left part of array
+				high = mid; // minimum is in left part of array, as mid < high, for next iteration include min as well
 			}else if (nums[mid] > nums[high]) {
-				low = mid+1; // minimum is in right part of array
+				low = mid+1; // minimum is in right part of array, also as mid is greater can;t be min, so skip (mid+1) it for next iteration
 			}
 		}
 		return nums[low];
