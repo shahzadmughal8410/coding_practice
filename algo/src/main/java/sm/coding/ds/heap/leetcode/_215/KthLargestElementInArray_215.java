@@ -23,25 +23,25 @@ You may assume k is always valid, 1 ≤ k ≤ array's length.
 https://www.geeksforgeeks.org/k-largestor-smallest-elements-in-an-array/
 https://leetcode.com/problems/kth-largest-element-in-an-array/description/
 
+Submission
+https://leetcode.com/submissions/detail/194072511/
+You are here! 
+Your runtime beats 46.60 % of java submissions.
 	 * @param args
 	 */
 	
-	public static int findKthLargest(int[] input, int k) {
-		if(null==input || input.length==0) {
+	public static int findKthLargest(int[] nums, int k) {
+		if(null==nums || nums.length==0) {
 			return Integer.MIN_VALUE;
 		}
 		
-		PriorityQueue<Integer> heap = new PriorityQueue<>(k);
-		for(int i =0; i<k; i++) {
-			heap.offer(input[i]);
-		}
+		PriorityQueue<Integer> heap = new PriorityQueue<>(k+1);
 		
-		for(int i=k;i<input.length;i++) {
-			int min = heap.peek();
-			int next = input[i];
-			if(next>min) {
+		for(int i=0;i<nums.length;i++) {
+			heap.offer(nums[i]);
+			
+			if(heap.size()>k) {
 				heap.poll();
-				heap.offer(next);
 			}
 		}
 		
