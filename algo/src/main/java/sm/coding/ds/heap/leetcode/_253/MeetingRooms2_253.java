@@ -28,9 +28,14 @@ https://www.youtube.com/watch?v=118Ie3nPCdc
 
 T=O(n log n)
 S=O(n) 
+
+Submission
+https://leetcode.com/submissions/detail/194154875/
+You are here! 
+Your runtime beats 33.02 % of java submissions.
 	 * @param args
 	 */
-	public static int minHeapRooms(Interval[] intervals) {
+	public static int minMeetingRooms(Interval[] intervals) {
 		if(null==intervals || intervals.length==0) {
 			return 0;
 		}
@@ -55,7 +60,7 @@ S=O(n)
 	
 	public static void main(String[] args) {
 		Interval[] intervals = new Interval[] { new Interval(0, 30),new Interval(5, 10),new Interval(15, 20)};
-		System.out.println("Rooms required="+minHeapRooms(intervals));
+		System.out.println("Rooms required="+minMeetingRooms(intervals));
 	}
 
 }
