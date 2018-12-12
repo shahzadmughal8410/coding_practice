@@ -41,8 +41,8 @@ Your runtime beats 48.11 % of java submissions.
 		int start = 0;
 		int startIndex = -1; // needed to return the string
 		
-		for(int i=0;i<s.length();i++) {
-			char c = s.charAt(i);
+		for(int end=0;end<s.length();end++) {
+			char c = s.charAt(end);
 			map.put(c, map.getOrDefault(c, 0)+1);
 			
 			while(map.size()>k) {
@@ -54,7 +54,7 @@ Your runtime beats 48.11 % of java submissions.
 				}
 				++start;
 			}
-			int currengthLength = i-start+1;
+			int currengthLength = end-start+1;
 			// update max length 
 			if(maxLength<currengthLength) {
 				maxLength = currengthLength;
