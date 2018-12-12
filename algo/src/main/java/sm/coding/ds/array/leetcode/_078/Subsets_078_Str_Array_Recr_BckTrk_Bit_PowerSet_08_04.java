@@ -10,6 +10,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import sm.coding.string.gfg.AllSubstringOfAString_Str_Arr_Sublists;
+
 /**
  * @author shahzadmughal8410
  *
@@ -62,7 +64,25 @@ REMEMBER: string subset is different from all substrings see AllSubstringOfAStri
 		}
 		return powerset;
 	}
+
+	public static List<String> allSubsets_Recr(String s){
+		List<String> powerset = new ArrayList<>();
+		allSubsetsHelper_Recr(s, 0, "", powerset);
+		return powerset;
+	}
 	
+	public static void allSubsetsHelper_Recr(String s, int index, String sofar, List<String> powerset){
+		if(index==s.length()) {
+			powerset.add(sofar);
+			return;
+		}
+		
+		char c = s.charAt(index);
+		allSubsetsHelper_Recr(s, index+1, sofar+c, powerset);
+		allSubsetsHelper_Recr(s, index+1, sofar, powerset);
+	}
+	
+
 	/**
 Submission
 https://leetcode.com/submissions/detail/173164577/
@@ -150,9 +170,13 @@ Your runtime beats 100.00 % of java submissions
 		String s = "abcd";
 		List<String> subsets = allSubsets(s);
 		subsets.forEach(r->System.out.println("["+r+"]"));
-		System.out.printf("All sub sets of input of length %d are %d %n", s.length(), subsets.size());
+		System.out.printf("ITR All sub sets of input of length %d are %d %n", s.length(), subsets.size());
 
-		int[] arr = new int[] {1,2,3};
+		subsets = allSubsets_Recr(s);
+		subsets.forEach(r->System.out.println("["+r+"]"));
+		System.out.printf("REC All sub sets of input of length %d are %d %n", s.length(), subsets.size());
+
+		int[] arr = new int[] {5,6,7};
 //		List<List<Integer>> subLists = subsets(arr);
 		List<List<Integer>> subLists = SolutionDebug.subsets(arr);
 		subLists.forEach(r->System.out.println(r));
