@@ -30,7 +30,11 @@ Output: "bb"
  https://leetcode.com/problems/longest-palindromic-substring/description/
  https://www.geeksforgeeks.org/longest-palindromic-substring-set-1/
  https://www.geeksforgeeks.org/longest-palindromic-substring-set-2/
- 
+
+Submission
+https://leetcode.com/submissions/detail/194880798/
+You are here! 
+Your runtime beats 55.28 % of java submissions.
 	 * @param args
 	 */
 	public static String longestPalindrome(String s) {
