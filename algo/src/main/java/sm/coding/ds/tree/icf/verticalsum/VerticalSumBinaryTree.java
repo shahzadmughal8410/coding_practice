@@ -49,8 +49,7 @@ Submitted
 		if(null!=node) {
 			// pre order
 			// process node
-			sum.putIfAbsent(column,  0);
-			sum.put(column, sum.get(column)+node.val);
+			sum.put(column, sum.getOrDefault(column, 0)+node.val);
 			
 			verticalSumHelper(node.left, column-1, sum);
 			verticalSumHelper(node.right, column+1, sum);
