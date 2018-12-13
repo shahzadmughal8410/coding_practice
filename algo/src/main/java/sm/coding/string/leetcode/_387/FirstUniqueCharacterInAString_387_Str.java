@@ -42,9 +42,7 @@ Your runtime beats 34.41 % of java submissions.
 			char c = s.charAt(i);
 			m.put(c, m.getOrDefault(c, 0)+1);
 		}
-		// loop through the keys
-		// keys are in insertion order in linked hashmap so the first character with count 1 
-		// in first chartacter in string as well
+		// loop through the string and find the first character with count==1
 		for(int i=0; i<s.length();i++) {
 			if(m.get(s.charAt(i))==1) {
 				return i; 
