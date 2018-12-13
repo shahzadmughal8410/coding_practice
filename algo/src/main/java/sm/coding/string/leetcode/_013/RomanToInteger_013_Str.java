@@ -24,11 +24,14 @@ public class RomanToInteger_013_Str {
 	 * 900 M 1000
 	 * 
 	 * SYMBOL VALUE I 1 V 5 X 10 L 50 C 100 D 500 M 1000
-	 * 
+Submission
+https://leetcode.com/submissions/detail/194878696/
+You are here! 
+Your runtime beats 55.35 % of java submissions.
 	 * @param args
 	 */
-	public static int romanToDecimal(String roman) {
-		if (null == roman || roman.length() == 0) {
+	public static int romanToInt(String s) {
+		if (null == s || s.length() == 0) {
 			return 0;
 		}
 
@@ -43,13 +46,13 @@ public class RomanToInteger_013_Str {
 
 		int sum = 0;
 
-		for (int i = 0; i < roman.length(); i++) {
-			char c = roman.charAt(i);
-			if (i == roman.length() - 1) {
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+			if (i == s.length() - 1) {
 				sum += m.get(c);
 				continue;
 			}
-			char next = roman.charAt(i + 1);
+			char next = s.charAt(i + 1);
 			if (m.get(c) >= m.get(next)) {
 				sum += m.get(c);
 			} else {
@@ -65,7 +68,7 @@ public class RomanToInteger_013_Str {
 //		String roman = "MCMIV"; // 1904
 //		String roman = "MMMCMXCIX"; // 3999
 		String roman = "MMD"; // 2500
-		System.out.println("Integer form of Roman Numeral" + " is " + romanToDecimal(roman));
+		System.out.println("Integer form of Roman Numeral" + " is " + romanToInt(roman));
 
 	}
 
