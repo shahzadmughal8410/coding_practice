@@ -40,6 +40,7 @@ Your runtime beats 12.81 % of java submissions.
 		TrieNode current = root;
 		
 		while(current.childs.size()==1 && !current.isWord) {
+			// this loop is just for getting the ONE child from childs map
 			for(Map.Entry<Character, TrieNode> entry:current.childs.entrySet()) {
 				sb.append(entry.getKey());
 				current = entry.getValue();
