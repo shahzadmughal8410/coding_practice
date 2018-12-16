@@ -79,7 +79,6 @@ Your runtime beats 76.94 % of java submissions.
 				}
 			}
 			int currHeight = q.lastKey();
-			System.out.println("currHeight="+currHeight+", previousHeight="+previousHeight);
 			if(currHeight!=previousHeight) {
 				result.add(new int[] {p.x, currHeight});
 				previousHeight = currHeight;
