@@ -51,19 +51,21 @@ Your runtime beats 76.94 % of java submissions.
 			if(a.x != b.x) {
 				return a.x-b.x;
 			}else {
-				// for same start put the higher height first
+				// for same start put the building with higher height first
 				// for same end put the lower height first
-				// if one start and other end, take the start first
+				// if one start and other end, take the start of next building first
 				return (a.start ? -a.h : a.h) - (b.start ? -b.h : b.h);
 			}
 		};
 		
 		Collections.sort(points, comp);
 		
-		TreeMap<Integer, Integer> q = new TreeMap<>();
-		q.put(0, 1);
+		// Map(height, count) count is needed just so if 2 buildings have same height
+		// then we need to know while removing from treeMap
+		TreeMap<Integer, Integer> q = new TreeMap<>(); 
+		q.put(0, 1); // when we don;t have any buildings, its the ground level at Zero height.
 		
-		int maxHeight =0;
+		int previousHeight = 0;
 		
 		for(Point p:points) {
 			if(p.start) {
@@ -77,9 +79,10 @@ Your runtime beats 76.94 % of java submissions.
 				}
 			}
 			int currHeight = q.lastKey();
-			if(currHeight!=maxHeight) {
+			System.out.println("currHeight="+currHeight+", previousHeight="+previousHeight);
+			if(currHeight!=previousHeight) {
 				result.add(new int[] {p.x, currHeight});
-				maxHeight = currHeight;
+				previousHeight = currHeight;
 			}
 		}		
 		return result;
@@ -114,7 +117,7 @@ Your runtime beats 76.94 % of java submissions.
 
 class Point {
 	int x;
-	int h;
+	int h; // can be named 'y' as well
 	boolean start;
 	public Point(int x, int h, boolean start) {
 		super();
