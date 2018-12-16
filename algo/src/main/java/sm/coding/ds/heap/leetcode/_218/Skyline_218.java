@@ -5,6 +5,7 @@ package sm.coding.ds.heap.leetcode._218;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.TreeMap;
@@ -30,17 +31,20 @@ https://www.youtube.com/watch?v=l82ZB4yxuek
 
 https://github.com/mission-peace/interview/blob/master/src/com/interview/geometry/SkylineDrawing.java
 https://www.youtube.com/watch?v=Cv0ft2dFz80
-	 * @param args
+
+Submission
+https://leetcode.com/submissions/detail/195342462/
+You are here! 
+Your runtime beats 76.94 % of java submissions.	 
+* @param args
 	 */
 	public static List<int[]> getSkyline(int[][] buildings){
-		Point[] points = new Point[buildings.length*2];
+		List<Point> points = new ArrayList<>();
 		List<int[]> result = new ArrayList<>();
 		
-		int i = 0;
 		for(int[] b:buildings) {
-			points[i] = new Point(b[0], b[2], true);
-			points[i+1] = new Point(b[1], b[2], false);
-			i+=2;
+			points.add(new Point(b[0], b[2], true));
+			points.add(new Point(b[1], b[2], false));
 		}
 		
 		Comparator<Point> comp = (a,b)->{
@@ -54,7 +58,7 @@ https://www.youtube.com/watch?v=Cv0ft2dFz80
 			}
 		};
 		
-		Arrays.sort(points, comp);
+		Collections.sort(points, comp);
 		
 		TreeMap<Integer, Integer> q = new TreeMap<>();
 		q.put(0, 1);
@@ -63,18 +67,12 @@ https://www.youtube.com/watch?v=Cv0ft2dFz80
 		
 		for(Point p:points) {
 			if(p.start) {
-				if(q.containsKey(p.h)) {
-					q.put(p.h,q.get(p.h)+1);
-				}else {
-					q.put(p.h, 1);
-				}
+				q.put(p.h,q.getOrDefault(p.h, 0)+1);
 			}else {
 				if(q.containsKey(p.h)) {
-					int value = q.get(p.h);
-					if(value==1) { 
-						q.remove(p.h); // In queue, remove operation is O(n), where as in treemap remove is O(logn)
-					} else { 
-						q.put(p.h, value-1);
+					q.put(p.h, q.get(p.h) -1);
+					if(q.get(p.h)==0) {
+						q.remove(p.h);
 					}
 				}
 			}
@@ -83,8 +81,7 @@ https://www.youtube.com/watch?v=Cv0ft2dFz80
 				result.add(new int[] {p.x, currHeight});
 				maxHeight = currHeight;
 			}
-		}
-		
+		}		
 		return result;
 	}
 	
