@@ -4,6 +4,7 @@
 package sm.coding.ds.graph.leetcode._133;
 
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -74,6 +75,49 @@ Your runtime beats 69.60 % of java submissions.
 		}
 		return clonedSource;
 	}
+	
+	/**
+Submission
+https://leetcode.com/submissions/detail/195302797/
+You are here! 
+Your runtime beats 61.80 % of java submissions.
+	 * @param source
+	 * @return
+	 */
+	public static UndirectedGraphNode cloneGraph_BFS_Stack(UndirectedGraphNode source) {
+		if(null==source) {
+			return null;
+		}
+		HashMap<UndirectedGraphNode, UndirectedGraphNode> visited = new HashMap<>();
+		Deque<UndirectedGraphNode> stack = new LinkedList<>();
+		
+		UndirectedGraphNode clonedSource = new UndirectedGraphNode(source.label);
+
+		stack.push(source);
+		visited.put(source, clonedSource);
+		
+		while(!stack.isEmpty()) {
+			
+			int size = stack.size(); // for level by level processing any collection can be used
+			for(int i =0; i<size; i++) {
+				
+				UndirectedGraphNode current = stack.pop();
+				UndirectedGraphNode currentClone = visited.get(current);
+				for(UndirectedGraphNode currentChild: current.neighbors) {
+					UndirectedGraphNode clonedChild = visited.get(currentChild);
+					if(null==clonedChild) {
+						stack.push(currentChild);
+						clonedChild = new UndirectedGraphNode(currentChild.label);
+						visited.put(currentChild, clonedChild);
+					}
+					// as 1 node can be a neighbor/child of many nodes, so always add as neighbour, not only at the time of creation
+					currentClone.neighbors.add(clonedChild);
+				}
+			}
+		}
+		return clonedSource;
+	}
+	
 	
 	public static boolean equals(UndirectedGraphNode n1, UndirectedGraphNode n2) {
 		
