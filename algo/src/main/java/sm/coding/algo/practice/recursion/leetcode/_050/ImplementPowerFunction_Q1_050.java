@@ -1,7 +1,7 @@
 /**
  * 
  */
-package sm.coding.algo.practice.recursion.icf.power;
+package sm.coding.algo.practice.recursion.leetcode._050;
 
 import java.util.regex.Pattern;
 
