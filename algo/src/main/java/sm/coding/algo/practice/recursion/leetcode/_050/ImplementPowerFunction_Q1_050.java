@@ -9,19 +9,24 @@ import java.util.regex.Pattern;
  * @author shahzadmughal8410
  *
  */
-public class ImplementPowerFunction_Q1 {
+public class ImplementPowerFunction_Q1_050 {
 
 	
 	/**
 	 * Improved recursive will work for both positive and negative powers.
 	 * 
 	 * T=O (log y) , where y is the power
+
+Submission
+https://leetcode.com/submissions/detail/195491469/
+You are here! 
+Your runtime beats 99.31 % of java submissions.
 	 */
-	public static double powerRecursion(double x, int y) {
+	public static double myPow(double x, int y) {
 		if(y==0) {
 			return 1;
 		}
-		double temp = powerRecursion(x, y/2); // do recursion only once and store the value
+		double temp = myPow(x, y/2); // do recursion only once and store the value
 		
 		// if y is even
 		if(y%2==0) {
@@ -86,19 +91,19 @@ public class ImplementPowerFunction_Q1 {
 		String msg = "%s^%s Resursion %s, Plain Recursion=%s, Iterative=%s %n%n";
 		
 		x = 2; y = 1;
-		System.out.printf(msg, x, y, powerRecursion(x, y), powerPlainRecursion(x, y), powerPlainIterative(x, y));
+		System.out.printf(msg, x, y, myPow(x, y), powerPlainRecursion(x, y), powerPlainIterative(x, y));
 		
 		x = 2; y = 5;
-		System.out.printf(msg, x, y, powerRecursion(x, y), powerPlainRecursion(x, y), powerPlainIterative(x, y));
+		System.out.printf(msg, x, y, myPow(x, y), powerPlainRecursion(x, y), powerPlainIterative(x, y));
 		
 		x = 2; y = -5;
-		System.out.printf(msg, x, y, powerRecursion(x, y), powerPlainRecursion(x, y), powerPlainIterative(x, y));
+		System.out.printf(msg, x, y, myPow(x, y), powerPlainRecursion(x, y), powerPlainIterative(x, y));
 
 		x = 2; y = 10;
-		System.out.printf(msg, x, y, powerRecursion(x, y), powerPlainRecursion(x, y), powerPlainIterative(x, y));
+		System.out.printf(msg, x, y, myPow(x, y), powerPlainRecursion(x, y), powerPlainIterative(x, y));
 		
 		x = 2; y = -10;
-		System.out.printf(msg, x, y, powerRecursion(x, y), powerPlainRecursion(x, y), powerPlainIterative(x, y));
+		System.out.printf(msg, x, y, myPow(x, y), powerPlainRecursion(x, y), powerPlainIterative(x, y));
 		
 
 	}
