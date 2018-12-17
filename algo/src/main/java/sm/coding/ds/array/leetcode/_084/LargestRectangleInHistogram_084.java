@@ -26,38 +26,34 @@ https://www.youtube.com/watch?v=ZmnqCZp9bBs
 https://github.com/mission-peace/interview/blob/master/src/com/interview/stackqueue/MaximumHistogram.java
 
 Submission
-https://leetcode.com/submissions/detail/168750911/
-You are here!
-Your runtime beats 79.66 % of java submissions.
+https://leetcode.com/submissions/detail/195471799/
+You are here! 
+Your runtime beats 89.91 % of java submissions.
 
 
 	 * @param args
 	 */
-	public static int largestRectangleArea(int[] hist) {
+	public static int largestRectangleArea(int[] heights) {
 		Deque<Integer> stack = new LinkedList<>();
 		
 		int maxArea = 0;
 		int area = 0;
 		int i=0;
 		
-		while(i<hist.length) {
-			if(stack.isEmpty() || hist[stack.peek()] <= hist[i]) {
+		while(i<heights.length) {
+			if(stack.isEmpty() || heights[stack.peek()] <= heights[i]) {
 				stack.push(i++);
 			}else {
 				int top = stack.pop();
-				area = hist[top] * (stack.isEmpty()? i : i - stack.peek() -1);
+				area = heights[top] * (stack.isEmpty()? i : i - stack.peek() -1);
 			}
-			if(area>maxArea) {
-				maxArea = area;
-			} 
+			maxArea = Math.max(area, maxArea);
 		}
 		
 		while(!stack.isEmpty()) {
 			int top = stack.pop();
-			area = hist[top] * (stack.isEmpty()? i : i - stack.peek() -1);
-			if(area>maxArea) {
-				maxArea = area;
-			} 
+			area = heights[top] * (stack.isEmpty()? i : i - stack.peek() -1);
+			maxArea = Math.max(area, maxArea);
 		}
 		return maxArea;
 	}	
@@ -142,9 +138,7 @@ class SolutionDebug {
 				row[8] = "Area of bar at index="+top+"["+hist[top]+"] with units="+(stack.isEmpty()? i : i - stack.peek() -1);
 			}
 			debugRow(row);
-			if(area>maxArea) {
-				maxArea = area;
-			} 
+			maxArea = Math.max(area, maxArea);
 		}
 		
 		reset();
@@ -168,9 +162,7 @@ class SolutionDebug {
 			area = hist[top] * (stack.isEmpty()? i : i - stack.peek() -1);
 			row[7] = "Area of bar at index="+top+"["+hist[top]+"] with units="+(stack.isEmpty()? i : i - stack.peek() -1);
 			debugRow(row);
-			if(area>maxArea) {
-				maxArea = area;
-			} 
+			maxArea = Math.max(area, maxArea); 
 		}
 		return maxArea;
 	}	
