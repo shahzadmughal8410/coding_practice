@@ -16,6 +16,13 @@ public class InorderSuccessorInBST_285 {
 	/**
 Given a binary search tree and a node in it, find the in-order successor of that node in the BST.
 Note: If the given node has no in-order successor in the tree, return null. 
+
+Submission
+https://leetcode.com/submissions/detail/195492429/
+You are here! 
+Your runtime beats 99.60 % of java submissions.
+
+
 	 * @param args
 	 */
 	public static TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
