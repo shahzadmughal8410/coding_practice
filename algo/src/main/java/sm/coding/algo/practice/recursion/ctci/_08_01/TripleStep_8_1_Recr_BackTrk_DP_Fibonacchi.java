@@ -43,9 +43,9 @@ stairs.
 		int[] dp = new int[stairs+1];
 		
 		// 2. set defaults
-		dp[0] = 1;
-		dp[1] = 1;
-		dp[2] = 2;
+		dp[0] = 1; // there is one way to reach zero stairs i.e. 0 step
+		dp[1] = 1; // there is 1 way to reach 1 stairs, i.e. 1 step
+		dp[2] = 2; // there are 2 ways to reach 2 stairs, i.e. 1*2 or 2 step.
 		
 		// 3. loop, instead of recursion call
 		for(int i=3; i<dp.length; i++) {
@@ -67,9 +67,9 @@ stairs.
 			return 2;
 		}
 		
-		int first = 1;
-		int second = 1;
-		int third = 2;
+		int first = 1;  // there is one way to reach zero stairs i.e. 0 step
+		int second = 1; // there is 1 way to reach 1 stairs, i.e. 1 step
+		int third = 2; // there are 2 ways to reach 2 stairs, i.e. 1*2 or 2 step.
 		
 		for(int i =3; i<stairs; i++) {
 			int fourth = first+second+third;
