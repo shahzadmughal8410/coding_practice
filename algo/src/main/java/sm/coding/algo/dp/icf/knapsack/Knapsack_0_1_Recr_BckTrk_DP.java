@@ -232,7 +232,7 @@ class SolutionDebug {
 	
 	public static int knapsack_DP(int val[], int wt[], int maxWeight){
 		debug("val="+Arrays.stream(val).boxed().collect(Collectors.toList()));
-		debug(" wt="+Arrays.stream(val).boxed().collect(Collectors.toList()));
+		debug(" wt="+Arrays.stream(wt).boxed().collect(Collectors.toList()));
 		debug("maxWeight="+maxWeight);
 		if(maxWeight ==0) {
 			return 0;
