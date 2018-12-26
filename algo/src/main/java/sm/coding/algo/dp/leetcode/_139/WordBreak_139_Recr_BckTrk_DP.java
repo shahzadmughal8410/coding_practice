@@ -21,7 +21,8 @@ import java.util.stream.IntStream;
 public class WordBreak_139_Recr_BckTrk_DP {
 
 	/**
-Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, 
+determine if s can be segmented into a space-separated sequence of one or more dictionary words.
 
 Note:
 
@@ -106,9 +107,9 @@ Your runtime beats 62.49 % of java submissions.
 	}
 
 	/**
-https://leetcode.com/submissions/detail/177775785/
+https://leetcode.com/submissions/detail/197051493/
 You are here! 
-Your runtime beats 8.59 % of java submissions.
+Your runtime beats 46.63 % of java submissions.
 	 * @param s
 	 * @param wordDict
 	 * @return
@@ -116,17 +117,17 @@ Your runtime beats 8.59 % of java submissions.
     public static boolean wordBreak_BFS(String s, List<String> wordDict) {
         Set<String> wordDictSet=new HashSet<>(wordDict);
         Deque<Integer> queue = new LinkedList<>();
-        int[] visited = new int[s.length()+1];
-        queue.add(0);
-        visited[0] = 1;
+        Set<Integer> visited = new HashSet<>();
+        queue.offer(0);
+        visited.add(0);
         while (!queue.isEmpty()) {
-            int start = queue.remove();
+            int start = queue.poll();
                 for (int end = start + 1; end <= s.length(); end++) {
                     if (wordDictSet.contains(s.substring(start, end))) {
                     		// process node                                                       -
-	                    	if(visited[end] == 0) {
-	                        queue.add(end);
-	                        visited[end] = 1;
+	                    	if(!visited.contains(end)) {
+	                        queue.offer(end);
+	                        visited.add(end);
 	                        if (end == s.length()) {
 	                            return true;
 	                        }
@@ -139,9 +140,9 @@ Your runtime beats 8.59 % of java submissions.
 	
     /**
 Submission
-https://leetcode.com/submissions/detail/177772095/
+https://leetcode.com/submissions/detail/197051904/
 You are here! 
-Your runtime beats 54.62 % of java submissions.
+Your runtime beats 84.51 % of java submissions.
      * @param s
      * @param wordDict
      * @return
@@ -153,7 +154,7 @@ Your runtime beats 54.62 % of java submissions.
 		
 		boolean[] dp = new boolean[s.length()+1];
 		dp[0]=true;
-		for(int end=1; end<=s.length();end++) {
+		for(int end=1; end<dp.length;end++) {
 			for(int start=0; start<end;start++){
 				if(dp[start]) { 
 					if(wordDict.contains(s.substring(start, end))) {
