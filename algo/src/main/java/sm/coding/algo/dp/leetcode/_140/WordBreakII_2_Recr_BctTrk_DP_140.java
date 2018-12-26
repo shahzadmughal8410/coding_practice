@@ -123,9 +123,9 @@ Output:
     
 	/**
 Submission
-https://leetcode.com/submissions/detail/178177784/
+https://leetcode.com/submissions/detail/197061023/
 You are here! 
-Your runtime beats 5.13 % of java submissions.
+Your runtime beats 18.37 % of java submissions.
 	 * @param s
 	 * @param wordDict
 	 * @return
@@ -146,8 +146,8 @@ Your runtime beats 5.13 % of java submissions.
         for (int end = start + 1; end <= s.length(); end++) {
             if (wordDict.contains(s.substring(start, end))) {
                 List<String> list = wordBreakHelper_Memoization(s, wordDict, end, dp);
-                for (String l : list) {
-                    res.add(s.substring(start, end) + (l.equals("") ? "" : " ") + l);
+                for (String word : list) {
+                    res.add(s.substring(start, end) + (word.equals("") ? "" : " ") + word);
                 }
             }
         }
@@ -174,15 +174,16 @@ Last executed input:
     public static List<String> wordBreak_DP(String s, List<String> wordDict) {
         LinkedList<String>[] dp = new LinkedList[s.length() + 1];
         LinkedList<String> initial = new LinkedList<>();
+        Set<String> wordDictSet = new HashSet<>(wordDict);
         initial.add("");
         dp[0] = initial;
         for (int end = 1; end <= s.length(); end++) {
             LinkedList<String> list = new LinkedList<>();
             for (int start = 0; start < end; start++) {
                 if (dp[start].size()>0) {
-                		if(wordDict.contains(s.substring(start, end))) {	                
-	                    for (String l : dp[start]) {
-	                        list.add(l + (l.equals("") ? "" : " ") + s.substring(start, end));
+                		if(wordDictSet.contains(s.substring(start, end))) {	                
+	                    for (String word : dp[start]) {
+	                        list.add(word + (word.equals("") ? "" : " ") + s.substring(start, end));
 	                    }
                 		}
                 }
@@ -303,9 +304,9 @@ class SolutionDebug {
                 List<String> list = wordBreakHelper_Bruteforce(s, wordDict, end);
                 setIndent(actual);
                 debugRecr("list="+list);
-                for (String l : list) {
-                		debugRecr("s.substring(start, end)="+s.substring(start, end)+", l="+l);
-                    res.add(s.substring(start, end) + (l.equals("") ? "" : " ") + l);
+                for (String word : list) {
+                		debugRecr("s.substring(start, end)="+s.substring(start, end)+", word="+word);
+                    res.add(s.substring(start, end) + (word.equals("") ? "" : " ") + word);
                 }
             }
         }
