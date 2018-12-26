@@ -35,7 +35,7 @@ Output: false
 Explanation: The array cannot be partitioned into equal sum subsets.
 
 Submission
-https://leetcode.com/submissions/detail/177088167/
+https://leetcode.com/submissions/detail/197044311/
 Time Limit Exceeded
 Last executed input:
 [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
@@ -67,15 +67,16 @@ Last executed input:
         if(sum-nums[index-1]<0) {
         		return canPartitionHelper_BruteForce(nums, sum, index-1);
         }
-        
-        return canPartitionHelper_BruteForce(nums, sum, index-1) || canPartitionHelper_BruteForce(nums, sum-nums[index-1], index-1);         
+        else {
+        		return canPartitionHelper_BruteForce(nums, sum, index-1) || canPartitionHelper_BruteForce(nums, sum-nums[index-1], index-1);
+        }
     }
 
     /**
 Submission
-https://leetcode.com/submissions/detail/177090953/
+https://leetcode.com/submissions/detail/197044551/
 You are here! 
-Your runtime beats 11.82 % of java submissions.
+Your runtime beats 41.89 % of java submissions.
      * @param nums
      * @return
      */
@@ -96,10 +97,10 @@ Your runtime beats 11.82 % of java submissions.
 	    
 	    for(int i =1; i<dp.length;i++) {
 	    		for(int j=1; j<dp[0].length;j++) {
-	    			if(j-nums[i-1]>=0) {
-	    				dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i-1]];
-	    			}else {
+	    			if(j-nums[i-1]<0) {
 	    				dp[i][j] = dp[i-1][j];
+	    			}else {
+	    				dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i-1]];
 	    			}
 	    		}	    	
 	    }
