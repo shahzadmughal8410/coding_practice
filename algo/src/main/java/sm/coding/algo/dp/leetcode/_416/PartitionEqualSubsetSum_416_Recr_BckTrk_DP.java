@@ -35,7 +35,7 @@ Output: false
 Explanation: The array cannot be partitioned into equal sum subsets.
 
 Submission
-https://leetcode.com/submissions/detail/197044311/
+https://leetcode.com/submissions/detail/197048275/
 Time Limit Exceeded
 Last executed input:
 [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
@@ -64,7 +64,7 @@ Last executed input:
         		return false;
         }
         
-        if(sum-nums[index-1]<0) {
+        if(nums[index-1] > sum) {
         		return canPartitionHelper_BruteForce(nums, sum, index-1);
         }
         else {
@@ -74,9 +74,9 @@ Last executed input:
 
     /**
 Submission
-https://leetcode.com/submissions/detail/197044551/
+https://leetcode.com/submissions/detail/197048545/
 You are here! 
-Your runtime beats 41.89 % of java submissions.
+Your runtime beats 44.01 % of java submissions.
      * @param nums
      * @return
      */
@@ -97,7 +97,7 @@ Your runtime beats 41.89 % of java submissions.
 	    
 	    for(int i =1; i<dp.length;i++) {
 	    		for(int j=1; j<dp[0].length;j++) {
-	    			if(j-nums[i-1]<0) {
+	    			if(nums[i-1] > j) {
 	    				dp[i][j] = dp[i-1][j];
 	    			}else {
 	    				dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i-1]];
@@ -109,9 +109,9 @@ Your runtime beats 41.89 % of java submissions.
 
     /**
 Submission
-https://leetcode.com/submissions/detail/177091086/
+https://leetcode.com/submissions/detail/197048725/
 You are here! 
-Your runtime beats 51.85 % of java submissions.
+Your runtime beats 51.81 % of java submissions.
      * @param nums
      * @return
      */
@@ -129,7 +129,7 @@ Your runtime beats 51.85 % of java submissions.
         dp[0]=true;
         for(int i=1; i<=nums.length;++i){
             for(int j=sum; j>=0;--j){
-                if(j-nums[i-1]>=0){
+                if(nums[i-1] <= j){
                     dp[j]=dp[j-nums[i-1]]||dp[j];
                 }
             }
