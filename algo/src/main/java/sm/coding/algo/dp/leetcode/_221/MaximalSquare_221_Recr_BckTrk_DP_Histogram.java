@@ -113,7 +113,7 @@ Your runtime beats 94.71 % of java submissions.
 
 		return dp[i][j];
 	}
-	
+
 	/**
 Submission
 https://leetcode.com/submissions/detail/178924494/
@@ -147,21 +147,70 @@ Your runtime beats 30.08 % of java submissions.
 		}
 		return max * max;
 	}	
+    
+	/**
+Submission
+https://leetcode.com/submissions/detail/197085663/
+You are here! 
+Your runtime beats 98.40 % of java submissions.
+	 * @param matrix
+	 * @return
+	 */
+    public static int maximalSquare_DP_Pattern(char[][] matrix) {
+		if (matrix.length == 0) {
+			return 0;
+		}
+		int max = 0;
+		int[][] dp = new int[matrix.length][matrix[0].length];
+		
+		dp[0][0] = matrix[0][0]=='1' ? 1 : 0;
+		max = Math.max(max, dp[0][0]);		
+		
+		// copy first col from matrix
+		for(int i=1;i<dp.length;i++) {
+			dp[i][0] = matrix[i][0]=='1' ? 1 : 0;
+			max = Math.max(max, dp[i][0]);
+		}
+		
+		// copy first row from matrix
+		for(int j=1;j<dp[0].length;j++) {
+			dp[0][j] = matrix[0][j]=='1' ? 1 : 0;
+			max = Math.max(max, dp[0][j]);
+		}
+		
+		for (int i = 1; i < matrix.length; i++) {
+			for (int j = 1; j < matrix[0].length; j++) {
+				if (matrix[i][j] == '1') {
+					dp[i][j] = 1 + Math.min(
+									dp[i - 1][j], // down
+									Math.min(
+									dp[i][j - 1], // right
+									dp[i - 1][j - 1] // right bottom diagonal
+							));
+				}				
+				max = Math.max(max, dp[i][j]);
+			}
+		}
+		return max * max;
+	}	
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		char[][] matrix;
+//		matrix = new char[][] {
+//			{'1', '0', '1', '0', '0'},
+//			{'1', '0', '1', '1', '1'},
+//			{'1', '1', '1', '1', '1'},
+//			{'1', '0', '1', '1', '1'},
+//		};
 		matrix = new char[][] {
-			{'1', '0', '1', '0', '0'},
-			{'1', '0', '1', '1', '1'},
-			{'1', '1', '1', '1', '1'},
-			{'1', '0', '1', '1', '1'},
+			{'1'}
 		};
 		
-		System.out.println("Max rectangle sub matrix="+maximalSquare_BruteForce(matrix));
-		System.out.println("Max rectangle sub matrix="+maximalSquare_Memoization(matrix));
+//		System.out.println("Max rectangle sub matrix="+maximalSquare_BruteForce(matrix));
+//		System.out.println("Max rectangle sub matrix="+maximalSquare_Memoization(matrix));
 		System.out.println("Max rectangle sub matrix="+maximalSquare_DP(matrix));
 
 		matrix = new char[][] {
