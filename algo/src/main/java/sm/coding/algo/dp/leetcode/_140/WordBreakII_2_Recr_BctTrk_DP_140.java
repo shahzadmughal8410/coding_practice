@@ -111,10 +111,11 @@ Output:
             res.add("");
         }
         for (int end = start + 1; end <= s.length(); end++) {
-            if (wordDict.contains(s.substring(start, end))) {
+        		String choosen = s.substring(start, end);
+            if (wordDict.contains(choosen)) {
                 List<String> list = wordBreakHelper_Bruteforce(s, wordDict, end);
                 for (String l : list) {
-                    res.add(s.substring(start, end) + (l.equals("") ? "" : " ") + l);
+                    res.add(choosen + (l.equals("") ? "" : " ") + l);
                 }
             }
         }
@@ -123,9 +124,9 @@ Output:
     
 	/**
 Submission
-https://leetcode.com/submissions/detail/197061023/
+https://leetcode.com/submissions/detail/197075023/
 You are here! 
-Your runtime beats 18.37 % of java submissions.
+Your runtime beats 26.84 % of java submissions.
 	 * @param s
 	 * @param wordDict
 	 * @return
@@ -144,10 +145,11 @@ Your runtime beats 18.37 % of java submissions.
             res.add("");
         }
         for (int end = start + 1; end <= s.length(); end++) {
-            if (wordDict.contains(s.substring(start, end))) {
+        		String choosen = s.substring(start, end);
+            if (wordDict.contains(choosen)) {
                 List<String> list = wordBreakHelper_Memoization(s, wordDict, end, dp);
                 for (String word : list) {
-                    res.add(s.substring(start, end) + (word.equals("") ? "" : " ") + word);
+                    res.add(choosen + (word.equals("") ? "" : " ") + word);
                 }
             }
         }
