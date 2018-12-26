@@ -111,7 +111,7 @@ Your runtime beats 49.81 % of java submissions.
      */
     public static int uniquePathsWithObstacles_DP(int[][] grid) {
     		int[][] dp = new int[grid.length+1][grid[0].length+1];
-    		dp[0][1] = 1;
+    		dp[0][1] = 1; // dp[1][0] = 1; either of them can be used, this is to make dp[1][1]=1, means there is only 1 way to reach the dp[1][1] which is hte starting point, as dp is row+1,col+1     		
 		for(int i=1; i<dp.length; i++) {
 			for(int j=1; j<dp[0].length; j++) {
 				if(grid[i-1][j-1]==0) {
@@ -119,10 +119,6 @@ Your runtime beats 49.81 % of java submissions.
 					int down = dp[i-1][j];
 					dp[i][j] = right + down; 
 				}
-				// not needed as by default its zero
-//				else {
-//					dp[i][j] = 0;
-//				}
 			}
 		}
 		return dp[dp.length-1][dp[0].length-1];
@@ -304,8 +300,11 @@ class SolutionDebug {
     
     public static int uniquePathsWithObstacles_DP(int[][] grid) {
     		reset();
+    		debug("Grid\n"+grid(grid));
 		int[][] dp = new int[grid.length+1][grid[0].length+1];
 		dp[0][1] = 1;
+		debug("Initial DP with Defaults\n"+grid(dp));
+		
 		tableColumns("i:3", "j:3", "grid[i-1][j-1]:34", "dp[i][j-1]:28", "dp[i-1][j]:26", "dp[i][j]:14");
 		debugColumns();
 		for(int i=1; i<dp.length; i++) {
@@ -330,7 +329,7 @@ class SolutionDebug {
 	}
     
     public static int uniquePathsWithObstacles_DP_Optimized(int[][] grid) {
-    	reset();
+    		reset();
 		int[] dp = new int[grid[0].length+1];
 		dp[1] = grid[0][0]==0? 1 : 0;
 		tableColumns("i:3", "j:3", "grid[i][j-1]:32", "dp[j-1]:20", "dp[j]:12");
