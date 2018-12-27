@@ -254,7 +254,7 @@ class SolutionDebug {
 		
 		for(int r=0; r<grid.length; r++) {
 			// output index of rows
-			output.append( r+ String.format("     | %1$-"+Math.max(padding, rowHeading.length()+colHeading.length())+"s ", (rowHeader!=null ? rowHeader.get(r) : "" ) )  );
+			output.append( r+ String.format("     | %1$"+Math.max(padding, rowHeading.length()+colHeading.length())+"s ", (rowHeader!=null ? rowHeader.get(r) : "" ) )  );
 			
 			// grid data
 			for(int c=0; c<grid[r].length; c++) {
