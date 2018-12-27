@@ -105,7 +105,7 @@ Output: 36 (Maximum obtainable product is 3*3*4)
 			result*=3;
 		}
 		
-		return n*result;
+		return n*result; // last value wither 1,2,3
 	}
 
 	/**
