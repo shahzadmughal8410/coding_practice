@@ -13,6 +13,8 @@ public class Base62EncoderDecoder {
 
 	public static final int BASE = ALPHABET.length();
 	
+	public static final int LENGTH = 8; // to geenrate fixed size string
+	
 	public static String encode(int num) {
 		if(num==0) {
 			return "a";
@@ -23,7 +25,13 @@ public class Base62EncoderDecoder {
 			sb.append(ALPHABET.charAt(c % BASE));
 			c /= BASE;
 		}
-		return sb.reverse().toString();
+		StringBuilder padding = new StringBuilder(); // pad with zero (i.e 'a' in base62)
+		char zero = ALPHABET.charAt(0);
+		while(padding.length()+sb.length()<LENGTH) {
+			padding.append(zero);
+		}
+		
+		return padding.toString()+sb.reverse().toString();
 	}
 	
 	public static int decode(String shortURL) 
