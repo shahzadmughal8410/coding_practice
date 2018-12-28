@@ -47,19 +47,19 @@ Your runtime beats 96.27 % of java submissions.
 		return result;
 	}
 	
-	public static void letterCombinationsHelper(String digits, int offset, String sofar, String[] map, List<String> result) {
+	public static void letterCombinationsHelper(String digits, int index, String sofar, String[] map, List<String> result) {
 		if(sofar.length() == digits.length()) {
 //		if(offset == digits.length()) {
 			result.add(sofar);
 			return;
 		}
 		
-		String letters = map[digits.charAt(offset)-'0'];
+		String letters = map[digits.charAt(index)-'0'];
 		for(int i = 0; i<letters.length();i++) {
 			// choose
 			char c = letters.charAt(i);
 			// explore
-			letterCombinationsHelper(digits, offset+1, sofar+c, map, result); // implicit backtracking
+			letterCombinationsHelper(digits, index+1, sofar+c, map, result); // implicit backtracking
 		}
 	}
 	
