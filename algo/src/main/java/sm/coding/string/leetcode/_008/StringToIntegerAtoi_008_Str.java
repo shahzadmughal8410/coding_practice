@@ -29,37 +29,38 @@ If the first sequence of non-whitespace characters in str is not a valid integra
 If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.
 
 https://leetcode.com/problems/string-to-integer-atoi/description/
+
+Submission
+https://leetcode.com/submissions/detail/197516734/
+You are here! 
+Your runtime beats 32.83 % of java submissions.
  
 	 * @param args
 	 */
-	public static int stringToInt(String s) {
-		if(null==s || s.length()==0) {
+	public static int stringToInt(String str) {
+		if (str.trim().isEmpty()) {
 			return 0;
 		}
-		int sum = 0;
-		int sign = 0;
-		for(int i = 0;i<s.length(); i++) {
-			char c = s.charAt(i);
-			if(c==' ') {
-				continue;
-			}
-			if(c=='-' && sign==0) {
-				sign = -1;
-				
-			}else if( c >= '0' && c <= '9') { // Character.isDigit(c) can be used isntead
-				long lSum = sum;
-				sum = (sum*10) + (c-'0');
-				lSum= (lSum*10L) + (c-'0');
-				if(lSum!=sum) {
-					System.err.println("IntegerOutOfRange");
-					break;
-				}
-			}
+		str = str.trim();
+		int ans = 0;
+		int sign = 1;
+		int i = 0;
+		if (str.charAt(i) == '-' || str.charAt(i) == '+') {
+			sign = str.charAt(i++) == '+' ? 1 : -1;
 		}
-		if(sign==0) {
-			sign = 1;
+		while (i < str.length()) {
+			int tmp = str.charAt(i) - '0';
+			if (tmp < 0 || tmp > 9) {
+				break;
+			}
+			if (ans > Integer.MAX_VALUE / 10 || (ans == Integer.MAX_VALUE / 10 && Integer.MAX_VALUE % 10 < tmp)) {
+				return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+			} else {
+				ans = ans * 10 + tmp;
+			}
+			++i;
 		}
-		return sum*sign;
+		return sign * ans;
 	}
 	
 	
@@ -70,7 +71,10 @@ https://leetcode.com/problems/string-to-integer-atoi/description/
 //		String s = "  + 012";
 //		String s = "   0 1 2";
 //		String s = "   0 1994699999999978";
-		System.out.println("["+"] integer value is = "+stringToInt(s));
+		System.out.println("["+s+"] integer value is = "+stringToInt(s));
+		
+		s = "hi 123";
+		System.out.println("["+s+"] integer value is = "+stringToInt(s));
 	}
 
 }
