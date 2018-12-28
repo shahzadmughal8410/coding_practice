@@ -6,6 +6,7 @@ package sm.coding.string.leetcode._017;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -36,7 +37,7 @@ Your runtime beats 96.27 % of java submissions.
 
 	 * @param args
 	 */
-	public static List<String> letterCombinations(String digits){
+	public static List<String> letterCombinations_BruteForce(String digits){
 		List<String> result = new ArrayList<>();
 		if(null==digits || digits.length()==0) {
 			return result;
@@ -49,7 +50,6 @@ Your runtime beats 96.27 % of java submissions.
 	
 	public static void letterCombinationsHelper(String digits, int index, String sofar, String[] map, List<String> result) {
 		if(sofar.length() == digits.length()) {
-//		if(offset == digits.length()) {
 			result.add(sofar);
 			return;
 		}
@@ -62,84 +62,61 @@ Your runtime beats 96.27 % of java submissions.
 			letterCombinationsHelper(digits, index+1, sofar+c, map, result); // implicit backtracking
 		}
 	}
+	/**
+Submission
+https://leetcode.com/submissions/detail/197505073/
+You are here! 
+Your runtime beats 37.26 % of java submissions.
+
+	 * @param digits
+	 * @return
+	 */
+	public static List<String> letterCombinations_BFS(String digits) {
+		LinkedList<String> q = new LinkedList<String>();
+		if (digits.isEmpty())
+			return q;
+		String[] map = new String[] { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+		q.offer("");
+		for (int i = 0; i < digits.length(); i++) {
+			int d = Character.getNumericValue(digits.charAt(i));
+			int size = q.size();     // level order traversal, number of nodes/strings already in the queue
+			for (int k = 0; k < size; k++) {
+				String previous = q.poll();
+				String letters = map[d];
+				for (int j=0;j<letters.length(); j++)
+					q.offer(previous + letters.charAt(j));
+			}
+		}
+		return q;
+	}
 	
 	public static void main(String[] args) {
 		String digits = "23";
 //		List<String> result = letterCombinations(digits);
 		List<String> result = SolutionDebug.letterCombinations(digits);
-		System.out.println("Total combinations for digits="+digits+" are "+result.size());
+		System.out.println("Recursion Total combinations for digits="+digits+" are "+result.size());
+		System.out.println(result);
+		result = letterCombinations_BFS(digits);
+		System.out.println("Itrrative Total combinations for digits="+digits+" are "+result.size());
 		System.out.println(result);
 		
-		result.clear();
-		result = IterativeSolution.letterCombinations(digits);
+		digits = "456";
+		result = letterCombinations_BruteForce(digits);
+		System.out.println("Recursion Total combinations for digits="+digits+" are "+result.size());
+		System.out.println(result);
+		result = letterCombinations_BFS(digits);
+		System.out.println("Itrrative Total combinations for digits="+digits+" are "+result.size());
+		System.out.println(result);
 		
-
+		digits = "797";
+		result = letterCombinations_BruteForce(digits);
+		System.out.println("Recursion Total combinations for digits="+digits+" are "+result.size());
+		System.out.println(result);
+		result = letterCombinations_BFS(digits);
+		System.out.println("Itrrative Total combinations for digits="+digits+" are "+result.size());
+		System.out.println(result);
+		
 	}
-
-}
-/**
-https://leetcode.com/problems/letter-combinations-of-a-phone-number/discuss/164315/Java-using-an-integer-counter-for-premutations-beats-100
- * @author shahzadmughal8410
- *
- */
-class IterativeSolution {
-    public static List<String> letterCombinations(String digits) {
-        char[][] mapping = new char[][] {
-            {'a', 'b', 'c'}, // 2
-            {'d', 'e', 'f'}, // 3
-            {'g', 'h', 'i'},
-            {'j', 'k', 'l'},
-            {'m', 'n', 'o'},
-            {'p', 'q', 'r', 's'},
-            {'t', 'u', 'v'},
-            {'w', 'x', 'y', 'z'} // 9
-        };
-        char[] chars = digits.toCharArray();
-        int length = chars.length;
-        if (length == 0) return Collections.emptyList();
-        char[][] charmap = new char[length][];
-        int numCombinations = 1;
-        for(int i = 0; i < length; i++) {
-            char[] choice = mapping[chars[i] - '2']; // '2' is 0 index
-            charmap[i] = choice;
-            numCombinations *= choice.length;
-        }
-        List<String> result = new ArrayList<>(numCombinations);
-        char[] letters = new char[length];
-        for(int c = 0; c < numCombinations; c++) {
-            int combination = c;
-            for(int i = 0; i < length; i++) {
-                char[] choice = charmap[i];
-                letters[i] = choice[combination % choice.length];
-                combination /= choice.length;
-            }
-            result.add(new String(letters));
-        }
-        return result;
-    }
-}
-
-/**
-https://www.jianshu.com/p/34477e310b15
- * @author shahzadmughal8410
- *
- */
-class SolutionStack {
-	public List<String> letterCombinations(String digits) {
-        LinkedList<String> ans = new LinkedList<String>();
-        String[] mapping = new String[] { "0", "1", "abc", "def", "ghi", "jkl",
-                "mno", "pqrs", "tuv", "wxyz" };
-        ans.add("");
-        for (int i = 0; i < digits.length(); i++) {
-            int x = Character.getNumericValue(digits.charAt(i));
-            while (ans.peek().length() == i) {
-                String t = ans.remove();
-                for (char s : mapping[x].toCharArray())
-                    ans.add(t + s);
-            }
-        }
-        return ans;
-    }
 
 }
 
