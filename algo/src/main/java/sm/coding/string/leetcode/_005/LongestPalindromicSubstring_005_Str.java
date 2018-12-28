@@ -32,46 +32,37 @@ Output: "bb"
  https://www.geeksforgeeks.org/longest-palindromic-substring-set-2/
 
 Submission
-https://leetcode.com/submissions/detail/194880798/
+https://leetcode.com/submissions/detail/197508761/
 You are here! 
-Your runtime beats 55.28 % of java submissions.
+Your runtime beats 71.35 % of java submissions.
+
 	 * @param args
 	 */
 	public static String longestPalindrome(String s) {
 		if(null==s || s.length()==0) {
 			return "";
 		}
-		int start = 0;
-		int maxLength = 1;
-		int lo, hi;
-		int len = s.length();
+
+		Pair p = new Pair();
 		
-		for(int i=1; i<len; i++) {
-			//even
-			lo = i-1;
-			hi = i;
-			while(lo>=0 && hi<len && s.charAt(lo)==s.charAt(hi)) {
-				if(hi-lo+1>maxLength) {
-					start = lo;
-					maxLength = hi-lo+1;
-				}
-				--lo;
-				++hi;
-			}
-			
+		for(int i=0; i<s.length(); i++) {
 			//odd
-			lo = i-1;
-			hi=i+1;
-			while(lo>=0 && hi<len && s.charAt(lo)==s.charAt(hi)) {
-				if(hi-lo+1>maxLength) {
-					start = lo;
-					maxLength = hi-lo+1;
-				}
-				--lo;
-				++hi;
-			}
+			extendPalindromeAroundCenter(s, i, i, p);
+			//even
+			extendPalindromeAroundCenter(s, i, i+1, p);
 		}
-		return s.substring(start,start+maxLength);
+		return s.substring(p.start,p.start+p.maxLength);
+	}
+	
+	public static void extendPalindromeAroundCenter(String s, int left, int right, Pair p) {
+		while(left>=0 && right<s.length() && s.charAt(left)==s.charAt(right)) {
+			if(right-left+1>p.maxLength) {
+				p.start = left;
+				p.maxLength = right-left+1;
+			}
+			left--;
+			right++;
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -80,8 +71,13 @@ Your runtime beats 55.28 % of java submissions.
 //		String s = "babad";
 //		String s = "cdc";
 		String s = "abcdefgeekskeegvbncmf";
-		System.out.println("["+"] has the longest palindromic substring ["+longestPalindrome(s)+"]");
+		System.out.println("["+s+"] has the longest palindromic substring ["+longestPalindrome(s)+"]");
 
 	}
 
+}
+
+class Pair {
+	int start;
+	int maxLength;
 }
