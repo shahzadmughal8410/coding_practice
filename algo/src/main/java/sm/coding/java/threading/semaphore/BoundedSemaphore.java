@@ -12,7 +12,7 @@ package sm.coding.java.threading.semaphore;
  */
 public class BoundedSemaphore {
 
-	private int signals = 0; // currentg count
+	private int signals = 0; // current count
 	private int limit = 0; // limit
 
 	public BoundedSemaphore(int maxLimit) {
