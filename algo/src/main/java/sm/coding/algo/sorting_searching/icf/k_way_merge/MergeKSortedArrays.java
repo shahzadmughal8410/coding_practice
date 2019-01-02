@@ -89,7 +89,7 @@ class HeapEntry implements Comparable<HeapEntry>{
 
 	@Override
 	public int compareTo(HeapEntry o) {
-		return this.val - o.val;
+		return Integer.compare(this.val, o.val);
 	}
 	
 }
