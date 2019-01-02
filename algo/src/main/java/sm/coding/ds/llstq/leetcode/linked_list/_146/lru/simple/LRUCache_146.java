@@ -20,9 +20,9 @@ Time complexity - O(1)
 
 
 Submission
-https://leetcode.com/submissions/detail/180745879/
+https://leetcode.com/submissions/detail/198581233/
 You are here! 
-Your runtime beats 14.00 % of java submissions.
+Your runtime beats 14.96 % of java submissions.
  * @author shahzadmughal8410
  *
  */
@@ -62,16 +62,16 @@ public class LRUCache_146 {
      * 
      * @param n
      */
-    private void remove(Node n){
-        if(n.previous!=null){
+    private void remove(Node n){    		
+        if(n.previous!=null){ // not being removed is not head 
             n.previous.next = n.next;
-        }else{
+        }else{ // means node being removed is head
             head = n.next;
         }
  
-        if(n.next!=null){
+        if(n.next!=null){// not being removed is not tail
             n.next.previous = n.previous;
-        }else{
+        }else{// means node being removed is tail
             tail = n.previous;
         }
  
@@ -88,15 +88,17 @@ public class LRUCache_146 {
      */   
     private void makeHead(Node n){
         n.next = head;
-        n.previous = null;
+        n.previous = null; // as we call make head for existing nodes, so need to set previous as null
  
-        if(head!=null)
+        if(head!=null) {
             head.previous = n;
+        }
  
         head = n;
  
-        if(tail ==null)
+        if(tail ==null) {
             tail = head;
+        }
     }
  
     /**
@@ -120,12 +122,8 @@ public class LRUCache_146 {
             if(map.size()>=capacity){
                 map.remove(tail.key);
                 remove(tail);
-                makeHead(created);
- 
-            }else{
-                makeHead(created);
             }    
- 
+            makeHead(created);
             map.put(key, created);
         }
     }
