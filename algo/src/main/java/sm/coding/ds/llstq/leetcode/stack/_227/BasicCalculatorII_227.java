@@ -111,7 +111,7 @@ Your runtime beats 78.77 % of java submissions.
 	    					previous=num;
 	    					break;
 	    				case '-':
-	    					result+=previous;
+	    					result+=previous; // note the + sign, as while assigning - sign will be taken care of
 	    					previous = -num;
 	    					break;
 	    				case '*':
