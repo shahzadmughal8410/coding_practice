@@ -62,7 +62,7 @@ Your runtime beats 76.94 % of java submissions.
 		
 		// Map(height, count) count is needed just so if 2 buildings have same height
 		// then we need to know while removing from treeMap
-		TreeMap<Integer, Integer> q = new TreeMap<>(); 
+		TreeMap<Integer, Integer> q = new TreeMap<>(); // key=height, val=frequency 
 		q.put(0, 1); // when we don;t have any buildings, its the ground level at Zero height.
 		
 		int previousHeight = 0;
