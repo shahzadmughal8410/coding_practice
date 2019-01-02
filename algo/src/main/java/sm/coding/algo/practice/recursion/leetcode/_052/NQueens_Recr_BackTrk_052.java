@@ -11,7 +11,8 @@ package sm.coding.algo.practice.recursion.leetcode._052;
 public class NQueens_Recr_BackTrk_052 {
 
 	/**
-The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
+The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no 
+two queens attack each other.
 
 Given an integer n, return the number of distinct solutions to the n-queens puzzle.
 
