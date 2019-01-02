@@ -32,13 +32,11 @@ https://codingbat.com/prob/p145416
 	
 	public static boolean groupSumHelper(int[] nums, int target, int index) {
 		//base case, nothing to choose
+		if(target==0) {
+			return true;
+		}
 		if(index == nums.length) {
-			// if we found the numbers equals to target
-			if(target==0) {
-				return true;
-			}else {
-				return false;
-			}
+			return false;
 		}
 		
 		//recursive case
@@ -47,7 +45,7 @@ https://codingbat.com/prob/p145416
 		
 		//explore
 		//with including choosen towards target
-		if(groupSumHelper(nums, target-choosen, index+1)) {
+		if( target-choosen>=0 && groupSumHelper(nums, target-choosen, index+1)) {
 			return true;
 		}
 		// without including choosen towards target
