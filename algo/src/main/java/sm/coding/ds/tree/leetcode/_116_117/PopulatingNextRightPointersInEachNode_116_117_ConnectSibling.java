@@ -1,7 +1,7 @@
 /**
  * 
  */
-package sm.coding.ds.tree.leetcode._116;
+package sm.coding.ds.tree.leetcode._116_117;
 
 import java.util.ArrayList;
 import java.util.Arrays;
