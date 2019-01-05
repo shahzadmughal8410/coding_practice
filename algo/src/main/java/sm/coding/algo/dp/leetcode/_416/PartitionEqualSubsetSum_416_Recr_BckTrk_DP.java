@@ -56,19 +56,19 @@ Last executed input:
         return canPartitionHelper_BruteForce(nums, sum, nums.length);
     }
 	
-    public static boolean canPartitionHelper_BruteForce(int[] nums, int sum, int index) {
+    public static boolean canPartitionHelper_BruteForce(int[] nums, int sum, int i) {
         if(sum==0) {
         		return true;
         }
-        if(index==0 && sum!=0) {
+        if(i==0 && sum!=0) {
         		return false;
         }
         
-        if(nums[index-1] > sum) {
-        		return canPartitionHelper_BruteForce(nums, sum, index-1);
+        if(nums[i-1] > sum) {
+        		return canPartitionHelper_BruteForce(nums, sum, i-1);
         }
         else {
-        		return canPartitionHelper_BruteForce(nums, sum, index-1) || canPartitionHelper_BruteForce(nums, sum-nums[index-1], index-1);
+        		return canPartitionHelper_BruteForce(nums, sum, i-1) || canPartitionHelper_BruteForce(nums, sum-nums[i-1], i-1);
         }
     }
 
