@@ -61,9 +61,9 @@ Time Limit Exceeded
     			return grid[row][col]==0 ? 1 : 0;
     		}    		
     		if(grid[row][col]==0) {
-    			int right = isValid(grid, row, col-1) ? uniquePathsWithObstaclesHelper_BruteForce(grid, row, col-1) : 0;
-    			int down = isValid(grid, row-1, col) ? uniquePathsWithObstaclesHelper_BruteForce(grid, row-1, col) : 0;
-    			return right + down;
+    			int left = isValid(grid, row, col-1) ? uniquePathsWithObstaclesHelper_BruteForce(grid, row, col-1) : 0;
+    			int up = isValid(grid, row-1, col) ? uniquePathsWithObstaclesHelper_BruteForce(grid, row-1, col) : 0;
+    			return left + up; // as we are starting from end of grid so moves will be inversed
     		}    		
     		return 0;
     }
@@ -115,9 +115,9 @@ Your runtime beats 49.81 % of java submissions.
 		for(int i=1; i<dp.length; i++) {
 			for(int j=1; j<dp[0].length; j++) {
 				if(grid[i-1][j-1]==0) {
-					int right = dp[i][j-1];
-					int down = dp[i-1][j];
-					dp[i][j] = right + down; 
+					int left = dp[i][j-1];
+					int up = dp[i-1][j];
+					dp[i][j] = left + up;// as we are starting from previous values of grid so moves will be inversed 
 				}
 			}
 		}
