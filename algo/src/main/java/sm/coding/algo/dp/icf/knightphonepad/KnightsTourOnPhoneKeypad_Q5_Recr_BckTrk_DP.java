@@ -53,7 +53,7 @@ http://stackoverflow.com/questions/2893470/generate-10-digit-number-usinga-phone
 								{-1, 0, -1}
 							};
 		List<List<Integer>> result = new ArrayList<>();
-		List<Integer> sofar = new ArrayList();
+		List<Integer> sofar = new ArrayList<>();
 		sofar.add(1);
 		knightTourPhonePadListHelper_Bruteforce(length-1, 0, 0, result, rowMoves, colMoves, phonePad, sofar);
 		return result;
@@ -116,7 +116,8 @@ http://stackoverflow.com/questions/2893470/generate-10-digit-number-usinga-phone
 								{7, 8, 9},
 								{-1, 0, -1}
 							};
-		Integer[][] dp =new Integer[length][10];
+		int digits = 10;// constant 
+		Integer[][] dp =new Integer[length][digits];
 		int totalNumnerPossible = knightTourPhonePadCountHelper_Memoization(length-1, 0, 0, rowMoves, colMoves, phonePad, dp);
 		return totalNumnerPossible;
 	}
