@@ -26,9 +26,9 @@ https://www.youtube.com/watch?v=ZmnqCZp9bBs
 https://github.com/mission-peace/interview/blob/master/src/com/interview/stackqueue/MaximumHistogram.java
 
 Submission
-https://leetcode.com/submissions/detail/195480494/
+https://leetcode.com/submissions/detail/199366805/
 You are here! 
-Your runtime beats 89.91 % of java submissions.
+Your runtime beats 65.63 % of java submissions.
 
 
 	 * @param args
@@ -46,8 +46,8 @@ Your runtime beats 89.91 % of java submissions.
 			}else {
 				int top = stack.pop();
 				area = heights[top] * (stack.isEmpty()? i : i - stack.peek() -1);
+				maxArea = Math.max(area, maxArea);
 			}
-			maxArea = Math.max(area, maxArea);
 		}
 		
 		while(!stack.isEmpty()) {
