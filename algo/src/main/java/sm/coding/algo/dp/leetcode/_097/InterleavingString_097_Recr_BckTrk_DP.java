@@ -147,7 +147,7 @@ Runtime (ms)
 		
 		for(int i =1; i<dp.length; i++) {
 			for(int j=1; j<dp[0].length; j++) {
-				boolean firstMatch =  s1.charAt(i-1) == s3.charAt(i+j-1) && dp[i-1][j];
+				boolean firstMatch =  s1.charAt(i-1) == s3.charAt(i+j-1) && dp[i-1][j];// for s3 index i+j-1 means length of s1+s2 so far
 				boolean secondMatch = s2.charAt(j-1) == s3.charAt(i+j-1) && dp[i][j-1];
 				dp[i][j] = firstMatch || secondMatch;
 			}			
