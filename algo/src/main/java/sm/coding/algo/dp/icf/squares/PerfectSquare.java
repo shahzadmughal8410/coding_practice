@@ -1,7 +1,7 @@
 /**
  * 
  */
-package sm.coding.algo.dp.squares;
+package sm.coding.algo.dp.icf.squares;
 
 /**
  * @author shahzadmughal8410
