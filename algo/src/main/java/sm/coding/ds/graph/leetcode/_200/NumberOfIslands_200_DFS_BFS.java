@@ -86,7 +86,7 @@ Your runtime beats 18.36 % of java submissions.
 					
 					Deque<Pair> q = new LinkedList<>();
 					q.offer(new Pair(r,c));
-					arr[r][c] = '0'; // mark visited
+					arr[r][c] = '0'; // mark visited, if using extra space for marking visited then visited deceleration should be outside of both for loops
 					
 					while(!q.isEmpty()) {
 						Pair current = q.poll();
