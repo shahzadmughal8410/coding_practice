@@ -21,7 +21,7 @@ http://n00tc0d3r.blogspot.in/2013/04/longest-valid-parentheses.html
 https://www.geeksforgeeks.org/length-of-the-longest-valid-substring/ 
 
 Submission
-https://leetcode.com/submissions/detail/189486220/
+https://leetcode.com/submissions/detail/200287954/
 You are here! 
 Your runtime beats 51.98 % of java submissions. 
 	 * @param args
@@ -43,7 +43,7 @@ Your runtime beats 51.98 % of java submissions.
 			}
 			if(left==right) {
 				maxLength = Math.max(maxLength, right*2);
-			}else if(right>=left) {
+			}else if(right>left) { // means unbalanced 
 				left = 0;
 				right = 0;
 			}
@@ -51,7 +51,7 @@ Your runtime beats 51.98 % of java submissions.
 		//reset let and right
 		left = 0;
 		right = 0;
-		//traverse right to lrft
+		//traverse right to left
 		for(int i=s.length()-1;i>=0;i--) {
 			if(s.charAt(i)=='(') {
 				left++;
@@ -60,7 +60,7 @@ Your runtime beats 51.98 % of java submissions.
 			}
 			if(left==right) {
 				maxLength = Math.max(maxLength, left*2);
-			}else if(left>=right) {
+			}else if(left>right) { // means unbalanced 
 				left = 0;
 				right = 0;
 			}
