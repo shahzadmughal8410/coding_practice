@@ -27,24 +27,23 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
  -10  5
  
 Submission
-https://leetcode.com/submissions/detail/185177719/
+https://leetcode.com/submissions/detail/201087000/
 You are here! 
-Your runtime beats 100.00 % of java submissions.
-	 */
+Your runtime beats 99.14 % of java submissions.	 */
     public static TreeNode sortedArrayToBST(int[] nums) {
     		return sortedArrayToBST_Helper(nums, 0, nums.length-1);
     }
     
     public static TreeNode sortedArrayToBST_Helper(int[] nums, int start, int end) {
-    		if(start>end) { // (end<start) can be used as well
-    			return null;
+    		if(start<=end) { 
+//    	        int mid = (start+end) /2;
+    	        int mid =  ( (end-start) /2 ) + start;
+    	        TreeNode root = new TreeNode(nums[mid]);
+    	        root.left =  sortedArrayToBST_Helper(nums, start, mid-1);
+    	        root.right = sortedArrayToBST_Helper(nums, mid+1, end);        
+    	        return root;
     		}
-//        int mid = (start+end) /2;
-        int mid =  ( (end-start) /2 ) + start;
-        TreeNode root = new TreeNode(nums[mid]);
-        root.left =  sortedArrayToBST_Helper(nums, start, mid-1);
-        root.right = sortedArrayToBST_Helper(nums, mid+1, end);        
-        return root;
+		return null;
     }
     
 	/**
