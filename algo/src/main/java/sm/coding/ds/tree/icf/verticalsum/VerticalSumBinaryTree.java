@@ -3,7 +3,11 @@
  */
 package sm.coding.ds.tree.icf.verticalsum;
 
+import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -93,6 +97,48 @@ Submitted
 		
 	}
 	
+	public static List<Integer> verticalSum_BFS(TreeNode root) {
+	    List<Integer> res = new ArrayList<>();
+	    if (root == null) {
+	        return res;
+	    }
+	    
+	    Map<Integer, Integer> map = new HashMap<>();
+	    Deque<TreeNode> q = new LinkedList<>();
+	    Deque<Integer> cols = new LinkedList<>();
+
+	    q.add(root); 
+	    cols.add(0);
+
+	    int min = 0;
+	    int max = 0;
+	    
+	    while (!q.isEmpty()) {
+	        TreeNode node = q.poll();
+	        int col = cols.poll();
+	        
+	        map.put(col, map.getOrDefault(col, 0)+node.val);
+
+	        if (node.left != null) {
+	            q.add(node.left); 
+	            cols.add(col - 1);
+	            min = Math.min(min, col - 1);
+	        }
+	        
+	        if (node.right != null) {
+	            q.add(node.right);
+	            cols.add(col + 1);
+	            max = Math.max(max, col + 1);
+	        }
+	    }
+
+	    for (int i = min; i <= max; i++) {
+	        res.add(map.get(i));
+	    }
+
+	    return res;
+	}
+	
 	/**
 	 * @param args
 	 */
@@ -111,6 +157,8 @@ Submitted
 			System.out.println(llNode.val);
 			llNode = llNode.next;
 		}
+		
+		System.out.println("BFS\n"+verticalSum_BFS(root));
 	}
 
 }
