@@ -10,7 +10,7 @@ import sm.coding.ds.tree.bt.TreeNode;
  * @author smughal
  *
  */
-public class BstOperations {
+public class BstOperations_450_DeleteNodeInABST {
 	
 	/**
 	 * 
@@ -34,6 +34,16 @@ public class BstOperations {
 		return n;
 	}
 
+	/**
+Submission
+https://leetcode.com/submissions/detail/201073709/
+You are here! 
+Your runtime beats 79.00 % of java submissions.
+
+	 * @param root
+	 * @param key
+	 * @return
+	 */
 	public static TreeNode deleteNode(TreeNode root, int key) {
 	    if(root == null){
 	        return null;
@@ -49,7 +59,9 @@ public class BstOperations {
 	        }else if(root.right == null){// only one child
 	            return root.left;
 	        }
-	        // node that is to be deleted has both childs then find the min in right
+	        // node that is to be deleted has both childs then find the min in right,
+	        // set that value to the currently found node, then recursively delete the minimum 
+	        // value in the right subtree
 	        TreeNode minNode = findMin(root.right);
 	        root.val = minNode.val;
 	        root.right = deleteNode(root.right, root.val);
