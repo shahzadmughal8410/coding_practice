@@ -4,6 +4,9 @@
 package sm.coding.ds.tree.leetcode._314;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -90,40 +93,51 @@ Output:
 ]
 
 Submission
-https://leetcode.com/submissions/detail/184789037/
+https://leetcode.com/submissions/detail/201081441/
 You are here! 
-Your runtime beats 22.99 % of java submissions.
+Your runtime beats 89.84 % of java submissions.
 	 */
 	public static List<List<Integer>> verticalOrder(TreeNode root) {
-		List<List<Integer>> result = new ArrayList<>();
-		Map<Integer, Map<Integer, List<Integer>>> columns = new TreeMap<>();
-		
-		verticalOrderHelper(root, columns, 0, 0);
-		
-		for(Map.Entry<Integer, Map<Integer, List<Integer>>> entry:columns.entrySet()) {
-			Map<Integer, List<Integer>> levels = columns.get(entry.getKey());
-			List<Integer> nodesAtLevel = new ArrayList<>();
-			for(Map.Entry<Integer, List<Integer>> levelEntry: levels.entrySet()) {
-				nodesAtLevel.addAll(levels.get(levelEntry.getKey()));
-			}
-			result.add(nodesAtLevel);
-			
-		}		
-		return result;
-    }
+	    List<List<Integer>> res = new ArrayList<>();
+	    if (root == null) {
+	        return res;
+	    }
+	    
+	    Map<Integer, ArrayList<Integer>> map = new HashMap<>();
+	    Deque<TreeNode> q = new LinkedList<>();
+	    Deque<Integer> cols = new LinkedList<>();
 
-	public static void verticalOrderHelper(TreeNode node, Map<Integer, Map<Integer, List<Integer>>> columns, int column, int level) {		
-		if(null!=node) {
-			// preorder traversal
-			//process node
-			columns.putIfAbsent(column, new TreeMap<>());
-			columns.get(column).putIfAbsent(level, new ArrayList<>());
-			columns.get(column).get(level).add(node.val);
-			columns.put(column, columns.get(column));
-			
-			verticalOrderHelper(node.left, columns, column-1, level+1);
-			verticalOrderHelper(node.right, columns, column+1, level+1);			
-		}
+	    q.add(root); 
+	    cols.add(0);
+
+	    int min = 0;
+	    int max = 0;
+	    
+	    while (!q.isEmpty()) {
+	        TreeNode node = q.poll();
+	        int col = cols.poll();
+	        
+	        map.putIfAbsent(col, new ArrayList<Integer>());
+	        map.get(col).add(node.val);
+
+	        if (node.left != null) {
+	            q.add(node.left); 
+	            cols.add(col - 1);
+	            min = Math.min(min, col - 1);
+	        }
+	        
+	        if (node.right != null) {
+	            q.add(node.right);
+	            cols.add(col + 1);
+	            max = Math.max(max, col + 1);
+	        }
+	    }
+
+	    for (int i = min; i <= max; i++) {
+	        res.add(map.get(i));
+	    }
+
+	    return res;
 	}
 
 	
