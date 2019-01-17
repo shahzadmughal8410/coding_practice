@@ -3,6 +3,7 @@
  */
 package sm.coding.ds.llstq.leetcode.linked_list._142;
 
+import sm.coding.ds.llstq.leetcode.linked_list.LinkedListPrinter;
 import sm.coding.ds.llstq.leetcode.linked_list.ListNode;
 
 /**
@@ -31,6 +32,7 @@ Your runtime beats 49.28 % of java submissions.
     			slow = slow.next;
     			fast = fast.next.next;
     			if(slow==fast) { // cycle detected
+    				System.out.println("pointer meet at="+slow.val);
     				while(slow!=head) { // when start == slow, its a cycle node, where cycle begins
     					slow = slow.next;
     					head = head.next;
@@ -44,7 +46,34 @@ Your runtime beats 49.28 % of java submissions.
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		ListNode head = new ListNode(1);
+		ListNode n1 = head;
+		n1.next = new ListNode(2);
+		n1 = n1.next;
+		n1.next = new ListNode(3);
+		n1 = n1.next;
+		n1.next = new ListNode(4);
+		n1 = n1.next;
+
+		ListNode five = new ListNode(5);
+
+		n1.next = five;
+		n1 = n1.next;
+		n1.next = new ListNode(6);
+		n1 = n1.next;
+		n1.next = new ListNode(7);
+		n1 = n1.next;
+		n1.next = new ListNode(8);
+		n1 = n1.next;
+		
+		LinkedListPrinter.print(head);
+		
+		//cycle
+		n1.next = five;
+		System.out.println("Cycle at 5");
+//		LinkedListPrinter.print(head);
+		
+		System.out.println("Cycle starts="+detectCycle(head).val);
 
 	}
 

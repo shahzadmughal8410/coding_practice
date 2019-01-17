@@ -10,13 +10,12 @@ package sm.coding.ds.llstq.leetcode.linked_list;
 public class LinkedListPrinter {
 
 	public static void print(ListNode node) {
-		String s = "";
 		while(null!=node) {
-			s+=node.val+"-->";
+			System.out.print(node.val+"-->");
 			node = node.next;
 		}
-		s+="null";
-		System.out.println(s);
+		System.out.print("null");
+		System.out.println();
 	}
 
 	public static String toString(ListNode node) {
