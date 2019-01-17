@@ -3,6 +3,7 @@
  */
 package sm.coding.ds.llstq.leetcode.linked_list._141;
 
+import sm.coding.ds.llstq.leetcode.linked_list.LinkedListPrinter;
 import sm.coding.ds.llstq.leetcode.linked_list.ListNode;
 
 /**
@@ -28,6 +29,7 @@ Your runtime beats 100.00 % of java submissions.
         		slow = slow.next;
         		fast = fast.next.next;
         		if(slow==fast) {
+        			System.out.println("cycle detected at="+slow.val);
         			return true;
         		}
         }
@@ -38,8 +40,25 @@ Your runtime beats 100.00 % of java submissions.
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		ListNode head = new ListNode(3);
+		ListNode n1 = head;
 
+		ListNode two = new ListNode(2);
+		n1.next = two;
+		n1 = n1.next;
+		n1.next = new ListNode(0);
+		n1 = n1.next;
+		n1.next = new ListNode(-4);
+		n1 = n1.next;
+
+		LinkedListPrinter.print(head);
+		
+		//cycle
+		n1.next = two;
+		System.out.println("Cycle at 2");
+//		LinkedListPrinter.print(head);
+		
+		System.out.println("Has cycle="+hasCycle(head));
 	}
 
 }
