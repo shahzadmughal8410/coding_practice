@@ -68,7 +68,8 @@ Your runtime beats 100.00 % of java submissions.
 		LinkedListPrinter.print(headA);
 		LinkedListPrinter.print(headB);
 
-		SolutionDebug.getIntersectionNode(headA, headB);
+		ListNode intersection = SolutionDebug.getIntersectionNode(headA, headB);
+		System.out.println("intersection="+intersection.val);
 		
 	}
 
@@ -151,8 +152,8 @@ class SolutionDebug {
         		}
         }
         String remaining = LinkedListPrinter.toString(a);
-        System.out.println(strA+remaining);
-        System.out.println(strB+remaining);
+        System.out.println(strA+"  ---->  "+remaining);
+        System.out.println(strB+"  ---->  "+remaining);
         return a;
     }
 }
