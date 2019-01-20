@@ -131,6 +131,9 @@ Your runtime beats 11.48 % of java submissions.
     			}
     			
     		}
+    		
+    		graph.forEach((k,v) -> System.out.println(k+" --> "+v));
+    		
     		return graph;
     }
     
@@ -145,7 +148,7 @@ Your runtime beats 11.48 % of java submissions.
                 indegree.put(neighbour, indegree.get(neighbour) + 1);
             }
         }     
-        
+        indegree.forEach((k,v) -> System.out.println(k+" --> "+v));
         return indegree;
     }
 
