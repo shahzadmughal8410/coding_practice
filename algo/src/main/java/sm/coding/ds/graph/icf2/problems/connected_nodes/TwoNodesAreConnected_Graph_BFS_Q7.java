@@ -30,7 +30,7 @@ public class TwoNodesAreConnected_Graph_BFS_Q7 {
 	 * S=O(v)
 	 * 
 	 */
-	boolean isConnected(int src, int dest, LinkedList<Integer>[] adjList) {
+	static boolean isConnected(int src, int dest, LinkedList<Integer>[] adjList) {
 		boolean[] visited = new boolean[adjList.length];
 		
 		Deque<Integer> q = new LinkedList<>();
@@ -44,7 +44,7 @@ public class TwoNodesAreConnected_Graph_BFS_Q7 {
 			}
 			if(adjList[current]!=null) { 
 				for(Integer child :adjList[current]) {
-					if(!visited[current]) {
+					if(!visited[child]) {
 						q.offer(child);
 						visited[child] = true;
 					}
@@ -53,5 +53,20 @@ public class TwoNodesAreConnected_Graph_BFS_Q7 {
 		}
 		
 		return false;
+	}
+	
+	public static void main(String[] args) {
+		LinkedList<Integer>[] adjList = new LinkedList[3];
+		adjList[0] = new LinkedList<>();
+		adjList[1] = new LinkedList<>();
+		adjList[2] = new LinkedList<>();
+		
+		adjList[0].add(1);
+		adjList[0].add(2);
+		
+		adjList[1].add(2);
+		
+		System.out.println("0-->2 = "+isConnected(0, 2, adjList));
+		System.out.println("2-->0 = "+isConnected(2, 0, adjList));
 	}
 }
