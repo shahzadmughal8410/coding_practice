@@ -116,15 +116,15 @@ Your runtime beats 41.49 % of java submissions.
 	public static Trie buildTrie(String[] words) {
 		Trie root = new Trie();
 		for(String word:words) {
-			Trie last = root;
+			Trie current = root;
 			for(char c:word.toCharArray()) {
 				int index = c-'a';
-				if(last.childs[index]==null) {
-					last.childs[index] = new Trie();
+				if(current.childs[index]==null) {
+					current.childs[index] = new Trie();
 				}
-				last = last.childs[index];
+				current = current.childs[index];
 			}
-			last.isEnd = true;
+			current.isEnd = true;
 		}
 		return root;
 	}
