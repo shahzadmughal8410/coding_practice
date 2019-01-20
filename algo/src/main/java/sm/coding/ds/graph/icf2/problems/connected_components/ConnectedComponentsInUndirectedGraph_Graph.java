@@ -22,46 +22,45 @@ https://www.geeksforgeeks.org/connected-components-in-an-undirected-graph/
 
 	 * 
 	 */
-	public static int findConnectedComponents_Dfs(List<Integer>[] adjList) {
-		int count = 0;
+	public static void findConnectedComponents_Dfs(List<Integer>[] adjList) {
 		boolean[] visited = new boolean[adjList.length];
 		
 		for(int i =0 ; i<adjList.length; i++) {
 			if(!visited[i]) {
-				dfs(i, visited, adjList);
-				count++;
-				System.out.println(" : component number="+count);
+				int[] count = new int[1];
+				dfs(i, visited, adjList, count);
+				System.out.println(" : component number="+count[0]);
 			}
 		}
-		
-		return count;
 	}
 	
-	static void dfs(int n, boolean[] visited, List<Integer>[] adjList) {
+	static void dfs(int n, boolean[] visited, List<Integer>[] adjList, int[] count) {
 		visited[n] = true;
 		List<Integer> childs = adjList[n];
+		++count[0];
 		System.out.print(n+" ");
 		for(int c:childs) {
 			if(!visited[c]) {
-				dfs(c, visited, adjList);
+				dfs(c, visited, adjList, count);
 			}
 			
 		}
 	}
 	
-	public static int findConnectedComponents_Bfs(List<Integer>[] adjList) {
+	public static void findConnectedComponents_Bfs(List<Integer>[] adjList) {
 
-		int count = 0;
 		boolean[] visited = new boolean[adjList.length];
 		
 		for(int i=0; i<adjList.length;i++) {
+			int count = 0;
 			if(!visited[i] && adjList[i]!=null && adjList[i].size()>0) {
-				++count;
 				Deque<Integer> q = new LinkedList<>();
 				q.offer(i);
 				visited[i] = true;				
 				while(!q.isEmpty()) {
 					int current = q.poll();					
+					++count;
+					System.out.print(current+" ");
 					for(int vertex:adjList[current]) {
 						if(!visited[vertex]) {
 							q.offer(vertex);
@@ -70,9 +69,9 @@ https://www.geeksforgeeks.org/connected-components-in-an-undirected-graph/
 					}			
 					
 				}				
+				System.out.println(" : component number="+count);
 			}
 		}
-		return count;		
 	}
 	
 	public static void main(String[] args) {
@@ -94,8 +93,8 @@ https://www.geeksforgeeks.org/connected-components-in-an-undirected-graph/
 		adjList[3].add(4);
 		adjList[4].add(3);
 		
-		System.out.println("DFS Count of connected components="+findConnectedComponents_Dfs(adjList));
-		System.out.println("BFS Count of connected components="+findConnectedComponents_Bfs(adjList));
+		findConnectedComponents_Dfs(adjList);
+		findConnectedComponents_Bfs(adjList);
 
 		
 	}
