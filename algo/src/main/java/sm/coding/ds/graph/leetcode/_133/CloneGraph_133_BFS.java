@@ -121,29 +121,32 @@ Your runtime beats 61.80 % of java submissions.
 
 	/**
 Submission
-https://leetcode.com/submissions/detail/202404579/
+https://leetcode.com/submissions/detail/202405213/
 You are here! 
-Your runtime beats 98.64 % of java submissions.
+Your runtime beats 99.64 % of java submissions.
 
 	 * @param node
 	 * @return
 	 */
 	public static UndirectedGraphNode cloneGraph_DFS(UndirectedGraphNode node) {
+	    if (node == null) { 
+    			return null;
+	    }
+	    
 		Map<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<>();
 		return cloneGraphHelper_DFS(node, map); 
 	}
 
 	public static UndirectedGraphNode cloneGraphHelper_DFS(UndirectedGraphNode node, Map<UndirectedGraphNode, UndirectedGraphNode> map) {
-	    if (node == null) { 
-	    		return null;
-	    }
 	    if (map.containsKey(node)) {
 	    		return map.get(node);// if visited, return the cloned node
 	    }
 	    
+	    //process node + mark visited
 	    UndirectedGraphNode copy = new UndirectedGraphNode(node.label);
 	    map.put(node, copy); // mark visited
 	    
+	    //process neighbor
 	    for (UndirectedGraphNode n : node.neighbors) {
 	        copy.neighbors.add(cloneGraphHelper_DFS(n, map));
 	    }
