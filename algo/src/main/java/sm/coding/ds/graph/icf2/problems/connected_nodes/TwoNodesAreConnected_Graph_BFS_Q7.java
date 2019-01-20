@@ -26,8 +26,8 @@ public class TwoNodesAreConnected_Graph_BFS_Q7 {
 	 * input: int src , int dest
 	 * output: boolean		
 	 * 
-	 * T=O(n)
-	 * S=O(n)
+	 * T=O(v+e)
+	 * S=O(v)
 	 * 
 	 */
 	boolean isConnected(int src, int dest, LinkedList<Integer>[] adjList) {
