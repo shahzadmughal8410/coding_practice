@@ -108,7 +108,7 @@ Your runtime beats 100.00 % of java submissions.
 		int[] steps = new int[] {1, 2};		
 		int[] dp = new int[stairs + 1];
 
-		dp[0] = 0; // note the diff in base condition from fibo, i.e. starting from 1,1 instead of 0,1
+		dp[0] = 1; // note the diff in base condition from fibo, i.e. starting from 1,1 instead of 0,1
 		dp[1] = 1;
 
 		for (int s = 2; s < dp.length; s++) {
@@ -126,7 +126,7 @@ Your runtime beats 100.00 % of java submissions.
 
     /**
 Submission
-https://leetcode.com/submissions/detail/174906239/
+https://leetcode.com/submissions/detail/202614464/
 You are here! 
 Your runtime beats 100.00 % of java submissions.
 
@@ -134,13 +134,13 @@ Your runtime beats 100.00 % of java submissions.
      * @return
      */
     // Fibonachi solution optamized for climbStaris by increasing n to n+1
-    public int climbStairs_Fibonacchi2_Converted_For_Stairs(int n) {
+    public static int climbStairs_Fibonacchi2_Converted_For_Stairs(int n) {
 		if(n<2) {
 			return n;
 		}
-		int first = 0;
+		int first = 1;
 		int second = 1;
-		for(int i =2; i<=n; i++) {// note diff from fibo, it needs to be run <=stairs, not <stairs
+		for(int i =2; i<n; i++) {// note diff from fibo, it needs to be run <=stairs, not <stairs
 			int third = first+second;
 			first = second;
 			second = third;
@@ -170,6 +170,9 @@ Fibonacchi using formula
 
 		stairs= 5;
 		System.out.printf("%d stairs can be covered in %d ways. %n", stairs, climbStairs_Dp(stairs));
+
+		stairs= 5;
+		System.out.printf("%d stairs can be covered in %d ways. %n", stairs, climbStairs_Fibonacchi2_Converted_For_Stairs(stairs));
 
 	}
 
