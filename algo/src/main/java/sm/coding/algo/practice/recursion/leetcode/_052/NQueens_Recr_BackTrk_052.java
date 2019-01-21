@@ -37,6 +37,8 @@ https://leetcode.com/submissions/detail/173435591/
 You are here!
 Your runtime beats 61.66 % of java submissions.
 
+T= O(n!)
+S = O(n)
 	 */
 	public static int totalNQueens(int n){
 		int[][] board = new int[n][n];
