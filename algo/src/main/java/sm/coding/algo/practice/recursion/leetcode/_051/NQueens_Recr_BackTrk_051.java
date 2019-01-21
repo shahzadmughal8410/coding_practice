@@ -43,6 +43,9 @@ https://leetcode.com/submissions/detail/173437663/
 You are here!
 Your runtime beats 53.01 % of java submissions.
 
+https://www.cnblogs.com/yrbbest/p/4436362.html
+T= O(n!)
+S = O(n)
 	 */
 
 	public static List<List<String>> solveNQueens(int n){
