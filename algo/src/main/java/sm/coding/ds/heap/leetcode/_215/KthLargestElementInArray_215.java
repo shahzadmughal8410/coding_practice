@@ -51,7 +51,11 @@ Your runtime beats 46.60 % of java submissions.
 	public static void main(String[] args) {
 		int[] input = new int[] {3,2,1,5,6,4};
 		int k = 2;
-		System.out.println(String.format("%d largest element is %d", 2, findKthLargest(input, k)));
+		System.out.println(String.format("%d largest element is %d", k, findKthLargest(input, k)));
+
+		input = new int[] {3,2,3,1,2,4,5,5,6};
+		k = 4;
+		System.out.println(String.format("%d largest element is %d", k, findKthLargest(input, k)));
 
 	}
 

@@ -50,8 +50,18 @@ If 99% of all integer numbers from the stream are between 0 and 100, how would y
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		MedianFinder mf = new MedianFinder();
+		
+		mf.addNum_Debug(5);
+		mf.addNum_Debug(3);
+		mf.addNum_Debug(10);
+		mf.addNum_Debug(11);
+		mf.addNum_Debug(8);
+		mf.addNum_Debug(13);
+		
+		System.out.println("min="+mf.min);
+		System.out.println("max="+mf.max);
+		System.out.println("median="+mf.findMedian());
 	}
 
 }
@@ -69,8 +79,8 @@ class MedianFinder {
 
     /** initialize your data structure here. */
     // max queue is always larger or equal to min queue
-    PriorityQueue<Integer> min;
-    PriorityQueue<Integer> max;
+    PriorityQueue<Integer> min; // will be having max value in it
+    PriorityQueue<Integer> max; //  will be having min values in it
     
     /** initialize your data structure here. */
     public MedianFinder() {
@@ -85,6 +95,20 @@ class MedianFinder {
         if (max.size() < min.size()){
             max.offer(min.poll());
         }
+    }
+
+    public void addNum_Debug(int num) {
+        System.out.println("num="+num);
+
+        max.offer(num);
+        min.offer(max.poll());
+        if (max.size() < min.size()){
+            max.offer(min.poll());
+        }
+
+        System.out.println("min="+min);
+		System.out.println("max="+max);
+
     }
 
     // Returns the median of current data stream
