@@ -33,7 +33,7 @@ You may assume that nums' length ≥ k-1 and k ≥ 1.
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		KthLargest o = new KthLargest(3, new int[] {5,2,7,6,1});
+		KthLargest o = new KthLargest(3, new int[] {5,5,5,2,7,6,1});
 		System.out.println("Kth largest="+o.add(2));
 		for(int i =0; i<100; i++) {
 			o.add(i);
@@ -57,7 +57,7 @@ class KthLargest {
 	int k;
 	
     public KthLargest(int k, int[] nums) {
-    		q = new PriorityQueue<>(k+1);
+    		q = new PriorityQueue<>(k+1); // min heap
     		this.k = k;
     		for(int i:nums) {
     			add(i);
