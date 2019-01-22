@@ -70,6 +70,9 @@ Your runtime beats 33.02 % of java submissions.
 
 		intervals = new Interval[] { new Interval(0, 30),new Interval(5, 10),new Interval(40, 50)};
 		System.out.println("Rooms required="+minMeetingRooms(intervals));
+
+		intervals = new Interval[] { new Interval(2, 8),new Interval(1, 5),new Interval(3, 4),new Interval(5, 7)};
+		System.out.println("Rooms required="+minMeetingRooms(intervals));
 	}
 
 }
