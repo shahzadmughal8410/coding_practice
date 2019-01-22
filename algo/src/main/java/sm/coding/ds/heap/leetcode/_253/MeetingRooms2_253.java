@@ -5,6 +5,7 @@ package sm.coding.ds.heap.leetcode._253;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;
+import java.util.stream.Collectors;
 
 /**
  * @author smughal
@@ -40,7 +41,12 @@ Your runtime beats 33.02 % of java submissions.
 			return 0;
 		}
 		
+		System.out.println("input ="+Arrays.stream(intervals).collect(Collectors.toList()));
+		
 		Arrays.sort(intervals, (a,b)->{return a.start-b.start;});
+		
+		System.out.println("sorted="+Arrays.stream(intervals).collect(Collectors.toList()));
+		
 		PriorityQueue<Integer> minHeap = new PriorityQueue<>(intervals.length);
 		minHeap.offer(intervals[0].end);
 		
@@ -61,6 +67,9 @@ Your runtime beats 33.02 % of java submissions.
 	public static void main(String[] args) {
 		Interval[] intervals = new Interval[] { new Interval(0, 30),new Interval(5, 10),new Interval(15, 20)};
 		System.out.println("Rooms required="+minMeetingRooms(intervals));
+
+		intervals = new Interval[] { new Interval(0, 30),new Interval(5, 10),new Interval(40, 50)};
+		System.out.println("Rooms required="+minMeetingRooms(intervals));
 	}
 
 }
@@ -78,5 +87,12 @@ class Interval {
 		start = s;
 		end = e;
 	}
+
+	@Override
+	public String toString() {
+		return "Interval [start=" + start + ", end=" + end + "]";
+	}
+	
+	
 }
  
