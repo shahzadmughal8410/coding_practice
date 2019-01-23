@@ -50,9 +50,9 @@ Last executed input:
 	
 	/**
 Submission
-https://leetcode.com/submissions/detail/176558672/
+https://leetcode.com/submissions/detail/203126487/
 You are here! 
-Your runtime beats 45.92 % of java submissions.
+Your runtime beats 95.13 % of java submissions.
 	 * @param word1
 	 * @param word2
 	 * @return
@@ -72,7 +72,7 @@ Your runtime beats 45.92 % of java submissions.
 				}
 			}
 		}
-		return word1.length()+word2.length() - (2 * dp[m][n]);
+		return word1.length()+word2.length() - (2 * dp[dp.length-1][dp[0].length-1]);
 	}
 	
 	/**
