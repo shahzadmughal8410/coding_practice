@@ -25,7 +25,7 @@ Links
 https://leetcode.com/problems/move-zeroes/solution/ 
 https://www.geeksforgeeks.org/move-zeroes-end-array/  
 
-https://leetcode.com/submissions/detail/192059427/
+https://leetcode.com/submissions/detail/203103105/
 You are here!
 Your runtime beats 100.00 % of java submissions.
 
@@ -35,8 +35,8 @@ Your runtime beats 100.00 % of java submissions.
 		int wi = 0;
 		for(int ri =0; ri<nums.length; ri++) {
 			if(nums[ri]!=0) {
-				nums[wi] = nums[ri];
 				if(wi!=ri) {
+					nums[wi] = nums[ri];
 					nums[ri]=0;
 				}
 				++wi;
