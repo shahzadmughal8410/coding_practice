@@ -31,6 +31,11 @@ Your algorithm should run in linear runtime complexity. Could you implement it u
 Links
 https://leetcode.com/problems/missing-number/solution/ 
 https://www.geeksforgeeks.org/find-the-missing-number/ 
+
+Submission
+https://leetcode.com/submissions/detail/203027806/
+You are here! 
+Your runtime beats 100.00 % of java submissions.
 	 * 
 	 * @param args
 	 */
