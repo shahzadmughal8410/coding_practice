@@ -46,8 +46,7 @@ Your runtime beats 96.89 % of java submissions.
 		}		
 		Map<String, List<String>> m = new LinkedHashMap<>();// to maintain the order in which keys are added
 		for(String s:strs) {
-			char[] chars = s.toCharArray();
-			
+//			char[] chars = s.toCharArray();
 //			Arrays.sort(chars);// T=O(n log n), anagrams will result in same string(key) after sorting
 //			String key = new String(chars);
 
