@@ -58,7 +58,7 @@ Time Limit Exceeded
     public static int uniquePathsWithObstaclesHelper_BruteForce(int[][] grid, int row, int col) {
     		if(row==0 && col==0) {
     			// if first cell is not an obstacle then 1 possible solution is found
-    			return grid[row][col]==0 ? 1 : 0;
+    			return grid[row][col]==0 ? 1 : 0; //here return value is count Zero or One, not obstacle or space
     		}    		
     		if(grid[row][col]==0) {
     			int left = isValid(grid, row, col-1) ? uniquePathsWithObstaclesHelper_BruteForce(grid, row, col-1) : 0;
