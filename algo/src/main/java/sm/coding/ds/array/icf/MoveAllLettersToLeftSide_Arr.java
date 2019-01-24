@@ -46,7 +46,7 @@ https://leetcode.com/problems/move-zeroes/solution/
 	 */
 	public static void move(char[] chars) {
 		int wi = 0;
-		for(int ri=0; ri<chars.length; ri++) {
+		for(int ri=0; ri<chars.length; ri++) { // ri can start with either 0 or 1 both works
 			//non-zero value found
 		if (Character.isLetter(chars[ri]) ) {
 			//swap with wi value
