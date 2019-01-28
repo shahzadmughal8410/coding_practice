@@ -23,16 +23,16 @@ public class BstFromSortedArray {
 	}
 
 	private static TreeNode helper(int[] num, int low, int high) {
-	    if (low > high) { // Done
-	        return null;
+	    if (low <= high) { // Done
+	//	    int mid = (low + high) / 2;
+		    int mid = low+ ( (high-low) / 2 );
+		    TreeNode node = new TreeNode();
+		    node.val = num[mid];
+		    node.left = helper(num, low, mid - 1);
+		    node.right = helper(num, mid + 1, high);
+		    return node;
 	    }
-//	    int mid = (low + high) / 2;
-	    int mid = low+ ( (high-low) / 2 );
-	    TreeNode node = new TreeNode();
-	    node.val = num[mid];
-	    node.left = helper(num, low, mid - 1);
-	    node.right = helper(num, mid + 1, high);
-	    return node;
+        return null;
 	}
 	
 	public static void main(String[] args) {
