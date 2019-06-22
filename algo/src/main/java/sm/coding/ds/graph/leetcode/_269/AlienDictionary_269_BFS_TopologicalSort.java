@@ -67,14 +67,19 @@ There may be multiple valid order of letters, return any one of them is fine.
 
 Submission
 https://leetcode.com/submissions/detail/182599292/
-You are here! 
-Your runtime beats 11.48 % of java submissions.
+You are here!
+Your runtime beats 31.32 % of java submissions.
 	 * @param words
 	 * @return
 	 */
     public static String alienOrder(String[] words) {
-    		Map<Character, Set<Character>> graph = buildGraph(words);
-    		return topologicalSorting(graph);
+		System.out.println("Language words");
+    	for(String word:words){
+			System.out.print(word+", ");
+		}
+		System.out.println();
+		Map<Character, Set<Character>> graph = buildGraph(words);
+		return topologicalSorting(graph);
     }
 
     private static String topologicalSorting(Map<Character, Set<Character>> graph) {
@@ -112,10 +117,10 @@ Your runtime beats 11.48 % of java submissions.
     		
     		// add vertices for all the unique characters
     		for (String word : words) {
-			for (int i = 0; i < word.length(); i++) {
-				graph.putIfAbsent(word.charAt(i), new HashSet<>());
+				for (int i = 0; i < word.length(); i++) {
+					graph.putIfAbsent(word.charAt(i), new HashSet<>());
+				}
 			}
-		}    		
     		
     		for(int i=0; i<words.length-1;i++) {
     			String word1 = words[i];
@@ -131,7 +136,7 @@ Your runtime beats 11.48 % of java submissions.
     			}
     			
     		}
-    		
+			System.out.println("Graph");
     		graph.forEach((k,v) -> System.out.println(k+" --> "+v));
     		
     		return graph;
@@ -147,7 +152,8 @@ Your runtime beats 11.48 % of java submissions.
             for (Character neighbour : graph.get(key)) {
                 indegree.put(neighbour, indegree.get(neighbour) + 1);
             }
-        }     
+        }
+		System.out.println("Indegree");
         indegree.forEach((k,v) -> System.out.println(k+" --> "+v));
         return indegree;
     }
@@ -169,19 +175,22 @@ Your runtime beats 11.48 % of java submissions.
 		
 		words = new String[] {"z","x"};
 		System.out.println("Alien language alphabats order="+alienOrder(words));
-		
+
 		words = new String[] {"z","x","z"};
 		System.out.println("Alien language alphabats order="+alienOrder(words));
-		
+
 		words = new String[] {"z","z"};
 		System.out.println("Alien language alphabats order="+alienOrder(words));
-		
+
 		words = new String[] {"za","zb","ca","cb"};
 		System.out.println("Alien language alphabats order="+alienOrder(words));
-		
+
 		words = new String[] {"caa", "aaa", "aab"};
 		System.out.println("Alien language alphabats order="+alienOrder(words));
-		
+
+		words = new String[] {"efg", "fab"};
+		System.out.println("Alien language alphabats order="+alienOrder(words));
+
 	}
 
 }
